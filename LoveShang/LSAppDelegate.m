@@ -20,7 +20,7 @@
     LSTabBarViewController *tabBarViewController = [[LSTabBarViewController alloc] init];
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tabBarViewController];
-    
+    nc.navigationBarHidden = YES;
     [self.window setRootViewController:nc];
     
     [self.window makeKeyAndVisible];

@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LSCommonToolbar.h"
 
-@interface LSBaseViewController : UIViewController
+@interface LSBaseViewController : UIViewController{
+}
+
+@property (nonatomic,assign) BOOL showCommonBar;
+@property (nonatomic,strong) LSCommonToolbar *commonBar;
 
 @end

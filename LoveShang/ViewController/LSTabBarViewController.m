@@ -11,12 +11,14 @@
 #import "LSForumViewController.h"
 #import "LSNearbyViewController.h"
 #import "LSMyViewController.h"
+#import "LSCommonToolbar.h"
 
 @implementation LSTabBarViewController
 
-
 -(void)viewDidLoad{
     [super viewDidLoad];
+
+    [self setupCommonBar];
     
     NSMutableArray *viewControllerArray = [[NSMutableArray alloc] init];
     
@@ -36,9 +38,6 @@
     [viewControllerArray addObject:myViewController];
     
     self.viewControllers = viewControllerArray;
-    
-    
-    [self setUpNavBar];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -49,8 +48,9 @@
 //    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
--(void)setUpNavBar{
-    ·
+-(void)setupCommonBar{
+    LSCommonToolbar *commonBar = [[LSCommonToolbar alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 44.0f)];
+    [self.view addSubview:commonBar];
 }
 
 @end
