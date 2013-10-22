@@ -12,6 +12,8 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.showCommonBar = YES;
+    self.showNavBar = YES;
 }
 
 @end

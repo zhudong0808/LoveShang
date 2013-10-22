@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		534240581816C2A400C26350 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 534240571816C2A400C26350 /* LSNavBar.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
 		535E7708180FC20D00433042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7707180FC20D00433042 /* SystemConfiguration.framework */; };
@@ -54,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		534240561816C2A400C26350 /* LSNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavBar.h; sourceTree = "<group>"; };
+		534240571816C2A400C26350 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavBar.m; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		535E7707180FC20D00433042 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -166,6 +169,8 @@
 			children = (
 				53E47891181577F600BEFD10 /* LSCommonToolbar.h */,
 				53E47892181577F600BEFD10 /* LSCommonToolbar.m */,
+				534240561816C2A400C26350 /* LSNavBar.h */,
+				534240571816C2A400C26350 /* LSNavBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				535E7736180FCCFC00433042 /* LSNearbyViewController.m in Sources */,
 				535E7737180FCCFC00433042 /* LSTabBarViewController.m in Sources */,
 				53E47893181577F600BEFD10 /* LSCommonToolbar.m in Sources */,
+				534240581816C2A400C26350 /* LSNavBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

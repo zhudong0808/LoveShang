@@ -12,6 +12,8 @@
 
 @synthesize showCommonBar = _showCommonBar;
 @synthesize commonBar = _commonBar;
+@synthesize showNavBar = _showNavBar;
+@synthesize navBar = _navBar;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -28,4 +30,13 @@
     }
 }
 
+- (void)setShowNavBar:(BOOL)showNavBar{
+    _showNavBar = showNavBar;
+    if (_showNavBar && !_navBar) {
+        _navBar = [[LSNavBar alloc] init];
+        [self.view addSubview:_navBar.view];
+    } else if (!_showNavBar && _navBar) {
+        [_navBar.view removeFromSuperview];
+    }
+}
 @end

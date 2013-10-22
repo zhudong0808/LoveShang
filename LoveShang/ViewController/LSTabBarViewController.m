@@ -17,8 +17,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-
-    [self setupCommonBar];
     
     NSMutableArray *viewControllerArray = [[NSMutableArray alloc] init];
     
@@ -38,19 +36,6 @@
     [viewControllerArray addObject:myViewController];
     
     self.viewControllers = viewControllerArray;
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-//    self.navigationItem.title = @"test";
-//    self.navigationController.navigationBar.tintColor = [UIColor redColor];
-//    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
-//    self.navigationItem.leftBarButtonItem = leftButton;
-}
-
--(void)setupCommonBar{
-    LSCommonToolbar *commonBar = [[LSCommonToolbar alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 44.0f)];
-    [self.view addSubview:commonBar];
 }
 
 @end

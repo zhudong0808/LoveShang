@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "LSCommonToolbar.h"
+#import "LSNavBar.h"
 
 @interface LSBaseViewController : UIViewController{
 }
 
 @property (nonatomic,assign) BOOL showCommonBar;
 @property (nonatomic,strong) LSCommonToolbar *commonBar;
+@property (nonatomic,assign) BOOL showNavBar;
+@property (nonatomic,strong) LSNavBar *navBar;
 
 @end
