@@ -14,7 +14,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor greenColor];
         UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        logoView.image = [UIImage imageNamed:@"logo.png"];
+        logoView.image = [UIImage imageNamed:@"logo1.png"];
         [self addSubview:logoView];
     }
     return self;
