@@ -15,6 +15,7 @@
 @end
 
 @implementation LSNavBar
+@synthesize delegate = _delegate;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -46,5 +47,8 @@
         CGRect newFrame = CGRectMake(btn.frame.origin.x, btn.frame.origin.y+30-3, 100, 3);
         _border.frame = newFrame;
     }];
+    if ([_delegate respondsToSelector:@selector(doActionWithBtn:)]) {
+        [_delegate doActionWithBtn:btn];
+    }
 }
 @end

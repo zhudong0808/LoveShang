@@ -8,6 +8,6 @@
 
 #import "LSBaseViewController.h"
 
-@interface LSHeadlineViewController : LSBaseViewController
+@interface LSHeadlineViewController : LSBaseViewController<LSNavBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end

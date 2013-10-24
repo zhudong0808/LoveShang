@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol LSNavBarDelegate <NSObject>
+
+-(void)doActionWithBtn:(UIButton *)btn;
+
+@end
+
 @interface LSNavBar : UIViewController<UIScrollViewDelegate>
+
+@property (nonatomic,assign) id<LSNavBarDelegate> delegate;
 
 @end
