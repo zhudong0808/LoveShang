@@ -10,6 +10,7 @@
 #import "LSCommonToolbar.h"
 #import "LSNavBar.h"
 #import "SVPullToRefresh.h"
+#import "LSApiClientService.h"
 
 @interface LSBaseViewController : UIViewController{
 }

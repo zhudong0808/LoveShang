@@ -12,6 +12,7 @@
 
 }
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSArray *tableData;
 @end
 
 @implementation LSHeadlineViewController
@@ -35,18 +36,22 @@
             [blockSelf loadDataWithMore:NO isRefresh:YES];
         });
      }];
-    
     [self.view addSubview:_tableView];
+    
+    [self loadDataWithMore:NO isRefresh:YES];
 }
 
 #pragma UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return [_tableData count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     cell.backgroundColor = [UIColor redColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    label.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"content"];
+    [cell addSubview:label];
     return cell;
 }
 
@@ -60,6 +65,13 @@
 
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     
+    [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        _tableData = responseObject;
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        NSLog(@"%@",error);
+    }];
+    [_tableView.pullToRefreshView stopAnimating];
 }
 
 @end
