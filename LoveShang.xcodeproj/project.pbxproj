@@ -29,6 +29,7 @@
 		536A70E21819640000C9FD00 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 536A70DF1819640000C9FD00 /* UIScrollView+SVInfiniteScrolling.m */; };
 		536A70E31819640000C9FD00 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 536A70E11819640000C9FD00 /* UIScrollView+SVPullToRefresh.m */; };
 		536A70E518196B9C00C9FD00 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536A70E418196B9B00C9FD00 /* QuartzCore.framework */; };
+		5392A975181BCB720061230C /* LSApiClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5392A974181BCB720061230C /* LSApiClientService.m */; };
 		53C20EB9180F92C2006CE576 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C20EB8180F92C2006CE576 /* UIKit.framework */; };
 		53C20EBB180F92C2006CE576 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C20EBA180F92C2006CE576 /* Foundation.framework */; };
 		53C20EBD180F92C2006CE576 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C20EBC180F92C2006CE576 /* CoreGraphics.framework */; };
@@ -100,6 +101,8 @@
 		536A70E01819640000C9FD00 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		536A70E11819640000C9FD00 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		536A70E418196B9B00C9FD00 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5392A973181BCB720061230C /* LSApiClientService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSApiClientService.h; sourceTree = "<group>"; };
+		5392A974181BCB720061230C /* LSApiClientService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSApiClientService.m; sourceTree = "<group>"; };
 		53C20EB5180F92C2006CE576 /* LoveShang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveShang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C20EB8180F92C2006CE576 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53C20EBA180F92C2006CE576 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 		535E770B180FC2A400433042 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5392A973181BCB720061230C /* LSApiClientService.h */,
+				5392A974181BCB720061230C /* LSApiClientService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				536A70DB1819638700C9FD00 /* UIImageView+AFNetworking.m in Sources */,
 				536A70E21819640000C9FD00 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				536A70E31819640000C9FD00 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				5392A975181BCB720061230C /* LSApiClientService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

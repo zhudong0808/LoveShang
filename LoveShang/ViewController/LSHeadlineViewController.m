@@ -12,7 +12,8 @@
 
 }
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSArray *tableData;
+@property (nonatomic,strong) NSMutableArray *tableData;
+@property (nonatomic,assign) NSInteger page;
 @end
 
 @implementation LSHeadlineViewController
@@ -22,6 +23,8 @@
     self.showCommonBar = YES;
     self.showNavBar = YES;
     self.navBar.delegate = self;
+    _page = 1;
+    _tableData = [[NSMutableArray alloc] init];
     
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40+35, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
@@ -41,6 +44,11 @@
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
+#pragma UITableViewDelegate
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self loadDataWithMore:YES isRefresh:NO];
+}
+
 #pragma UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_tableData count];
@@ -50,7 +58,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     cell.backgroundColor = [UIColor redColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    label.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"content"];
+    label.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"title"];
     [cell addSubview:label];
     return cell;
 }
@@ -65,8 +73,20 @@
 
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     
-    [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
-        _tableData = responseObject;
+    NSDictionary *params = @{@"page":[NSString stringWithFormat:@"%d",_page]};
+    [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+        if (more && !isRefresh) {
+//            NSInteger count = [responseObject count];
+            for (NSMutableDictionary *item in responseObject) {
+//                [_tableData insertObject:item atIndex:count];
+                [_tableData addObject:item];
+//                count++;
+            }
+//          [_tableData addObjectsFromArray:responseObject];
+           _page = _page + 1;
+        } else {
+            _tableData = responseObject;
+        }
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         NSLog(@"%@",error);
