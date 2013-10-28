@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *tableData;
 @property (nonatomic,assign) NSInteger page;
+@property (nonatomic,assign) BOOL isLoadingData;
+@property (nonatomic,assign) NSInteger totalCount;
 @end
 
 @implementation LSHeadlineViewController
@@ -31,6 +33,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
+    [self.view addSubview:_tableView];
     __block __unsafe_unretained id blockSelf = self;
     [_tableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;
@@ -39,15 +42,34 @@
             [blockSelf loadDataWithMore:NO isRefresh:YES];
         });
      }];
-    [self.view addSubview:_tableView];
-    
+    // setup infinite scrolling
+    [_tableView addInfiniteScrollingWithActionHandler:^{
+        __strong LSHeadlineViewController *strongSelf = blockSelf;
+        int64_t delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            if(!strongSelf.isLoadingData){
+                if (strongSelf.totalCount > [strongSelf.tableData count]) {
+                    [strongSelf loadDataWithMore:YES isRefresh:NO];
+                }else{
+                    if (strongSelf.tableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
+                        [strongSelf.tableView.infiniteScrollingView stopAnimating];
+                    }
+                }
+            }else if (strongSelf.tableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
+                [strongSelf.tableView.infiniteScrollingView stopAnimating];
+            }
+            
+        });
+    }];
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
 #pragma UITableViewDelegate
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [self loadDataWithMore:YES isRefresh:NO];
-}
+//-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    
+//    [self loadDataWithMore:YES isRefresh:NO];
+//}
 
 #pragma UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -72,20 +94,27 @@
 }
 
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    
+    _isLoadingData = YES;
     NSDictionary *params = @{@"page":[NSString stringWithFormat:@"%d",_page]};
     [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+        _isLoadingData = NO;
+        _totalCount = 20;
         if (more && !isRefresh) {
           [_tableData addObjectsFromArray:responseObject];
+          [_tableView.infiniteScrollingView stopAnimating];
            _page = _page + 1;
         } else {
             [_tableData addObjectsFromArray:responseObject];
+            _page = 2;
+            [_tableView.pullToRefreshView stopAnimating];
         }
+        
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        _isLoadingData = NO;
         NSLog(@"%@",error);
     }];
-    [_tableView.pullToRefreshView stopAnimating];
+    
 }
 
 @end
