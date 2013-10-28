@@ -76,16 +76,10 @@
     NSDictionary *params = @{@"page":[NSString stringWithFormat:@"%d",_page]};
     [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
         if (more && !isRefresh) {
-//            NSInteger count = [responseObject count];
-            for (NSMutableDictionary *item in responseObject) {
-//                [_tableData insertObject:item atIndex:count];
-                [_tableData addObject:item];
-//                count++;
-            }
-//          [_tableData addObjectsFromArray:responseObject];
+          [_tableData addObjectsFromArray:responseObject];
            _page = _page + 1;
         } else {
-            _tableData = responseObject;
+            [_tableData addObjectsFromArray:responseObject];
         }
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
