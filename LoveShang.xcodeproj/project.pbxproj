@@ -10,6 +10,7 @@
 		531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 531581C8181FFE5F0032A738 /* common_toolbar_background.png */; };
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
+		531581DD1820180F0032A738 /* list_default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 531581DC1820180F0032A738 /* list_default_image.png */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
 		535E7708180FC20D00433042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7707180FC20D00433042 /* SystemConfiguration.framework */; };
@@ -65,6 +66,7 @@
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
 		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
+		531581DC1820180F0032A738 /* list_default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_default_image.png; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		535E7707180FC20D00433042 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -328,6 +330,7 @@
 		53E478941815836900BEFD10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				531581DC1820180F0032A738 /* list_default_image.png */,
 				531581C8181FFE5F0032A738 /* common_toolbar_background.png */,
 				53E478951815836A00BEFD10 /* _0005_天气.png */,
 				53E478961815836A00BEFD10 /* _0007_头条icon.png */,
@@ -416,6 +419,7 @@
 				53E478AF1815836A00BEFD10 /* 头条iphone5-原图.jpg in Resources */,
 				53E478B01815836A00BEFD10 /* 头条iphone5_MarkMan.png in Resources */,
 				531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */,
+				531581DD1820180F0032A738 /* list_default_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

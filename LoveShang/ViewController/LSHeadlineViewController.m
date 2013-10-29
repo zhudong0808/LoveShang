@@ -79,12 +79,33 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    cell.backgroundColor = [UIColor redColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    label.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"title"];
-    [cell addSubview:label];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 75/2 - 58/2, 85, 58)];
+    imageView.image = [UIImage imageNamed:@"list_default_image.png"];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11, self.view.frame.size.width - 95, 15)];
+    titleLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"title"];
+    titleLabel.textColor = [LSColorStyleSheet colorWithName:LSColorGrayText];
+    titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.textAlignment = UITextAlignmentLeft;
+    
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11 + 15 + 8, self.view.frame.size.width - 95, 12)];
+    contentLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"content"];
+    contentLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
+    contentLabel.font = [UIFont systemFontOfSize:12];
+    contentLabel.textAlignment = UITextAlignmentLeft;
+    
+    [cell addSubview:imageView];
+    [cell addSubview:titleLabel];
+    [cell addSubview:contentLabel];
     return cell;
 }
+
+#pragma UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 75.0;
+}
+
 
 -(void)doActionWithBtn:(UIButton *)btn{
     [self reloadData];
