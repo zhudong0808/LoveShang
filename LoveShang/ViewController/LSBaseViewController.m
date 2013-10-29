@@ -14,6 +14,7 @@
 @synthesize commonBar = _commonBar;
 @synthesize showNavBar = _showNavBar;
 @synthesize navBar = _navBar;
+@synthesize commonToolBarType = _commonToolBarType;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -23,7 +24,7 @@
 - (void)setShowCommonBar:(BOOL)showCommonBar {
     _showCommonBar = showCommonBar;
     if (_showCommonBar && !_commonBar) {
-        _commonBar = [[LSCommonToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0f)];
+        _commonBar = [[LSCommonToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0f) type:_commonToolBarType];
         [self.view addSubview:_commonBar];
     } else if (!_showCommonBar && _commonBar) {
         [_commonBar removeFromSuperview];

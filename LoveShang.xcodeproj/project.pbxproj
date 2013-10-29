@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		534240581816C2A400C26350 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 534240571816C2A400C26350 /* LSNavBar.m */; };
+		531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 531581C8181FFE5F0032A738 /* common_toolbar_background.png */; };
+		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
+		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
 		535E7708180FC20D00433042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7707180FC20D00433042 /* SystemConfiguration.framework */; };
@@ -44,7 +46,6 @@
 		53E47893181577F600BEFD10 /* LSCommonToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E47892181577F600BEFD10 /* LSCommonToolbar.m */; };
 		53E478A31815836A00BEFD10 /* _0005_天气.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478951815836A00BEFD10 /* _0005_天气.png */; };
 		53E478A41815836A00BEFD10 /* _0007_头条icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478961815836A00BEFD10 /* _0007_头条icon.png */; };
-		53E478A51815836A00BEFD10 /* _0007_底色.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478971815836A00BEFD10 /* _0007_底色.png */; };
 		53E478A61815836A00BEFD10 /* _0008_身边优惠.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478981815836A00BEFD10 /* _0008_身边优惠.png */; };
 		53E478A71815836A00BEFD10 /* _0009_我icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478991815836A00BEFD10 /* _0009_我icon.png */; };
 		53E478A81815836A00BEFD10 /* _0010_论坛icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E4789A1815836A00BEFD10 /* _0010_论坛icon.png */; };
@@ -59,8 +60,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		534240561816C2A400C26350 /* LSNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavBar.h; sourceTree = "<group>"; };
-		534240571816C2A400C26350 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavBar.m; sourceTree = "<group>"; };
+		531581C8181FFE5F0032A738 /* common_toolbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_toolbar_background.png; sourceTree = "<group>"; };
+		531581D1182004700032A738 /* LSNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSNavBar.h; path = View/LSNavBar.h; sourceTree = "<group>"; };
+		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
+		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
+		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		535E7707180FC20D00433042 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -122,7 +126,6 @@
 		53E47892181577F600BEFD10 /* LSCommonToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSCommonToolbar.m; path = View/LSCommonToolbar.m; sourceTree = "<group>"; };
 		53E478951815836A00BEFD10 /* _0005_天气.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0005_天气.png"; sourceTree = "<group>"; };
 		53E478961815836A00BEFD10 /* _0007_头条icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0007_头条icon.png"; sourceTree = "<group>"; };
-		53E478971815836A00BEFD10 /* _0007_底色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0007_底色.png"; sourceTree = "<group>"; };
 		53E478981815836A00BEFD10 /* _0008_身边优惠.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0008_身边优惠.png"; sourceTree = "<group>"; };
 		53E478991815836A00BEFD10 /* _0009_我icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0009_我icon.png"; sourceTree = "<group>"; };
 		53E4789A1815836A00BEFD10 /* _0010_论坛icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0010_论坛icon.png"; sourceTree = "<group>"; };
@@ -156,11 +159,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		535E7709180FC28400433042 /* Common */ = {
+		531581D81820082D0032A738 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				531581D9182008450032A738 /* LSColorStyleSheet.h */,
+				531581DA182008450032A738 /* LSColorStyleSheet.m */,
 			);
-			name = Common;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		535E770B180FC2A400433042 /* Service */ = {
@@ -184,8 +189,8 @@
 			children = (
 				53E47891181577F600BEFD10 /* LSCommonToolbar.h */,
 				53E47892181577F600BEFD10 /* LSCommonToolbar.m */,
-				534240561816C2A400C26350 /* LSNavBar.h */,
-				534240571816C2A400C26350 /* LSNavBar.m */,
+				531581D1182004700032A738 /* LSNavBar.h */,
+				531581D2182004710032A738 /* LSNavBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -293,12 +298,12 @@
 		53C20EBE180F92C2006CE576 /* LoveShang */ = {
 			isa = PBXGroup;
 			children = (
+				531581D81820082D0032A738 /* Common */,
 				53E478941815836900BEFD10 /* Resources */,
 				535E7725180FCCFC00433042 /* ViewController */,
 				535E7710180FC35700433042 /* View */,
 				535E770F180FC33600433042 /* Model */,
 				535E770B180FC2A400433042 /* Service */,
-				535E7709180FC28400433042 /* Common */,
 				53C20EC7180F92C2006CE576 /* LSAppDelegate.h */,
 				53C20EC8180F92C2006CE576 /* LSAppDelegate.m */,
 				53C20EBF180F92C2006CE576 /* Supporting Files */,
@@ -323,9 +328,9 @@
 		53E478941815836900BEFD10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				531581C8181FFE5F0032A738 /* common_toolbar_background.png */,
 				53E478951815836A00BEFD10 /* _0005_天气.png */,
 				53E478961815836A00BEFD10 /* _0007_头条icon.png */,
-				53E478971815836A00BEFD10 /* _0007_底色.png */,
 				53E478981815836A00BEFD10 /* _0008_身边优惠.png */,
 				53E478991815836A00BEFD10 /* _0009_我icon.png */,
 				53E4789A1815836A00BEFD10 /* _0010_论坛icon.png */,
@@ -399,7 +404,6 @@
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53E478A31815836A00BEFD10 /* _0005_天气.png in Resources */,
 				53E478A41815836A00BEFD10 /* _0007_头条icon.png in Resources */,
-				53E478A51815836A00BEFD10 /* _0007_底色.png in Resources */,
 				53E478A61815836A00BEFD10 /* _0008_身边优惠.png in Resources */,
 				53E478A71815836A00BEFD10 /* _0009_我icon.png in Resources */,
 				53E478A81815836A00BEFD10 /* _0010_论坛icon.png in Resources */,
@@ -411,6 +415,7 @@
 				53E478AE1815836A00BEFD10 /* logo.png in Resources */,
 				53E478AF1815836A00BEFD10 /* 头条iphone5-原图.jpg in Resources */,
 				53E478B01815836A00BEFD10 /* 头条iphone5_MarkMan.png in Resources */,
+				531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +435,6 @@
 				535E7736180FCCFC00433042 /* LSNearbyViewController.m in Sources */,
 				535E7737180FCCFC00433042 /* LSTabBarViewController.m in Sources */,
 				53E47893181577F600BEFD10 /* LSCommonToolbar.m in Sources */,
-				534240581816C2A400C26350 /* LSNavBar.m in Sources */,
 				536A70D31819638700C9FD00 /* AFHTTPClient.m in Sources */,
 				536A70D41819638700C9FD00 /* AFHTTPRequestOperation.m in Sources */,
 				536A70D51819638700C9FD00 /* AFImageRequestOperation.m in Sources */,
@@ -443,6 +447,8 @@
 				536A70E21819640000C9FD00 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				536A70E31819640000C9FD00 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				5392A975181BCB720061230C /* LSApiClientService.m in Sources */,
+				531581D3182004710032A738 /* LSNavBar.m in Sources */,
+				531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

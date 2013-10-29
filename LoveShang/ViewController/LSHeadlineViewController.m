@@ -22,6 +22,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.commonToolBarType = LSCommonToolbarIndex;
     self.showCommonBar = YES;
     self.showNavBar = YES;
     self.navBar.delegate = self;
@@ -29,7 +30,7 @@
     _tableData = [[NSMutableArray alloc] init];
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40+35, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

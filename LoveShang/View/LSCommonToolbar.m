@@ -10,11 +10,13 @@
 
 @implementation LSCommonToolbar
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame type:(NSInteger)type{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor greenColor];
-        UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        logoView.image = [UIImage imageNamed:@"logo1.png"];
+        UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        backgroundView.image = [UIImage imageNamed:@"common_toolbar_background.png"];
+        [self addSubview:backgroundView];
+        UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44/2 - 33/2, 87, 33)];
+        logoView.image = [UIImage imageNamed:@"logo.png"];
         [self addSubview:logoView];
     }
     return self;

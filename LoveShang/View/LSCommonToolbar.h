@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum{
+    LSCommonToolbarIndex,
+    LSCommonToolbarList,
+    LSCommonToolbarOther
+} LSCommonToolbarType;
+
 @interface LSCommonToolbar : UIView
+
+-(id)initWithFrame:(CGRect)frame type:(NSInteger)type;
 
 @end

@@ -19,5 +19,6 @@
 @property (nonatomic,strong) LSCommonToolbar *commonBar;
 @property (nonatomic,assign) BOOL showNavBar;
 @property (nonatomic,strong) LSNavBar *navBar;
+@property (nonatomic,assign) NSInteger commonToolBarType;
 
 @end
