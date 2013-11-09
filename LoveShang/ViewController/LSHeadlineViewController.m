@@ -26,6 +26,7 @@
     self.showCommonBar = YES;
     self.showNavBar = YES;
     self.navBar.delegate = self;
+    
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
     

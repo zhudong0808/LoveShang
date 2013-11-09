@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 531581C8181FFE5F0032A738 /* common_toolbar_background.png */; };
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
 		531581DD1820180F0032A738 /* list_default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 531581DC1820180F0032A738 /* list_default_image.png */; };
+		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
+		53360A5418268FF00067D9C9 /* common_toolbar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53360A5318268FF00067D9C9 /* common_toolbar_background@2x.png */; };
+		53360A561826909B0067D9C9 /* common_toolbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 53360A551826909B0067D9C9 /* common_toolbar_background.png */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
 		535E7708180FC20D00433042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7707180FC20D00433042 /* SystemConfiguration.framework */; };
@@ -38,7 +40,6 @@
 		53C20EBD180F92C2006CE576 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C20EBC180F92C2006CE576 /* CoreGraphics.framework */; };
 		53C20EC3180F92C2006CE576 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53C20EC1180F92C2006CE576 /* InfoPlist.strings */; };
 		53C20EC5180F92C2006CE576 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C20EC4180F92C2006CE576 /* main.m */; };
-		53C20EC9180F92C2006CE576 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C20EC8180F92C2006CE576 /* LSAppDelegate.m */; };
 		53C20ECB180F92C2006CE576 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C20ECA180F92C2006CE576 /* Default.png */; };
 		53C20ECD180F92C2006CE576 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C20ECC180F92C2006CE576 /* Default@2x.png */; };
 		53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C20ECE180F92C2006CE576 /* Default-568h@2x.png */; };
@@ -61,12 +62,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		531581C8181FFE5F0032A738 /* common_toolbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_toolbar_background.png; sourceTree = "<group>"; };
 		531581D1182004700032A738 /* LSNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSNavBar.h; path = View/LSNavBar.h; sourceTree = "<group>"; };
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
 		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
 		531581DC1820180F0032A738 /* list_default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_default_image.png; sourceTree = "<group>"; };
+		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
+		53360A5318268FF00067D9C9 /* common_toolbar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_toolbar_background@2x.png"; sourceTree = "<group>"; };
+		53360A551826909B0067D9C9 /* common_toolbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_toolbar_background.png; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		535E7707180FC20D00433042 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -118,7 +121,6 @@
 		53C20EC4180F92C2006CE576 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53C20EC6180F92C2006CE576 /* LoveShang-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoveShang-Prefix.pch"; sourceTree = "<group>"; };
 		53C20EC7180F92C2006CE576 /* LSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAppDelegate.h; sourceTree = "<group>"; };
-		53C20EC8180F92C2006CE576 /* LSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
 		53C20ECA180F92C2006CE576 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		53C20ECC180F92C2006CE576 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		53C20ECE180F92C2006CE576 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -307,7 +309,7 @@
 				535E770F180FC33600433042 /* Model */,
 				535E770B180FC2A400433042 /* Service */,
 				53C20EC7180F92C2006CE576 /* LSAppDelegate.h */,
-				53C20EC8180F92C2006CE576 /* LSAppDelegate.m */,
+				53360A5118268D970067D9C9 /* LSAppDelegate.m */,
 				53C20EBF180F92C2006CE576 /* Supporting Files */,
 			);
 			path = LoveShang;
@@ -330,8 +332,9 @@
 		53E478941815836900BEFD10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53360A551826909B0067D9C9 /* common_toolbar_background.png */,
+				53360A5318268FF00067D9C9 /* common_toolbar_background@2x.png */,
 				531581DC1820180F0032A738 /* list_default_image.png */,
-				531581C8181FFE5F0032A738 /* common_toolbar_background.png */,
 				53E478951815836A00BEFD10 /* _0005_天气.png */,
 				53E478961815836A00BEFD10 /* _0007_头条icon.png */,
 				53E478981815836A00BEFD10 /* _0008_身边优惠.png */,
@@ -418,8 +421,9 @@
 				53E478AE1815836A00BEFD10 /* logo.png in Resources */,
 				53E478AF1815836A00BEFD10 /* 头条iphone5-原图.jpg in Resources */,
 				53E478B01815836A00BEFD10 /* 头条iphone5_MarkMan.png in Resources */,
-				531581C9181FFE5F0032A738 /* common_toolbar_background.png in Resources */,
 				531581DD1820180F0032A738 /* list_default_image.png in Resources */,
+				53360A5418268FF00067D9C9 /* common_toolbar_background@2x.png in Resources */,
+				53360A561826909B0067D9C9 /* common_toolbar_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +435,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				53C20EC5180F92C2006CE576 /* main.m in Sources */,
-				53C20EC9180F92C2006CE576 /* LSAppDelegate.m in Sources */,
 				535E7732180FCCFC00433042 /* LSBaseViewController.m in Sources */,
 				535E7733180FCCFC00433042 /* LSForumViewController.m in Sources */,
 				535E7734180FCCFC00433042 /* LSHeadlineViewController.m in Sources */,
@@ -453,6 +456,7 @@
 				5392A975181BCB720061230C /* LSApiClientService.m in Sources */,
 				531581D3182004710032A738 /* LSNavBar.m in Sources */,
 				531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */,
+				53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
