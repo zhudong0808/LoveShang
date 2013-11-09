@@ -11,6 +11,7 @@
 #import "LSNavBar.h"
 #import "SVPullToRefresh.h"
 #import "LSApiClientService.h"
+#import "UIImageView+WebCache.h"
 
 @interface LSBaseViewController : UIViewController{
 }

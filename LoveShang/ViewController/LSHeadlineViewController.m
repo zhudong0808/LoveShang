@@ -7,6 +7,7 @@
 //
 
 #import "LSHeadlineViewController.h"
+#import "LSErrorViewController.h"
 
 @interface LSHeadlineViewController(){
 
@@ -79,22 +80,24 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 75/2 - 58/2, 85, 58)];
-    imageView.image = [UIImage imageNamed:@"list_default_image.png"];
+    imageView.image = [UIImage imageNamed:@"loading.png"];
+    [imageView setImageWithURL:[NSURL URLWithString:[cellData objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11, self.view.frame.size.width - 95, 15)];
-    titleLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"title"];
+    titleLabel.text = [cellData objectForKey:@"subject"];
     titleLabel.textColor = [LSColorStyleSheet colorWithName:LSColorGrayText];
     titleLabel.font = [UIFont boldSystemFontOfSize:15];
-    titleLabel.textAlignment = UITextAlignmentLeft;
+    titleLabel.textAlignment = NSTextAlignmentLeft;
     
     UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11 + 15 + 8, self.view.frame.size.width - 95, 12)];
-    contentLabel.text = [[_tableData objectAtIndex:indexPath.row] objectForKey:@"content"];
+    contentLabel.text = [cellData objectForKey:@"introduction"];
     contentLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
     contentLabel.font = [UIFont systemFontOfSize:12];
-    contentLabel.textAlignment = UITextAlignmentLeft;
+    contentLabel.textAlignment = NSTextAlignmentLeft;
     
     [cell addSubview:imageView];
     [cell addSubview:titleLabel];
@@ -117,22 +120,29 @@
 }
 
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    _isLoadingData = YES;
-    NSDictionary *params = @{@"page":[NSString stringWithFormat:@"%d",_page]};
-    [[LSApiClientService sharedInstance]getPath:@"api.php" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
-        _isLoadingData = NO;
-        _totalCount = 20;
-        if (more && !isRefresh) {
-          [_tableData addObjectsFromArray:responseObject];
-          [_tableView.infiniteScrollingView stopAnimating];
-           _page = _page + 1;
+    [[LSApiClientService sharedInstance]getPath:@"top.php?tag=all" parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            if (more && !isRefresh) {
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [_tableView.infiniteScrollingView stopAnimating];
+                _page = _page + 1;
+            } else {
+                [_tableData removeAllObjects];
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                _page = 2;
+                [_tableView.pullToRefreshView stopAnimating];
+            }
+            [_tableView reloadData];
         } else {
-            [_tableData addObjectsFromArray:responseObject];
-            _page = 2;
-            [_tableView.pullToRefreshView stopAnimating];
+            [_tableView removeFromSuperview];
+            LSErrorViewController *errorViewVc = [[LSErrorViewController alloc] init];
+        
+            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
+            errorViewVc.errorLabel.text = errorMsg;
+            [self.view addSubview:errorViewVc.errorView];
+
         }
         
-        [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
         NSLog(@"%@",error);

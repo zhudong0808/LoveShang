@@ -16,7 +16,7 @@
     static LSApiClientService *sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithBaseURL:[NSURL URLWithString:@"http://110.76.38.23/loveshang"]];
+        sharedInstance = [[self alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.loveshang.com/mapi/"]];
     });
     return sharedInstance;
 }
