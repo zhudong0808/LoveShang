@@ -17,5 +17,7 @@
 @interface LSNavBar : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic,assign) id<LSNavBarDelegate> delegate;
+@property (nonatomic,strong) NSArray *navTitles;
+@property (nonatomic,strong) NSArray *navKeys;
 
 @end

@@ -22,7 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 2*44)];
+        _errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+32, self.view.frame.size.width, self.view.frame.size.height - 2*44 - 32)];
         _errorView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_errorView];
         

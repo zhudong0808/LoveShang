@@ -17,6 +17,8 @@
 
 @implementation LSNavBar
 @synthesize delegate = _delegate;
+@synthesize navTitles = _navTitles;
+@synthesize navKeys = _navKeys;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -25,14 +27,16 @@
     _sv.delegate = self;
     _sv.contentSize = CGSizeMake(640, 30);
     
-    NSArray *navTitle = @[@"头条",@"活动",@"论坛",@"房产",@"装修"];
+
+    _navKeys = [NSArray arrayWithObjects:@"all",@"house",@"renovation",@"marry",@"auto",@"food",@"baby",@"activity",@"life",nil];
+    _navTitles = [NSArray arrayWithObjects:@"全部",@"房产",@"装修",@"婚嫁",@"汽车",@"美食",@"亲子",@"活动",@"民生", nil];
     float x = 0;
-    for (NSInteger i = 0; i < navTitle.count; i++) {
+    for (NSInteger i = 0; i < _navKeys.count; i++) {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, 60, 30)];
         x = x + 60;
         btn.backgroundColor = [UIColor clearColor];
-        btn.tag = 1 << i;
-        [btn setTitle:[navTitle objectAtIndex:i] forState:UIControlStateNormal];
+        btn.tag = i;
+        [btn setTitle:[_navTitles objectAtIndex:i] forState:UIControlStateNormal];
         [btn setTitleColor:[LSColorStyleSheet colorWithName:LSColorBlack] forState:UIControlStateNormal];
         [btn setTitleColor:[LSColorStyleSheet colorWithName:LSColorNavText] forState:UIControlStateHighlighted];
         [btn setTitleColor:[LSColorStyleSheet colorWithName:LSColorNavText] forState:UIControlStateSelected];

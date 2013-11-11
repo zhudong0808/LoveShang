@@ -7,7 +7,7 @@
 //
 
 #import "LSHeadlineViewController.h"
-#import "LSErrorViewController.h"
+#import "LSErrorViewCell.h"
 
 @interface LSHeadlineViewController(){
 
@@ -17,6 +17,7 @@
 @property (nonatomic,assign) NSInteger page;
 @property (nonatomic,assign) BOOL isLoadingData;
 @property (nonatomic,assign) NSInteger totalCount;
+@property (nonatomic,strong) NSString *navType;
 @end
 
 @implementation LSHeadlineViewController
@@ -27,6 +28,7 @@
     self.showCommonBar = YES;
     self.showNavBar = YES;
     self.navBar.delegate = self;
+    _navType = @"all";
     
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
@@ -81,6 +83,15 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
+    if ([cellData isKindOfClass:[NSError class]]) {
+        static NSString *errorCell = @"errorCell";
+        LSErrorViewCell *cell = [tableView dequeueReusableCellWithIdentifier:errorCell];
+        if (!cell) {
+            cell = [[LSErrorViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:errorCell];
+        }
+        [cell setObject:cellData];
+        return cell;
+    }
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 75/2 - 58/2, 85, 58)];
@@ -112,15 +123,13 @@
 
 
 -(void)doActionWithBtn:(UIButton *)btn{
-    [self reloadData];
-}
-
--(void)reloadData{
-    
+    _navType = [self.navBar.navKeys objectAtIndex:btn.tag];
+    [self loadDataWithMore:NO isRefresh:YES];
 }
 
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    [[LSApiClientService sharedInstance]getPath:@"top.php?tag=all" parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+    NSString *urlPath = [NSString stringWithFormat:@"top.php?tag=%@",_navType];
+    [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             if (more && !isRefresh) {
                 [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
@@ -132,17 +141,12 @@
                 _page = 2;
                 [_tableView.pullToRefreshView stopAnimating];
             }
-            [_tableView reloadData];
         } else {
-            [_tableView removeFromSuperview];
-            LSErrorViewController *errorViewVc = [[LSErrorViewController alloc] init];
-        
+            [_tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            errorViewVc.errorLabel.text = errorMsg;
-            [self.view addSubview:errorViewVc.errorView];
-
+            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
-        
+        [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
         NSLog(@"%@",error);

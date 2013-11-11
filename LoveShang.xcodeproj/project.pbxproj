@@ -73,6 +73,12 @@
 		53E478AE1815836A00BEFD10 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478A01815836A00BEFD10 /* logo.png */; };
 		53E478AF1815836A00BEFD10 /* 头条iphone5-原图.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53E478A11815836A00BEFD10 /* 头条iphone5-原图.jpg */; };
 		53E478B01815836A00BEFD10 /* 头条iphone5_MarkMan.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E478A21815836A00BEFD10 /* 头条iphone5_MarkMan.png */; };
+		53E7F1C3183134D00048EE04 /* LSErrorViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F1C2183134D00048EE04 /* LSErrorViewCell.m */; };
+		53E7F1C918313E380048EE04 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7F1C418313E380048EE04 /* loading.png */; };
+		53E7F1CA18313E380048EE04 /* ErrorDataEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7F1C518313E380048EE04 /* ErrorDataEmpty@2x.png */; };
+		53E7F1CB18313E380048EE04 /* ErrorDataEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7F1C618313E380048EE04 /* ErrorDataEmpty.png */; };
+		53E7F1CC18313E380048EE04 /* ErrorEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7F1C718313E380048EE04 /* ErrorEmpty.png */; };
+		53E7F1CD18313E380048EE04 /* ErrorEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7F1C818313E380048EE04 /* ErrorEmpty@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +190,13 @@
 		53E478A01815836A00BEFD10 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		53E478A11815836A00BEFD10 /* 头条iphone5-原图.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "头条iphone5-原图.jpg"; sourceTree = "<group>"; };
 		53E478A21815836A00BEFD10 /* 头条iphone5_MarkMan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头条iphone5_MarkMan.png"; sourceTree = "<group>"; };
+		53E7F1C1183134D00048EE04 /* LSErrorViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSErrorViewCell.h; path = View/LSErrorViewCell.h; sourceTree = "<group>"; };
+		53E7F1C2183134D00048EE04 /* LSErrorViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSErrorViewCell.m; path = View/LSErrorViewCell.m; sourceTree = "<group>"; };
+		53E7F1C418313E380048EE04 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		53E7F1C518313E380048EE04 /* ErrorDataEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ErrorDataEmpty@2x.png"; sourceTree = "<group>"; };
+		53E7F1C618313E380048EE04 /* ErrorDataEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorDataEmpty.png; sourceTree = "<group>"; };
+		53E7F1C718313E380048EE04 /* ErrorEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorEmpty.png; sourceTree = "<group>"; };
+		53E7F1C818313E380048EE04 /* ErrorEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ErrorEmpty@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +254,8 @@
 				53E47892181577F600BEFD10 /* LSCommonToolbar.m */,
 				531581D1182004700032A738 /* LSNavBar.h */,
 				531581D2182004710032A738 /* LSNavBar.m */,
+				53E7F1C1183134D00048EE04 /* LSErrorViewCell.h */,
+				53E7F1C2183134D00048EE04 /* LSErrorViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -448,6 +463,11 @@
 		53E478941815836900BEFD10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53E7F1C418313E380048EE04 /* loading.png */,
+				53E7F1C518313E380048EE04 /* ErrorDataEmpty@2x.png */,
+				53E7F1C618313E380048EE04 /* ErrorDataEmpty.png */,
+				53E7F1C718313E380048EE04 /* ErrorEmpty.png */,
+				53E7F1C818313E380048EE04 /* ErrorEmpty@2x.png */,
 				53360A551826909B0067D9C9 /* common_toolbar_background.png */,
 				53360A5318268FF00067D9C9 /* common_toolbar_background@2x.png */,
 				531581DC1820180F0032A738 /* list_default_image.png */,
@@ -526,14 +546,19 @@
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53E478A31815836A00BEFD10 /* _0005_天气.png in Resources */,
 				53E478A41815836A00BEFD10 /* _0007_头条icon.png in Resources */,
+				53E7F1C918313E380048EE04 /* loading.png in Resources */,
 				53E478A61815836A00BEFD10 /* _0008_身边优惠.png in Resources */,
 				53E478A71815836A00BEFD10 /* _0009_我icon.png in Resources */,
+				53E7F1CA18313E380048EE04 /* ErrorDataEmpty@2x.png in Resources */,
+				53E7F1CC18313E380048EE04 /* ErrorEmpty.png in Resources */,
 				53E478A81815836A00BEFD10 /* _0010_论坛icon.png in Resources */,
 				53E478A91815836A00BEFD10 /* _0011_左侧箭头.png in Resources */,
 				53E478AA1815836A00BEFD10 /* _0012_右侧箭头.png in Resources */,
 				53E478AB1815836A00BEFD10 /* _0018_轮播图.png in Resources */,
 				53E478AC1815836A00BEFD10 /* _0020_分割线1.png in Resources */,
+				53E7F1CB18313E380048EE04 /* ErrorDataEmpty.png in Resources */,
 				53E478AD1815836A00BEFD10 /* _0028_分割线1.png in Resources */,
+				53E7F1CD18313E380048EE04 /* ErrorEmpty@2x.png in Resources */,
 				53E478AE1815836A00BEFD10 /* logo.png in Resources */,
 				53E478AF1815836A00BEFD10 /* 头条iphone5-原图.jpg in Resources */,
 				53E478B01815836A00BEFD10 /* 头条iphone5_MarkMan.png in Resources */,
@@ -557,6 +582,7 @@
 				539F55D6182E89EE007B7952 /* UIImageView+WebCache.m in Sources */,
 				535E7733180FCCFC00433042 /* LSForumViewController.m in Sources */,
 				535E7734180FCCFC00433042 /* LSHeadlineViewController.m in Sources */,
+				53E7F1C3183134D00048EE04 /* LSErrorViewCell.m in Sources */,
 				539F55CF182E89EE007B7952 /* SDWebImageCompat.m in Sources */,
 				539F55D2182E89EE007B7952 /* SDWebImageDownloaderOperation.m in Sources */,
 				535E7735180FCCFC00433042 /* LSMyViewController.m in Sources */,
