@@ -118,7 +118,13 @@
 
 #pragma UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 75.0;
+    id object = [_tableData objectAtIndex:indexPath.row];
+    
+    if ([object isKindOfClass:[NSError class]]) {
+        return [LSErrorViewCell tableView:tableView rowHeightForObject:object];
+    } else {
+       return 75.0;
+    }
 }
 
 

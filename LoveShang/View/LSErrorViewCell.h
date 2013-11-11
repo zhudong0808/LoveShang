@@ -15,4 +15,5 @@
 @property (nonatomic,strong) UILabel *errorLabel;
 
 - (void)setObject:(id)object;
++ (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object;
 @end

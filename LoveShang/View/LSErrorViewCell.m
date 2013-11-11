@@ -14,7 +14,7 @@
 @synthesize errorLabel = _errorLabel;
 
 + (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object {
-    return 260.f;
+    return tableView.frame.size.height;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -44,7 +44,7 @@
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-    _errorImageView.frame = CGRectMake((frame.size.width - 213) / 2, frame.size.height / 2, 213, 127);
+    _errorImageView.frame = CGRectMake((frame.size.width - 213) / 2, (frame.size.height - 127) / 2 - 30, 213, 127);
     _errorLabel.frame = CGRectMake(0, _errorImageView.frame.origin.y + _errorImageView.frame.size.height + 15, frame.size.width, 30);
 }
 
