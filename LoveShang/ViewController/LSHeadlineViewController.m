@@ -18,6 +18,8 @@
 @property (nonatomic,assign) BOOL isLoadingData;
 @property (nonatomic,assign) NSInteger totalCount;
 @property (nonatomic,strong) NSString *navType;
+@property (nonatomic,strong) UIScrollView *slideView;
+@property (nonatomic,strong) UIPageControl *pageControl;
 @end
 
 @implementation LSHeadlineViewController
@@ -33,8 +35,20 @@
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
     
+    
+    //初始化幻灯片
+    if (!_slideView) {
+        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, 145)];
+        _slideView.contentSize = CGSizeMake(self.view.frame.size.width * 3, 145);
+        _slideView.pagingEnabled = YES;
+        _slideView.delegate = self;
+    }
+    [self.view addSubview:_slideView];
+    [self loadAndRenderSlideView];
+    
+    
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1 + 145, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height - 145) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -68,6 +82,27 @@
         });
     }];
     [self loadDataWithMore:NO isRefresh:YES];
+}
+
+-(void)loadAndRenderSlideView{
+    for (int i = 0; i < 3; i++) {
+        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 145)];
+        picView.image = [UIImage imageNamed:@"loading.png"];
+        [picView setImageWithURL:[NSURL URLWithString:@"http://img.loveshang.com/attachment/Mon_1110/92_75978_c6c69f5abe4d90c.jpg?675"] placeholderImage:[UIImage imageNamed:@"loading.png"]];
+        [_slideView addSubview:picView];
+    }
+
+//    UIView *pageControlBackGround = [[UIView alloc] initWithFrame:CGRectMake(0, 145-26, 320, 26)];
+//    pageControlBackGround.backgroundColor = [[UIColor whiteColor] setA]
+    
+    if (!_pageControl) {
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(220, 44+32+1+145 - 26, 100, 26)];
+        _pageControl.numberOfPages = 3;
+        _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+        _pageControl.currentPage = 0;
+    }
+    [self.view addSubview:_pageControl];
 }
 
 #pragma UITableViewDelegate
@@ -158,6 +193,11 @@
         NSLog(@"%@",error);
     }];
     
+}
+#pragma scrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSInteger currentPage = _slideView.contentOffset.x/320;
+    _pageControl.currentPage = currentPage;
 }
 
 @end

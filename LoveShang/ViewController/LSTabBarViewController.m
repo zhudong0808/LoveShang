@@ -25,10 +25,10 @@
     LSNearbyViewController *nearbyViewController = [[LSNearbyViewController alloc] init];
     LSMyViewController *myViewController = [[LSMyViewController alloc] init];
     
-    headlineViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"一" image:nil tag:1];
-    fourmViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"二" image:nil tag:2];
-    nearbyViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"三" image:nil tag:3];
-    myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"四" image:nil tag:4];
+    headlineViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"头条" image:[UIImage imageNamed:@"headline_icon.png"] tag:1];
+    fourmViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"论坛" image:[UIImage imageNamed:@"fourm_icon"] tag:2];
+    nearbyViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"身边优惠" image:[UIImage imageNamed:@"nearby_icon.png"] tag:3];
+    myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"my_icon.png"] tag:4];
     
     [viewControllerArray addObject:headlineViewController];
     [viewControllerArray addObject:fourmViewController];
