@@ -14,6 +14,7 @@
 }
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *tableData;
+@property (nonatomic,strong) NSMutableArray *advertData;
 @property (nonatomic,assign) NSInteger page;
 @property (nonatomic,assign) BOOL isLoadingData;
 @property (nonatomic,assign) NSInteger totalCount;
@@ -34,17 +35,9 @@
     
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
+    _advertData = [[NSMutableArray alloc] init];
     
-    
-    //初始化幻灯片
-    if (!_slideView) {
-        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, 145)];
-        _slideView.contentSize = CGSizeMake(self.view.frame.size.width * 3, 145);
-        _slideView.pagingEnabled = YES;
-        _slideView.delegate = self;
-    }
-    [self.view addSubview:_slideView];
-    [self loadAndRenderSlideView];
+    [self loadAdvert];
     
     
     if (!_tableView) {
@@ -85,33 +78,112 @@
 }
 
 -(void)loadAndRenderSlideView{
-    for (int i = 0; i < 3; i++) {
-        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 145)];
-        picView.image = [UIImage imageNamed:@"loading.png"];
-        [picView setImageWithURL:[NSURL URLWithString:@"http://img.loveshang.com/attachment/Mon_1110/92_75978_c6c69f5abe4d90c.jpg?675"] placeholderImage:[UIImage imageNamed:@"loading.png"]];
-        [_slideView addSubview:picView];
+    
+    //初始化幻灯片
+    if (!_slideView) {
+        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, 145)];
+        _slideView.pagingEnabled = YES;
+        _slideView.delegate = self;
+        [self.view addSubview:_slideView];
     }
-
-//    UIView *pageControlBackGround = [[UIView alloc] initWithFrame:CGRectMake(0, 145-26, 320, 26)];
-//    pageControlBackGround.backgroundColor = [[UIColor whiteColor] setA]
+    _slideView.contentSize = CGSizeMake(self.view.frame.size.width * [_advertData count], 145);
+    
+    NSInteger i = 0;
+    for (UIView *subView in [_slideView subviews]) {
+        [subView removeFromSuperview];
+    }
+    if ([_advertData count] == 0) {
+        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 145)];
+        picView.image = [UIImage imageNamed:@"loading.png"];
+        [_slideView addSubview:picView];
+    } else {
+        for (NSDictionary *item in _advertData) {
+            UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 145)];
+            picView.image = [UIImage imageNamed:@"loading.png"];
+            [picView setImageWithURL:[NSURL URLWithString:[item objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
+            [_slideView addSubview:picView];
+            i++;
+        }
+    }
     
     if (!_pageControl) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(220, 44+32+1+145 - 26, 100, 26)];
-        _pageControl.numberOfPages = 3;
         _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
         _pageControl.currentPage = 0;
+        [self.view addSubview:_pageControl];
     }
-    [self.view addSubview:_pageControl];
+    _pageControl.numberOfPages = [_advertData count];
+    [_advertData removeAllObjects];
+    
 }
 
-#pragma UITableViewDelegate
-//-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    
-//    [self loadDataWithMore:YES isRefresh:NO];
-//}
+-(void)doActionWithBtn:(UIButton *)btn{
+    _navType = [self.navBar.navKeys objectAtIndex:btn.tag];
+    [self loadDataWithMore:NO isRefresh:YES];
+    [self loadAdvert];
+}
+#pragma mark -
+#pragma mark 接口获取数据
+-(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
+    NSString *urlPath = [NSString stringWithFormat:@"top.php?tag=%@",_navType];
+    [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            if (more && !isRefresh) {
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [_tableView.infiniteScrollingView stopAnimating];
+                _page = _page + 1;
+            } else {
+                [_tableData removeAllObjects];
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                _page = 2;
+                [_tableView.pullToRefreshView stopAnimating];
+            }
+        } else {
+            [_tableData removeAllObjects];
+            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
+            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+        }
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        _isLoadingData = NO;
+        NSLog(@"%@",error);
+    }];
+    
+}
 
-#pragma UITableViewDataSource
+-(void)loadAdvert{
+    NSString *urlPath = [NSString stringWithFormat:@"advert.php?tag=%@",_navType];
+    [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            [_advertData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+        }
+        [self loadAndRenderSlideView];
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        _isLoadingData = NO;
+        NSLog(@"%@",error);
+    }];
+    
+}
+#pragma mark -
+#pragma mark scrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSInteger currentPage = _slideView.contentOffset.x/320;
+    _pageControl.currentPage = currentPage;
+}
+
+#pragma mark UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    id object = [_tableData objectAtIndex:indexPath.row];
+    
+    if ([object isKindOfClass:[NSError class]]) {
+        return [LSErrorViewCell tableView:tableView rowHeightForObject:object];
+    } else {
+        return 75.0;
+    }
+}
+
+#pragma mark UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_tableData count];
 }
@@ -151,53 +223,5 @@
     return cell;
 }
 
-#pragma UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    id object = [_tableData objectAtIndex:indexPath.row];
-    
-    if ([object isKindOfClass:[NSError class]]) {
-        return [LSErrorViewCell tableView:tableView rowHeightForObject:object];
-    } else {
-       return 75.0;
-    }
-}
-
-
--(void)doActionWithBtn:(UIButton *)btn{
-    _navType = [self.navBar.navKeys objectAtIndex:btn.tag];
-    [self loadDataWithMore:NO isRefresh:YES];
-}
-
--(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    NSString *urlPath = [NSString stringWithFormat:@"top.php?tag=%@",_navType];
-    [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
-        if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            if (more && !isRefresh) {
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                [_tableView.infiniteScrollingView stopAnimating];
-                _page = _page + 1;
-            } else {
-                [_tableData removeAllObjects];
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                _page = 2;
-                [_tableView.pullToRefreshView stopAnimating];
-            }
-        } else {
-            [_tableData removeAllObjects];
-            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
-        }
-        [_tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
-    }];
-    
-}
-#pragma scrollView delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSInteger currentPage = _slideView.contentOffset.x/320;
-    _pageControl.currentPage = currentPage;
-}
 
 @end
