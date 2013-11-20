@@ -12,6 +12,9 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.commonToolBarType = LSCommonToolbarIndex;
+    self.showCommonBar = YES;
+    self.showNavBar = YES;
 }
 
 @end

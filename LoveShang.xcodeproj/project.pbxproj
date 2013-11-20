@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
+		532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FD983183D050700755CC3 /* LSForumNavBar.m */; };
 		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
@@ -86,6 +87,8 @@
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
 		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
+		532FD982183D050700755CC3 /* LSForumNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumNavBar.h; path = View/LSForumNavBar.h; sourceTree = "<group>"; };
+		532FD983183D050700755CC3 /* LSForumNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumNavBar.m; path = View/LSForumNavBar.m; sourceTree = "<group>"; };
 		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -256,6 +259,8 @@
 				531581D2182004710032A738 /* LSNavBar.m */,
 				53E7F1C1183134D00048EE04 /* LSErrorViewCell.h */,
 				53E7F1C2183134D00048EE04 /* LSErrorViewCell.m */,
+				532FD982183D050700755CC3 /* LSForumNavBar.h */,
+				532FD983183D050700755CC3 /* LSForumNavBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 				539F55D2182E89EE007B7952 /* SDWebImageDownloaderOperation.m in Sources */,
 				535E7735180FCCFC00433042 /* LSMyViewController.m in Sources */,
 				535E7736180FCCFC00433042 /* LSNearbyViewController.m in Sources */,
+				532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */,
 				535E7737180FCCFC00433042 /* LSTabBarViewController.m in Sources */,
 				53E47893181577F600BEFD10 /* LSCommonToolbar.m in Sources */,
 				536A70D31819638700C9FD00 /* AFHTTPClient.m in Sources */,

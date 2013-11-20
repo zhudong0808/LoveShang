@@ -14,6 +14,8 @@
 @synthesize commonBar = _commonBar;
 @synthesize showNavBar = _showNavBar;
 @synthesize navBar = _navBar;
+@synthesize showForumNavBar = _showForumNavBar;
+@synthesize forumNavBar = _forumNavBar;
 @synthesize commonToolBarType = _commonToolBarType;
 
 -(void)viewDidLoad{
@@ -38,6 +40,16 @@
         [self.view addSubview:_navBar.view];
     } else if (!_showNavBar && _navBar) {
         [_navBar.view removeFromSuperview];
+    }
+}
+
+- (void)setShowForumNavBar:(BOOL)showForumNavBar{
+    _showForumNavBar = showForumNavBar;
+    if (_showForumNavBar && !_forumNavBar) {
+        _forumNavBar = [[LSForumNavBar alloc] init];
+        [self.view addSubview:_forumNavBar.view];
+    } else if (!_showForumNavBar && _forumNavBar) {
+        [_forumNavBar.view removeFromSuperview];
     }
 }
 @end

@@ -12,6 +12,7 @@
 #import "SVPullToRefresh.h"
 #import "LSApiClientService.h"
 #import "UIImageView+WebCache.h"
+#import "LSForumNavBar.h"
 
 @interface LSBaseViewController : UIViewController{
 }
@@ -20,6 +21,8 @@
 @property (nonatomic,strong) LSCommonToolbar *commonBar;
 @property (nonatomic,assign) BOOL showNavBar;
 @property (nonatomic,strong) LSNavBar *navBar;
+@property (nonatomic,assign) BOOL showForumNavBar;
+@property (nonatomic,strong) LSForumNavBar *forumNavBar;
 @property (nonatomic,assign) NSInteger commonToolBarType;
 
 @end
