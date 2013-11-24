@@ -8,6 +8,6 @@
 
 #import "LSBaseViewController.h"
 
-@interface LSForumViewController : LSBaseViewController<LSNavBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface LSForumViewController : LSBaseViewController<LSForumNavBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end

@@ -8,6 +8,8 @@
 
 #import "LSForumViewController.h"
 #import "LSErrorViewCell.h"
+#import "LSForumCell.h"
+#import "LSActivityLabel.h"
 
 @interface LSForumViewController(){
 
@@ -28,6 +30,7 @@
     self.commonToolBarType = LSCommonToolbarIndex;
     self.showCommonBar = YES;
     self.showForumNavBar = YES;
+    self.forumNavBar.delegate = self;
     _navType = @"516";
     
     _page = 1;
@@ -69,11 +72,23 @@
     }];
     [self loadDataWithMore:NO isRefresh:YES];
     
+    
+    
+    //test get fontName
+//    NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
+//    for (NSString *familyName in familyNames) {
+//        NSLog(@"familyName=%@",familyName);
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+//        for (NSString *fontName in fontNames) {
+//            NSLog(@"fontName=%@",fontName);
+//        }
+//    }
 }
 
 #pragma mark -
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
+    [self showLoading:YES];
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@",_navType];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
@@ -92,6 +107,7 @@
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
             [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
+        [self showLoading:NO];
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
@@ -112,7 +128,7 @@
     if ([object isKindOfClass:[NSError class]]) {
         return [LSErrorViewCell tableView:tableView rowHeightForObject:object];
     } else {
-        return 75.0;
+        return 50.0f;
     }
 }
 
@@ -132,45 +148,32 @@
         [cell setObject:cellData];
         return cell;
     }
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 11, self.view.frame.size.width - 24, 15)];
-    titleLabel.text = [cellData objectForKey:@"subject"];
-    titleLabel.textColor = [LSColorStyleSheet colorWithName:LSColorGrayText];
-    titleLabel.font = [UIFont boldSystemFontOfSize:15];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    
-
-    UILabel *authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 11 + 15, 100, 12)];
-    authorLabel.text = [cellData objectForKey:@"author"];
-    authorLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
-    authorLabel.font = [UIFont systemFontOfSize:12];
-    authorLabel.textAlignment = NSTextAlignmentLeft;
-    
-    UILabel *hitLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 11 + 15, 50, 12)];
-    hitLabel.text = [NSString stringWithFormat:@"%@ 浏览",[cellData objectForKey:@"hits"]];
-    hitLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
-    hitLabel.font = [UIFont systemFontOfSize:12];
-    hitLabel.textAlignment = NSTextAlignmentLeft;
-    
-    UILabel *repliesLabel = [[UILabel alloc] initWithFrame:CGRectMake(210, 11 + 15, 50, 12)];
-    repliesLabel.text = [cellData objectForKey:@"replies"];
-    repliesLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
-    repliesLabel.font = [UIFont systemFontOfSize:12];
-    repliesLabel.textAlignment = NSTextAlignmentLeft;
-    
-    UILabel *lastpostLabel = [[UILabel alloc] initWithFrame:CGRectMake(260, 11 + 15, 50, 12)];
-    lastpostLabel.text = [cellData objectForKey:@"lastpost"];
-    lastpostLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
-    lastpostLabel.font = [UIFont systemFontOfSize:12];
-    lastpostLabel.textAlignment = NSTextAlignmentLeft;
-    
-    [cell addSubview:titleLabel];
-    [cell addSubview:authorLabel];
-    [cell addSubview:repliesLabel];
-    [cell addSubview:authorLabel];
-    [cell addSubview:lastpostLabel];
+    static NSString *LSForumCellInd = @"LSForumCell";
+    LSForumCell *cell = [tableView dequeueReusableCellWithIdentifier:LSForumCellInd];
+    if (cell == nil) {
+        cell = [[LSForumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSForumCellInd];
+    }
+    [cell setData:cellData];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
+    }
+}
+
+-(void)showLoading:(BOOL)show{
+    if (show == YES) {
+        LSActivityLabel *loadingView = [[LSActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
+        loadingView.frame = _tableView.frame;
+        loadingView.text = @"载入中...";
+        _tableView.tableHeaderView = loadingView;
+        _tableView.scrollEnabled = NO;
+    } else {
+        _tableView.tableHeaderView = nil;
+        _tableView.scrollEnabled = YES;
+    }
 }
 
 @end
