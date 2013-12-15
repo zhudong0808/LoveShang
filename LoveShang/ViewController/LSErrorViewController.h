@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 zhudong. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LSBaseViewController.h"
 
-@interface LSErrorViewController : UIViewController
+@interface LSErrorViewController : LSBaseViewController
 
 @property (nonatomic,strong) UIView *errorView;
 @property (nonatomic,strong) UILabel *errorLabel;

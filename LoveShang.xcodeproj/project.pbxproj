@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
+		532D9051185DE64D00440FB8 /* LSViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D9050185DE64D00440FB8 /* LSViewUtil.m */; };
+		532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 532D9053185DEC9C00440FB8 /* STHeiti-Light.ttc */; };
+		532D9058185DEC9C00440FB8 /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */; };
+		532D9059185DEC9C00440FB8 /* downArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9055185DEC9C00440FB8 /* downArrow.png */; };
+		532D905A185DEC9C00440FB8 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9056185DEC9C00440FB8 /* upArrow.png */; };
 		532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FD983183D050700755CC3 /* LSForumNavBar.m */; };
 		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
@@ -240,6 +245,12 @@
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
 		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
+		532D904F185DE64D00440FB8 /* LSViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSViewUtil.h; sourceTree = "<group>"; };
+		532D9050185DE64D00440FB8 /* LSViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSViewUtil.m; sourceTree = "<group>"; };
+		532D9053185DEC9C00440FB8 /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
+		532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Medium.ttc"; sourceTree = "<group>"; };
+		532D9055185DEC9C00440FB8 /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downArrow.png; sourceTree = "<group>"; };
+		532D9056185DEC9C00440FB8 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
 		532FD982183D050700755CC3 /* LSForumNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumNavBar.h; path = View/LSForumNavBar.h; sourceTree = "<group>"; };
 		532FD983183D050700755CC3 /* LSForumNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumNavBar.m; path = View/LSForumNavBar.m; sourceTree = "<group>"; };
 		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
@@ -721,8 +732,19 @@
 			children = (
 				531581D9182008450032A738 /* LSColorStyleSheet.h */,
 				531581DA182008450032A738 /* LSColorStyleSheet.m */,
+				532D904F185DE64D00440FB8 /* LSViewUtil.h */,
+				532D9050185DE64D00440FB8 /* LSViewUtil.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		532D9052185DEC9C00440FB8 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				532D9053185DEC9C00440FB8 /* STHeiti-Light.ttc */,
+				532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */,
+			);
+			path = font;
 			sourceTree = "<group>";
 		};
 		535E770B180FC2A400433042 /* Service */ = {
@@ -835,6 +857,9 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				532D9052185DEC9C00440FB8 /* font */,
+				532D9055185DEC9C00440FB8 /* downArrow.png */,
+				532D9056185DEC9C00440FB8 /* upArrow.png */,
 				53867B441841CACC001C6C6B /* font */,
 				536C47E118327E5100213ABB /* _0005_天气.png */,
 				536C47E218327E5100213ABB /* _0011_左侧箭头.png */,
@@ -1462,8 +1487,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				536C480518327E5100213ABB /* loading.png in Resources */,
+				532D9058185DEC9C00440FB8 /* STHeiti-Medium.ttc in Resources */,
 				536C47FC18327E5100213ABB /* common_toolbar_background.png in Resources */,
+				532D9059185DEC9C00440FB8 /* downArrow.png in Resources */,
 				536C47F918327E5100213ABB /* _0018_轮播图.png in Resources */,
+				532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */,
 				536C480318327E5100213ABB /* headline_icon.png in Resources */,
 				536C47FD18327E5100213ABB /* common_toolbar_background@2x.png in Resources */,
 				536C47FB18327E5100213ABB /* _0028_分割线1.png in Resources */,
@@ -1483,6 +1511,7 @@
 				53867CAC18421D6C001C6C6B /* JWThree20.bundle in Resources */,
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53867B461841CACC001C6C6B /* STHeiti-Light.ttc in Resources */,
+				532D905A185DEC9C00440FB8 /* upArrow.png in Resources */,
 				536C47FA18327E5100213ABB /* _0020_分割线1.png in Resources */,
 				536C47F618327E5100213ABB /* _0005_天气.png in Resources */,
 				536C480A18327E5100213ABB /* 头条iphone5_MarkMan.png in Resources */,
@@ -1573,6 +1602,7 @@
 				539F55D2182E89EE007B7952 /* SDWebImageDownloaderOperation.m in Sources */,
 				535E7735180FCCFC00433042 /* LSMyViewController.m in Sources */,
 				53867CC318421D6C001C6C6B /* TTURLJSONResponse.m in Sources */,
+				532D9051185DE64D00440FB8 /* LSViewUtil.m in Sources */,
 				535E7736180FCCFC00433042 /* LSNearbyViewController.m in Sources */,
 				53867CC118421D6C001C6C6B /* TTURLDataResponse.m in Sources */,
 				53867CB718421D6C001C6C6B /* TTURLPattern.m in Sources */,

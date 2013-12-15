@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 zhudong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol LSForumNavBarDelegate <NSObject>
 
@@ -14,7 +14,7 @@
 
 @end
 
-@interface LSForumNavBar : UIViewController<UIScrollViewDelegate>
+@interface LSForumNavBar : UIView<UIScrollViewDelegate>
 
 @property (nonatomic,assign) id<LSForumNavBarDelegate> delegate;
 @property (nonatomic,strong) NSArray *navTitles;

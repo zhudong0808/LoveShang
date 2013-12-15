@@ -22,11 +22,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+32, self.view.frame.size.width, self.view.frame.size.height - 2*44 - 32)];
+        _errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+32, self.cView.frame.size.width, self.cView.frame.size.height - 2*44 - 32)];
         _errorView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:_errorView];
+        [self.cView addSubview:_errorView];
         
-        _errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.width - 2* 44)/2, self.view.frame.size.width, 50)];
+        _errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.cView.frame.size.width - 2* 44)/2, self.cView.frame.size.width, 50)];
         _errorLabel.textAlignment = NSTextAlignmentCenter;
         [_errorView addSubview:_errorLabel];
     }

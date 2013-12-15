@@ -16,7 +16,8 @@
 
 @interface LSBaseViewController : UIViewController{
 }
-
+@property (nonatomic,strong) UIView *cView;
+@property (nonatomic,assign) BOOL hiddenCView;
 @property (nonatomic,assign) BOOL showCommonBar;
 @property (nonatomic,strong) LSCommonToolbar *commonBar;
 @property (nonatomic,assign) BOOL showNavBar;

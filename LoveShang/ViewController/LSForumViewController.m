@@ -27,7 +27,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.commonToolBarType = LSCommonToolbarIndex;
+    self.commonToolBarType = LSCommonToolbarList;
     self.showCommonBar = YES;
     self.showForumNavBar = YES;
     self.forumNavBar.delegate = self;
@@ -37,11 +37,11 @@
     _tableData = [[NSMutableArray alloc] init];
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.cView.frame.size.width, self.cView.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
-    [self.view addSubview:_tableView];
+    [self.cView addSubview:_tableView];
     __block __unsafe_unretained id blockSelf = self;
     [_tableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;

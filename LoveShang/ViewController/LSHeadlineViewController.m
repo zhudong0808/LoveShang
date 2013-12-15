@@ -41,11 +41,11 @@
     
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1 + 145, self.view.frame.size.width, self.view.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height - 145) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1 + 145, self.cView.frame.size.width, self.cView.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height - 145) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
-    [self.view addSubview:_tableView];
+    [self.cView addSubview:_tableView];
     __block __unsafe_unretained id blockSelf = self;
     [_tableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;
@@ -81,12 +81,12 @@
     
     //初始化幻灯片
     if (!_slideView) {
-        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.view.frame.size.width, 145)];
+        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.cView.frame.size.width, 145)];
         _slideView.pagingEnabled = YES;
         _slideView.delegate = self;
-        [self.view addSubview:_slideView];
+        [self.cView addSubview:_slideView];
     }
-    _slideView.contentSize = CGSizeMake(self.view.frame.size.width * [_advertData count], 145);
+    _slideView.contentSize = CGSizeMake(self.cView.frame.size.width * [_advertData count], 145);
     
     NSInteger i = 0;
     for (UIView *subView in [_slideView subviews]) {
@@ -111,7 +111,7 @@
         _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
         _pageControl.currentPage = 0;
-        [self.view addSubview:_pageControl];
+        [self.cView addSubview:_pageControl];
     }
     _pageControl.numberOfPages = [_advertData count];
     [_advertData removeAllObjects];
@@ -199,19 +199,19 @@
         [cell setObject:cellData];
         return cell;
     }
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.cView.frame.size.width, 30)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 75/2 - 58/2, 85, 58)];
     imageView.image = [UIImage imageNamed:@"loading.png"];
     [imageView setImageWithURL:[NSURL URLWithString:[cellData objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11, self.view.frame.size.width - 95, 15)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11, self.cView.frame.size.width - 95, 15)];
     titleLabel.text = [cellData objectForKey:@"subject"];
     titleLabel.textColor = [LSColorStyleSheet colorWithName:LSColorGrayText];
     titleLabel.font = [UIFont boldSystemFontOfSize:15];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     
-    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11 + 15 + 8, self.view.frame.size.width - 95, 12)];
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11 + 15 + 8, self.cView.frame.size.width - 95, 12)];
     contentLabel.text = [cellData objectForKey:@"introduction"];
     contentLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
     contentLabel.font = [UIFont systemFontOfSize:12];

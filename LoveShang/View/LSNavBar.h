@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 zhudong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol LSNavBarDelegate <NSObject>
 
@@ -14,10 +14,11 @@
 
 @end
 
-@interface LSNavBar : UIViewController<UIScrollViewDelegate>
+@interface LSNavBar : UIView<UIScrollViewDelegate>
 
 @property (nonatomic,assign) id<LSNavBarDelegate> delegate;
 @property (nonatomic,strong) NSArray *navTitles;
 @property (nonatomic,strong) NSArray *navKeys;
+
 
 @end
