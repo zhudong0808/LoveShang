@@ -14,8 +14,23 @@ typedef enum{
     LSCommonToolbarOther
 } LSCommonToolbarType;
 
+@protocol LSCommonToolbarDelegate <NSObject>
+
+@optional
+-(void)showActionBox:(BOOL)isShow;
+
+@end
+
 @interface LSCommonToolbar : UIView
 
 -(id)initWithFrame:(CGRect)frame type:(NSInteger)type;
 
+@property (nonatomic,assign) id<LSCommonToolbarDelegate> delegate;
+@property (nonatomic,assign) BOOL isActionBoxShow;
+@property (nonatomic,strong) UIButton *centerBtn;
+
+-(void)showActionBox;
+
 @end
+
+

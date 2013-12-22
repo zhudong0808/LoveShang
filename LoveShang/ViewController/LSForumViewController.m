@@ -14,12 +14,14 @@
 @interface LSForumViewController(){
 
 }
-@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *tableData;
 @property (nonatomic,assign) NSInteger page;
 @property (nonatomic,assign) BOOL isLoadingData;
 @property (nonatomic,assign) NSInteger totalCount;
 @property (nonatomic,strong) NSString *navType;
+@property (nonatomic,strong) LSForumView *fourmView;
+@property (nonatomic,strong) NSString *viewOrder;
+
 
 @end
 
@@ -31,19 +33,18 @@
     self.showCommonBar = YES;
     self.showForumNavBar = YES;
     self.forumNavBar.delegate = self;
+    self.commonBar.delegate = self;
     _navType = @"516";
+    _viewOrder = @"lastpost";
     
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
     
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.cView.frame.size.width, self.cView.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    [self.cView addSubview:_tableView];
+    _fourmView = [[LSForumView alloc] initWithFrame:self.cView];
+    _fourmView.delegate = self;
+    
     __block __unsafe_unretained id blockSelf = self;
-    [_tableView addPullToRefreshWithActionHandler:^{
+    [_fourmView.forumTableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -51,7 +52,7 @@
         });
     }];
     // setup infinite scrolling
-    [_tableView addInfiniteScrollingWithActionHandler:^{
+    [_fourmView.forumTableView addInfiniteScrollingWithActionHandler:^{
         __strong LSForumViewController *strongSelf = blockSelf;
         int64_t delayInSeconds = 0.3;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -60,12 +61,12 @@
                 if (strongSelf.totalCount > [strongSelf.tableData count]) {
                     [strongSelf loadDataWithMore:YES isRefresh:NO];
                 }else{
-                    if (strongSelf.tableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
-                        [strongSelf.tableView.infiniteScrollingView stopAnimating];
+                    if (strongSelf.fourmView.forumTableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
+                        [strongSelf.fourmView.forumTableView.infiniteScrollingView stopAnimating];
                     }
                 }
-            }else if (strongSelf.tableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
-                [strongSelf.tableView.infiniteScrollingView stopAnimating];
+            }else if (strongSelf.fourmView.forumTableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
+                [strongSelf.fourmView.forumTableView.infiniteScrollingView stopAnimating];
             }
             
         });
@@ -89,18 +90,18 @@
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     [self showLoading:YES];
-    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@",_navType];
+    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@",_navType,_viewOrder];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             if (more && !isRefresh) {
                 [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                [_tableView.infiniteScrollingView stopAnimating];
+                [_fourmView.forumTableView.infiniteScrollingView stopAnimating];
                 _page = _page + 1;
             } else {
                 [_tableData removeAllObjects];
                 [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
                 _page = 2;
-                [_tableView.pullToRefreshView stopAnimating];
+                [_fourmView.forumTableView.pullToRefreshView stopAnimating];
             }
         } else {
             [_tableData removeAllObjects];
@@ -108,7 +109,7 @@
             [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
         [self showLoading:NO];
-        [_tableView reloadData];
+        [_fourmView.forumTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
         NSLog(@"%@",error);
@@ -166,14 +167,42 @@
 -(void)showLoading:(BOOL)show{
     if (show == YES) {
         LSActivityLabel *loadingView = [[LSActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
-        loadingView.frame = _tableView.frame;
+        loadingView.frame = _fourmView.forumTableView.frame;
         loadingView.text = @"载入中...";
-        _tableView.tableHeaderView = loadingView;
-        _tableView.scrollEnabled = NO;
+        _fourmView.forumTableView.tableHeaderView = loadingView;
+        _fourmView.forumTableView.scrollEnabled = NO;
     } else {
-        _tableView.tableHeaderView = nil;
-        _tableView.scrollEnabled = YES;
+        _fourmView.forumTableView.tableHeaderView = nil;
+        _fourmView.forumTableView.scrollEnabled = YES;
     }
+}
+
+-(void)showActionBox:(BOOL)isShow{
+    if (isShow == YES) {
+        _fourmView.actionBox.hidden = NO;
+    } else if(isShow == NO) {
+        _fourmView.actionBox.hidden = YES;
+    }
+}
+
+
+#pragma LSForumViewDelegate
+-(void)postdateAction{
+    [self closeAction];
+    [self.commonBar.centerBtn setTitle:@"最新发表" forState:UIControlStateNormal];
+    _viewOrder = @"postdate";
+    [self loadDataWithMore:NO isRefresh:YES];
+}
+
+-(void)replydateAction{
+    [self closeAction];
+    [self.commonBar.centerBtn setTitle:@"最后回复" forState:UIControlStateNormal];
+    _viewOrder = @"lastpost";
+    [self loadDataWithMore:NO isRefresh:YES];
+}
+
+-(void)closeAction{
+    [self.commonBar showActionBox];
 }
 
 @end

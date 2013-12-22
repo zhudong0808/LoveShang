@@ -211,6 +211,8 @@
 		53867D3218421D6C001C6C6B /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867C9D18421D6C001C6C6B /* UIWindowAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		53867D3518421E46001C6C6B /* LSActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867D3418421E46001C6C6B /* LSActivityLabel.m */; };
 		53867D3918422102001C6C6B /* JWNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867D3818422102001C6C6B /* JWNavigationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		53911C651866BC11004E5FB4 /* LSForumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53911C641866BC11004E5FB4 /* LSForumView.m */; };
+		53911C681866D26B004E5FB4 /* close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 53911C671866D26B004E5FB4 /* close_btn.png */; };
 		5392A975181BCB720061230C /* LSApiClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5392A974181BCB720061230C /* LSApiClientService.m */; };
 		539F5573182E796D007B7952 /* LSErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F5572182E796D007B7952 /* LSErrorViewController.m */; };
 		539F55B9182E84E7007B7952 /* WebPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F55B7182E84E7007B7952 /* WebPImage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -652,6 +654,9 @@
 		53867D3418421E46001C6C6B /* LSActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSActivityLabel.m; sourceTree = "<group>"; };
 		53867D3718422102001C6C6B /* JWNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWNavigationViewController.h; sourceTree = "<group>"; };
 		53867D3818422102001C6C6B /* JWNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWNavigationViewController.m; sourceTree = "<group>"; };
+		53911C631866BC11004E5FB4 /* LSForumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumView.h; path = View/LSForumView.h; sourceTree = "<group>"; };
+		53911C641866BC11004E5FB4 /* LSForumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumView.m; path = View/LSForumView.m; sourceTree = "<group>"; };
+		53911C671866D26B004E5FB4 /* close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn.png; sourceTree = "<group>"; };
 		5392A973181BCB720061230C /* LSApiClientService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSApiClientService.h; sourceTree = "<group>"; };
 		5392A974181BCB720061230C /* LSApiClientService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSApiClientService.m; sourceTree = "<group>"; };
 		539F5571182E796D007B7952 /* LSErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSErrorViewController.h; sourceTree = "<group>"; };
@@ -778,6 +783,8 @@
 				53867B4A1841DA4B001C6C6B /* LSForumCell.m */,
 				53867D3318421E46001C6C6B /* LSActivityLabel.h */,
 				53867D3418421E46001C6C6B /* LSActivityLabel.m */,
+				53911C631866BC11004E5FB4 /* LSForumView.h */,
+				53911C641866BC11004E5FB4 /* LSForumView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -857,6 +864,7 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53911C671866D26B004E5FB4 /* close_btn.png */,
 				532D9052185DEC9C00440FB8 /* font */,
 				532D9055185DEC9C00440FB8 /* downArrow.png */,
 				532D9056185DEC9C00440FB8 /* upArrow.png */,
@@ -1499,6 +1507,7 @@
 				536C47FE18327E5100213ABB /* ErrorDataEmpty.png in Resources */,
 				53C20ECB180F92C2006CE576 /* Default.png in Resources */,
 				536C480118327E5100213ABB /* ErrorEmpty@2x.png in Resources */,
+				53911C681866D26B004E5FB4 /* close_btn.png in Resources */,
 				536C480018327E5100213ABB /* ErrorEmpty.png in Resources */,
 				536C480618327E5100213ABB /* logo.png in Resources */,
 				536C480818327E5100213ABB /* nearby_icon.png in Resources */,
@@ -1532,6 +1541,7 @@
 				539F55D0182E89EE007B7952 /* SDWebImageDecoder.m in Sources */,
 				53867CCF18421D6C001C6C6B /* TTGridLayout.m in Sources */,
 				53867CC518421D6C001C6C6B /* TTURLRequestModel.m in Sources */,
+				53911C651866BC11004E5FB4 /* LSForumView.m in Sources */,
 				53867CAA18421D6C001C6C6B /* TTGlobalCoreRects.m in Sources */,
 				53867D1C18421D6C001C6C6B /* TTTableViewDataSource.m in Sources */,
 				53867D2018421D6C001C6C6B /* TTTableViewItem.m in Sources */,

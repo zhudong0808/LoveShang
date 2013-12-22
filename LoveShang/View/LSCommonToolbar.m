@@ -13,11 +13,11 @@
 
 }
 @property (nonatomic,strong) UIImageView *centerBtnArrow;
-@property (nonatomic,strong) UIButton *centerBtn;
-@property (nonatomic,assign) BOOL isActionBoxShow;
 @end
 
 @implementation LSCommonToolbar
+@synthesize isActionBoxShow = _isActionBoxShow;
+@synthesize centerBtn = _centerBtn;
 
 -(id)initWithFrame:(CGRect)frame type:(NSInteger)type{
     _isActionBoxShow = NO;
@@ -46,13 +46,13 @@
 
 -(void)showActionBox{
     if (_isActionBoxShow == NO) {
-        [_centerBtn setTitle:@"最新发表" forState:UIControlStateNormal];
         _centerBtnArrow.image = [UIImage imageNamed:@"upArrow.png"];
         _isActionBoxShow = YES;
+        [self.delegate showActionBox:YES];
     } else if(_isActionBoxShow == YES) {
-        [_centerBtn setTitle:@"最后回复" forState:UIControlStateNormal];
         _centerBtnArrow.image = [UIImage imageNamed:@"downArrow.png"];
         _isActionBoxShow = NO;
+        [self.delegate showActionBox:NO];
     }
 }
 
