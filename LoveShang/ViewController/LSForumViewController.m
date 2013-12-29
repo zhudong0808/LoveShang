@@ -10,6 +10,7 @@
 #import "LSErrorViewCell.h"
 #import "LSForumCell.h"
 #import "LSActivityLabel.h"
+#import "LSReadViewController.h"
 
 @interface LSForumViewController(){
 
@@ -40,9 +41,10 @@
     _page = 1;
     _tableData = [[NSMutableArray alloc] init];
     
-    _fourmView = [[LSForumView alloc] initWithFrame:self.cView];
+    _fourmView = [[LSForumView alloc] initWithSuperView:self.cView];
     _fourmView.delegate = self;
-    
+    _fourmView.forumTableView.delegate = self;
+    _fourmView.forumTableView.dataSource = self;
     __block __unsafe_unretained id blockSelf = self;
     [_fourmView.forumTableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;
@@ -162,6 +164,12 @@
     if (indexPath.row % 2 == 0) {
         cell.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
+    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:[cellData objectForKey:@"tid"]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)showLoading:(BOOL)show{

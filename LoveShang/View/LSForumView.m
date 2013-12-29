@@ -14,7 +14,7 @@
 @synthesize forumTableView = _forumTableView;
 @synthesize actionBox = _actionBox;
 
--(id)initWithFrame:(UIView *)superView{
+-(id)initWithSuperView:(UIView *)superView{
     if (self = [super init]) {
         _forumTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32, 320, superView.height - 44 - 32 - 44) style:UITableViewStylePlain];
         [superView addSubview:_forumTableView];

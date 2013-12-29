@@ -11,6 +11,7 @@
 typedef enum{
     LSCommonToolbarIndex,
     LSCommonToolbarList,
+    LSCommonToolbarRead,
     LSCommonToolbarOther
 } LSCommonToolbarType;
 
@@ -18,6 +19,7 @@ typedef enum{
 
 @optional
 -(void)showActionBox:(BOOL)isShow;
+-(void)backAction;
 
 @end
 

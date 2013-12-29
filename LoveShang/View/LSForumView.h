@@ -22,6 +22,6 @@
 @property (nonatomic,strong) UIView *actionBox;
 @property (nonatomic,assign) id<LSForumViewDeleate> delegate;
 
--(id)initWithFrame:(UIView *)superView;
+-(id)initWithSuperView:(UIView *)superView;
 
 @end

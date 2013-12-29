@@ -213,7 +213,14 @@
 		53867D3918422102001C6C6B /* JWNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867D3818422102001C6C6B /* JWNavigationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		53911C651866BC11004E5FB4 /* LSForumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53911C641866BC11004E5FB4 /* LSForumView.m */; };
 		53911C681866D26B004E5FB4 /* close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 53911C671866D26B004E5FB4 /* close_btn.png */; };
+		53911C6B1866E544004E5FB4 /* LSReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53911C6A1866E544004E5FB4 /* LSReadViewController.m */; };
 		5392A975181BCB720061230C /* LSApiClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5392A974181BCB720061230C /* LSApiClientService.m */; };
+		539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF80186705DB004268AC /* STHeiti-Light.ttc */; };
+		539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF81186705DB004268AC /* STHeiti-Medium.ttc */; };
+		539EDF86186705DB004268AC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF82186705DB004268AC /* back.png */; };
+		539EDF87186705DB004268AC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF83186705DB004268AC /* share.png */; };
+		539EDF8A18670E81004268AC /* LSReadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 539EDF8918670E81004268AC /* LSReadView.m */; };
+		539EDF9018671E64004268AC /* LSReadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 539EDF8F18671E64004268AC /* LSReadCell.m */; };
 		539F5573182E796D007B7952 /* LSErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F5572182E796D007B7952 /* LSErrorViewController.m */; };
 		539F55B9182E84E7007B7952 /* WebPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F55B7182E84E7007B7952 /* WebPImage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		539F55CE182E89EE007B7952 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F55BC182E89EE007B7952 /* SDImageCache.m */; };
@@ -657,8 +664,18 @@
 		53911C631866BC11004E5FB4 /* LSForumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumView.h; path = View/LSForumView.h; sourceTree = "<group>"; };
 		53911C641866BC11004E5FB4 /* LSForumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumView.m; path = View/LSForumView.m; sourceTree = "<group>"; };
 		53911C671866D26B004E5FB4 /* close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn.png; sourceTree = "<group>"; };
+		53911C691866E544004E5FB4 /* LSReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSReadViewController.h; sourceTree = "<group>"; };
+		53911C6A1866E544004E5FB4 /* LSReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSReadViewController.m; sourceTree = "<group>"; };
 		5392A973181BCB720061230C /* LSApiClientService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSApiClientService.h; sourceTree = "<group>"; };
 		5392A974181BCB720061230C /* LSApiClientService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSApiClientService.m; sourceTree = "<group>"; };
+		539EDF80186705DB004268AC /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
+		539EDF81186705DB004268AC /* STHeiti-Medium.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Medium.ttc"; sourceTree = "<group>"; };
+		539EDF82186705DB004268AC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		539EDF83186705DB004268AC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		539EDF8818670E81004268AC /* LSReadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSReadView.h; path = View/LSReadView.h; sourceTree = "<group>"; };
+		539EDF8918670E81004268AC /* LSReadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSReadView.m; path = View/LSReadView.m; sourceTree = "<group>"; };
+		539EDF8E18671E64004268AC /* LSReadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSReadCell.h; path = View/LSReadCell.h; sourceTree = "<group>"; };
+		539EDF8F18671E64004268AC /* LSReadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSReadCell.m; path = View/LSReadCell.m; sourceTree = "<group>"; };
 		539F5571182E796D007B7952 /* LSErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSErrorViewController.h; sourceTree = "<group>"; };
 		539F5572182E796D007B7952 /* LSErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSErrorViewController.m; sourceTree = "<group>"; };
 		539F55B4182E84E7007B7952 /* WebP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebP.framework; sourceTree = "<group>"; };
@@ -785,6 +802,10 @@
 				53867D3418421E46001C6C6B /* LSActivityLabel.m */,
 				53911C631866BC11004E5FB4 /* LSForumView.h */,
 				53911C641866BC11004E5FB4 /* LSForumView.m */,
+				539EDF8818670E81004268AC /* LSReadView.h */,
+				539EDF8918670E81004268AC /* LSReadView.m */,
+				539EDF8E18671E64004268AC /* LSReadCell.h */,
+				539EDF8F18671E64004268AC /* LSReadCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -806,6 +827,8 @@
 				535E7731180FCCFC00433042 /* LSTabBarViewController.m */,
 				539F5571182E796D007B7952 /* LSErrorViewController.h */,
 				539F5572182E796D007B7952 /* LSErrorViewController.m */,
+				53911C691866E544004E5FB4 /* LSReadViewController.h */,
+				53911C6A1866E544004E5FB4 /* LSReadViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -864,6 +887,9 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				539EDF7F186705DB004268AC /* font */,
+				539EDF82186705DB004268AC /* back.png */,
+				539EDF83186705DB004268AC /* share.png */,
 				53911C671866D26B004E5FB4 /* close_btn.png */,
 				532D9052185DEC9C00440FB8 /* font */,
 				532D9055185DEC9C00440FB8 /* downArrow.png */,
@@ -1312,6 +1338,15 @@
 			path = JWNavigationViewController;
 			sourceTree = "<group>";
 		};
+		539EDF7F186705DB004268AC /* font */ = {
+			isa = PBXGroup;
+			children = (
+				539EDF80186705DB004268AC /* STHeiti-Light.ttc */,
+				539EDF81186705DB004268AC /* STHeiti-Medium.ttc */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
 		539F55B3182E84E7007B7952 /* Webp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1501,7 +1536,9 @@
 				536C47F918327E5100213ABB /* _0018_轮播图.png in Resources */,
 				532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */,
 				536C480318327E5100213ABB /* headline_icon.png in Resources */,
+				539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */,
 				536C47FD18327E5100213ABB /* common_toolbar_background@2x.png in Resources */,
+				539EDF86186705DB004268AC /* back.png in Resources */,
 				536C47FB18327E5100213ABB /* _0028_分割线1.png in Resources */,
 				53C20EC3180F92C2006CE576 /* InfoPlist.strings in Resources */,
 				536C47FE18327E5100213ABB /* ErrorDataEmpty.png in Resources */,
@@ -1517,6 +1554,7 @@
 				536C480718327E5100213ABB /* my_icon.png in Resources */,
 				536C47F818327E5100213ABB /* _0012_右侧箭头.png in Resources */,
 				536C47FF18327E5100213ABB /* ErrorDataEmpty@2x.png in Resources */,
+				539EDF87186705DB004268AC /* share.png in Resources */,
 				53867CAC18421D6C001C6C6B /* JWThree20.bundle in Resources */,
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53867B461841CACC001C6C6B /* STHeiti-Light.ttc in Resources */,
@@ -1527,6 +1565,7 @@
 				536C480418327E5100213ABB /* list_default_image.png in Resources */,
 				536C480918327E5100213ABB /* 头条iphone5-原图.jpg in Resources */,
 				53867B481841D288001C6C6B /* STHeiti-Medium.ttc in Resources */,
+				539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */,
 				536C47F718327E5100213ABB /* _0011_左侧箭头.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1625,6 +1664,7 @@
 				53867CFD18421D6C001C6C6B /* TTStyleSheet.m in Sources */,
 				53867D0C18421D6C001C6C6B /* TTModelViewController.m in Sources */,
 				53867D1D18421D6C001C6C6B /* TTTableViewDelegate.m in Sources */,
+				53911C6B1866E544004E5FB4 /* LSReadViewController.m in Sources */,
 				53867CA318421D6C001C6C6B /* NSObjectAdditions.m in Sources */,
 				53867D1618421D6C001C6C6B /* TTTableHeaderView.m in Sources */,
 				53867D0F18421D6C001C6C6B /* TTNavigatorWindow.m in Sources */,
@@ -1641,6 +1681,7 @@
 				53867CF018421D6C001C6C6B /* TTStyledInlineBlock.m in Sources */,
 				536A70D41819638700C9FD00 /* AFHTTPRequestOperation.m in Sources */,
 				53867CC618421D6C001C6C6B /* TTURLRequestQueue.m in Sources */,
+				539EDF9018671E64004268AC /* LSReadCell.m in Sources */,
 				539F5573182E796D007B7952 /* LSErrorViewController.m in Sources */,
 				53867D0918421D6C001C6C6B /* TTImageView.m in Sources */,
 				53867D2818421D6C001C6C6B /* UINavigationControllerAdditions.m in Sources */,
@@ -1702,6 +1743,7 @@
 				53867CEB18421D6C001C6C6B /* TTStyledElement.m in Sources */,
 				53867CB918421D6C001C6C6B /* TTURLSelector.m in Sources */,
 				53867D1018421D6C001C6C6B /* TTPopupViewController.m in Sources */,
+				539EDF8A18670E81004268AC /* LSReadView.m in Sources */,
 				53867CA218421D6C001C6C6B /* NSDateAdditions.m in Sources */,
 				53867CB318421D6C001C6C6B /* TTURLGeneratorPattern.m in Sources */,
 				53867D2718421D6C001C6C6B /* TTWebController.m in Sources */,
@@ -1753,7 +1795,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 冬 朱 (R2ND8RPJ7X)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1768,6 +1810,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "E1004E38-7BC6-485D-8CB5-B2EF6BD06664";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1784,7 +1827,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 冬 朱 (R2ND8RPJ7X)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1792,6 +1835,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "E1004E38-7BC6-485D-8CB5-B2EF6BD06664";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
