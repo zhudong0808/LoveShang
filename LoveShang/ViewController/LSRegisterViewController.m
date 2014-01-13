@@ -7,14 +7,22 @@
 //
 
 #import "LSRegisterViewController.h"
+#import "LSRegisterView.h"
+
+@interface LSRegisterViewController(){
+
+}
+@property (nonatomic,strong) LSRegisterView *registerView;
+
+@end
 
 @implementation LSRegisterViewController
 
 -(void)viewDidLoad{
+    self.commonToolBarType = LSCommonToolbarRegister;
+    self.showCommonBar = YES;
     
-    
+    _registerView = [[LSRegisterView alloc] initWithSuperView:self.cView];
 }
-
-
 
 @end

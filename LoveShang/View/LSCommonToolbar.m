@@ -37,12 +37,11 @@
 }
 
 -(void)setupLogoView{
-    if (_type == LSCommonToolbarRead) {
-        return;
+    if (_type == LSCommonToolbarIndex || _type == LSCommonToolbarList) {
+        UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44/2 - 33/2, 87, 33)];
+        logoView.image = [UIImage imageNamed:@"logo.png"];
+        [self addSubview:logoView];
     }
-    UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44/2 - 33/2, 87, 33)];
-    logoView.image = [UIImage imageNamed:@"logo.png"];
-    [self addSubview:logoView];
 }
 
 -(void)setupBackView{
@@ -57,8 +56,26 @@
 }
 
 -(void)setupTitleView{
-    if (_type == LSCommonToolbarRead) {
-        UILabel *titleLabel = [LSViewUtil simpleLabel:CGRectMake(320/2 - 20, 44/2 - 17/2, 40, 17) f:17 tc:RGBCOLOR(0x99, 0x8c, 0x51) t:@"话题"];
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy) {
+        NSString *title;
+        switch (_type) {
+            case LSCommonToolbarRead:
+                title = @"话题";
+                break;
+            case LSCommonToolbarRegister:
+                title = @"注册";
+                break;
+            case LSCommonToolbarLogin:
+                title = @"登录";
+                break;
+            case LSCommonToolbarMy:
+                title = @"我的";
+                break;
+            default:
+                title = @"";
+                break;
+        }
+        UILabel *titleLabel = [LSViewUtil simpleLabel:CGRectMake(320/2 - 20, 44/2 - 17/2, 40, 17) f:17 tc:RGBCOLOR(0x99, 0x8c, 0x51) t:title];
         [self addSubview:titleLabel];
     }
 }

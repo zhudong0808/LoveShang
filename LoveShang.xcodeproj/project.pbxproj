@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530A8D9218843CFD00AFFC08 /* LSRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530A8D9118843CFD00AFFC08 /* LSRegisterView.m */; };
+		530A8D991884417700AFFC08 /* _0000_注册-.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D941884417700AFFC08 /* _0000_注册-.png */; };
+		530A8D9A1884417700AFFC08 /* _0001_分割线-副本-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D951884417700AFFC08 /* _0001_分割线-副本-2.png */; };
+		530A8D9B1884417700AFFC08 /* _0002_获取验证.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D961884417700AFFC08 /* _0002_获取验证.png */; };
+		530A8D9C1884417700AFFC08 /* _0003_圆角矩形-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D971884417700AFFC08 /* _0003_圆角矩形-5.png */; };
+		530A8D9D1884417700AFFC08 /* _0004_圆角矩形-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D981884417700AFFC08 /* _0004_圆角矩形-4.png */; };
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
 		532D9051185DE64D00440FB8 /* LSViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D9050185DE64D00440FB8 /* LSViewUtil.m */; };
@@ -251,6 +257,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		530A8D9018843CFD00AFFC08 /* LSRegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSRegisterView.h; path = View/LSRegisterView.h; sourceTree = "<group>"; };
+		530A8D9118843CFD00AFFC08 /* LSRegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSRegisterView.m; path = View/LSRegisterView.m; sourceTree = "<group>"; };
+		530A8D941884417700AFFC08 /* _0000_注册-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0000_注册-.png"; sourceTree = "<group>"; };
+		530A8D951884417700AFFC08 /* _0001_分割线-副本-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0001_分割线-副本-2.png"; sourceTree = "<group>"; };
+		530A8D961884417700AFFC08 /* _0002_获取验证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0002_获取验证.png"; sourceTree = "<group>"; };
+		530A8D971884417700AFFC08 /* _0003_圆角矩形-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0003_圆角矩形-5.png"; sourceTree = "<group>"; };
+		530A8D981884417700AFFC08 /* _0004_圆角矩形-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0004_圆角矩形-4.png"; sourceTree = "<group>"; };
 		531581D1182004700032A738 /* LSNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSNavBar.h; path = View/LSNavBar.h; sourceTree = "<group>"; };
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
@@ -752,6 +765,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530A8D931884417700AFFC08 /* 注册 */ = {
+			isa = PBXGroup;
+			children = (
+				530A8D941884417700AFFC08 /* _0000_注册-.png */,
+				530A8D951884417700AFFC08 /* _0001_分割线-副本-2.png */,
+				530A8D961884417700AFFC08 /* _0002_获取验证.png */,
+				530A8D971884417700AFFC08 /* _0003_圆角矩形-5.png */,
+				530A8D981884417700AFFC08 /* _0004_圆角矩形-4.png */,
+			);
+			path = "注册";
+			sourceTree = "<group>";
+		};
 		531581D81820082D0032A738 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +834,8 @@
 				539EDF8918670E81004268AC /* LSReadView.m */,
 				539EDF8E18671E64004268AC /* LSReadCell.h */,
 				539EDF8F18671E64004268AC /* LSReadCell.m */,
+				530A8D9018843CFD00AFFC08 /* LSRegisterView.h */,
+				530A8D9118843CFD00AFFC08 /* LSRegisterView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -892,6 +919,7 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				530A8D931884417700AFFC08 /* 注册 */,
 				539EDF7F186705DB004268AC /* font */,
 				539EDF82186705DB004268AC /* back.png */,
 				539EDF83186705DB004268AC /* share.png */,
@@ -1539,6 +1567,7 @@
 				536C47FC18327E5100213ABB /* common_toolbar_background.png in Resources */,
 				532D9059185DEC9C00440FB8 /* downArrow.png in Resources */,
 				536C47F918327E5100213ABB /* _0018_轮播图.png in Resources */,
+				530A8D991884417700AFFC08 /* _0000_注册-.png in Resources */,
 				532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */,
 				536C480318327E5100213ABB /* headline_icon.png in Resources */,
 				539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */,
@@ -1558,9 +1587,12 @@
 				53867C9F18421D6C001C6C6B /* JWThree20.bundle in Resources */,
 				536C480718327E5100213ABB /* my_icon.png in Resources */,
 				536C47F818327E5100213ABB /* _0012_右侧箭头.png in Resources */,
+				530A8D9C1884417700AFFC08 /* _0003_圆角矩形-5.png in Resources */,
 				536C47FF18327E5100213ABB /* ErrorDataEmpty@2x.png in Resources */,
+				530A8D9A1884417700AFFC08 /* _0001_分割线-副本-2.png in Resources */,
 				539EDF87186705DB004268AC /* share.png in Resources */,
 				53867CAC18421D6C001C6C6B /* JWThree20.bundle in Resources */,
+				530A8D9B1884417700AFFC08 /* _0002_获取验证.png in Resources */,
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53867B461841CACC001C6C6B /* STHeiti-Light.ttc in Resources */,
 				532D905A185DEC9C00440FB8 /* upArrow.png in Resources */,
@@ -1569,6 +1601,7 @@
 				536C480A18327E5100213ABB /* 头条iphone5_MarkMan.png in Resources */,
 				536C480418327E5100213ABB /* list_default_image.png in Resources */,
 				536C480918327E5100213ABB /* 头条iphone5-原图.jpg in Resources */,
+				530A8D9D1884417700AFFC08 /* _0004_圆角矩形-4.png in Resources */,
 				53867B481841D288001C6C6B /* STHeiti-Medium.ttc in Resources */,
 				539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */,
 				536C47F718327E5100213ABB /* _0011_左侧箭头.png in Resources */,
@@ -1671,6 +1704,7 @@
 				53867D1D18421D6C001C6C6B /* TTTableViewDelegate.m in Sources */,
 				53911C6B1866E544004E5FB4 /* LSReadViewController.m in Sources */,
 				53867CA318421D6C001C6C6B /* NSObjectAdditions.m in Sources */,
+				530A8D9218843CFD00AFFC08 /* LSRegisterView.m in Sources */,
 				53867D1618421D6C001C6C6B /* TTTableHeaderView.m in Sources */,
 				53867D0F18421D6C001C6C6B /* TTNavigatorWindow.m in Sources */,
 				53867CD718421D6C001C6C6B /* TTMaskStyle.m in Sources */,

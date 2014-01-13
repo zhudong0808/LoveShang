@@ -12,6 +12,7 @@
 #import "LSNearbyViewController.h"
 #import "LSMyViewController.h"
 #import "LSCommonToolbar.h"
+#import "LSRegisterViewController.h"
 
 @implementation LSTabBarViewController
 
@@ -23,17 +24,20 @@
     LSHeadlineViewController *headlineViewController = [[LSHeadlineViewController alloc] init];
     LSForumViewController *fourmViewController = [[LSForumViewController alloc] init];
     LSNearbyViewController *nearbyViewController = [[LSNearbyViewController alloc] init];
-    LSMyViewController *myViewController = [[LSMyViewController alloc] init];
+//    LSMyViewController *myViewController = [[LSMyViewController alloc] init];
+    LSRegisterViewController *registerViewController = [[LSRegisterViewController alloc] init];
     
     headlineViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"头条" image:[UIImage imageNamed:@"headline_icon.png"] tag:1];
     fourmViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"论坛" image:[UIImage imageNamed:@"fourm_icon"] tag:2];
     nearbyViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"身边优惠" image:[UIImage imageNamed:@"nearby_icon.png"] tag:3];
-    myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"my_icon.png"] tag:4];
+//    myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"my_icon.png"] tag:4];
+    registerViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"my_icon.png"] tag:4];
     
     [viewControllerArray addObject:headlineViewController];
     [viewControllerArray addObject:fourmViewController];
     [viewControllerArray addObject:nearbyViewController];
-    [viewControllerArray addObject:myViewController];
+//    [viewControllerArray addObject:myViewController];
+    [viewControllerArray addObject:registerViewController];
     
     self.viewControllers = viewControllerArray;
 }
