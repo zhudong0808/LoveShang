@@ -70,7 +70,6 @@
             }else if (strongSelf.fourmView.forumTableView.infiniteScrollingView.state == SVInfiniteScrollingStateLoading){
                 [strongSelf.fourmView.forumTableView.infiniteScrollingView stopAnimating];
             }
-            
         });
     }];
     [self loadDataWithMore:NO isRefresh:YES];

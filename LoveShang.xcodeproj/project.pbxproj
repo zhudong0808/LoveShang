@@ -16,6 +16,7 @@
 		532D905A185DEC9C00440FB8 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9056185DEC9C00440FB8 /* upArrow.png */; };
 		532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FD983183D050700755CC3 /* LSForumNavBar.m */; };
 		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
+		534DCCD51870125E009A43FB /* LSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534DCCD41870125E009A43FB /* LSRegisterViewController.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
 		535E7708180FC20D00433042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7707180FC20D00433042 /* SystemConfiguration.framework */; };
@@ -263,6 +264,8 @@
 		532FD982183D050700755CC3 /* LSForumNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumNavBar.h; path = View/LSForumNavBar.h; sourceTree = "<group>"; };
 		532FD983183D050700755CC3 /* LSForumNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumNavBar.m; path = View/LSForumNavBar.m; sourceTree = "<group>"; };
 		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
+		534DCCD31870125E009A43FB /* LSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRegisterViewController.h; sourceTree = "<group>"; };
+		534DCCD41870125E009A43FB /* LSRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRegisterViewController.m; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
 		535E7705180FC1DA00433042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		535E7707180FC20D00433042 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -829,6 +832,8 @@
 				539F5572182E796D007B7952 /* LSErrorViewController.m */,
 				53911C691866E544004E5FB4 /* LSReadViewController.h */,
 				53911C6A1866E544004E5FB4 /* LSReadViewController.m */,
+				534DCCD31870125E009A43FB /* LSRegisterViewController.h */,
+				534DCCD41870125E009A43FB /* LSRegisterViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1725,6 +1730,7 @@
 				53867CE718421D6C001C6C6B /* TTStyledBlock.m in Sources */,
 				53867CB118421D6C001C6C6B /* TTURLAction.m in Sources */,
 				53867CA418421D6C001C6C6B /* NSStringAdditions.m in Sources */,
+				534DCCD51870125E009A43FB /* LSRegisterViewController.m in Sources */,
 				53867CFE18421D6C001C6C6B /* TTTextStyle.m in Sources */,
 				53867CEE18421D6C001C6C6B /* TTStyledImageNode.m in Sources */,
 				53867CC018421D6C001C6C6B /* TTURLCache.m in Sources */,
