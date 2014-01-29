@@ -17,3 +17,11 @@
 #endif
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+
+// 系统设置相关
+#define APP_SCREEN_BOUNDS   [[UIScreen mainScreen] bounds]
+#define APP_SCREEN_HEIGHT   (APP_SCREEN_BOUNDS.size.height)
+#define APP_SCREEN_WIDTH    (APP_SCREEN_BOUNDS.size.width)
+#define APP_STATUS_FRAME    [UIApplication sharedApplication].statusBarFrame
+#define APP_CONTENT_WIDTH   (APP_SCREEN_BOUNDS.size.width)
+#define APP_CONTENT_HEIGHT  (APP_SCREEN_BOUNDS.size.height-20)

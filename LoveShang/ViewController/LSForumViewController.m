@@ -91,7 +91,7 @@
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     [self showLoading:YES];
-    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@",_navType,_viewOrder];
+    NSString *urlPath = [NSString stringWithFormat:@"mapi/bbs.php?action=list&type=%@&vieworder=%@",_navType,_viewOrder];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             if (more && !isRefresh) {

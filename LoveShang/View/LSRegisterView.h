@@ -13,4 +13,13 @@
 
 -(LSRegisterView *)initWithSuperView:(UIView *)superView;
 
+@property (nonatomic,strong) UIView *wapperView;
+@property (nonatomic,strong) UITextField *usernameField;
+@property (nonatomic,strong) UITextField *passwordField;
+@property (nonatomic,strong) UITextField *checkPasswordField;
+@property (nonatomic,strong) UITextField *mobileField;
+@property (nonatomic,strong) UIButton *mobileBtn;
+@property (nonatomic,strong) UITextField *veriCodeField;
+@property (nonatomic,strong) UIImageView *mainInfoBox;
+@property (nonatomic,strong) UIButton *registerBtn;
 @end

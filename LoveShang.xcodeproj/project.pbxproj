@@ -20,6 +20,8 @@
 		532D9058185DEC9C00440FB8 /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */; };
 		532D9059185DEC9C00440FB8 /* downArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9055185DEC9C00440FB8 /* downArrow.png */; };
 		532D905A185DEC9C00440FB8 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9056185DEC9C00440FB8 /* upArrow.png */; };
+		532FCCBC1898D5540027F141 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCBB1898D5540027F141 /* MBProgressHUD.m */; };
+		532FCCBF189915040027F141 /* LSGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCBE189915040027F141 /* LSGlobal.m */; };
 		532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FD983183D050700755CC3 /* LSForumNavBar.m */; };
 		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
 		534DCCD51870125E009A43FB /* LSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534DCCD41870125E009A43FB /* LSRegisterViewController.m */; };
@@ -274,6 +276,10 @@
 		532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Medium.ttc"; sourceTree = "<group>"; };
 		532D9055185DEC9C00440FB8 /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downArrow.png; sourceTree = "<group>"; };
 		532D9056185DEC9C00440FB8 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		532FCCBA1898D5540027F141 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		532FCCBB1898D5540027F141 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		532FCCBD189915040027F141 /* LSGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSGlobal.h; sourceTree = "<group>"; };
+		532FCCBE189915040027F141 /* LSGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSGlobal.m; sourceTree = "<group>"; };
 		532FD982183D050700755CC3 /* LSForumNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumNavBar.h; path = View/LSForumNavBar.h; sourceTree = "<group>"; };
 		532FD983183D050700755CC3 /* LSForumNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumNavBar.m; path = View/LSForumNavBar.m; sourceTree = "<group>"; };
 		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
@@ -784,6 +790,8 @@
 				531581DA182008450032A738 /* LSColorStyleSheet.m */,
 				532D904F185DE64D00440FB8 /* LSViewUtil.h */,
 				532D9050185DE64D00440FB8 /* LSViewUtil.m */,
+				532FCCBD189915040027F141 /* LSGlobal.h */,
+				532FCCBE189915040027F141 /* LSGlobal.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -795,6 +803,15 @@
 				532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		532FCCB91898D5540027F141 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				532FCCBA1898D5540027F141 /* MBProgressHUD.h */,
+				532FCCBB1898D5540027F141 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		535E770B180FC2A400433042 /* Service */ = {
@@ -868,6 +885,7 @@
 		536A70BE1819638700C9FD00 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				532FCCB91898D5540027F141 /* MBProgressHUD */,
 				53867D3618422102001C6C6B /* JWNavigationViewController */,
 				53867B4C18421D6B001C6C6B /* JWThree20 */,
 				539F55BA182E89EE007B7952 /* SDWebImage */,
@@ -1641,6 +1659,7 @@
 				53867CAE18421D6C001C6C6B /* TTBaseNavigator.m in Sources */,
 				539F55D3182E89EE007B7952 /* SDWebImageManager.m in Sources */,
 				53867CBA18421D6C001C6C6B /* TTURLWildcard.m in Sources */,
+				532FCCBF189915040027F141 /* LSGlobal.m in Sources */,
 				53867CA118421D6C001C6C6B /* NSDataAdditions.m in Sources */,
 				53867D3118421D6C001C6C6B /* UIViewControllerAdditions.m in Sources */,
 				535E7732180FCCFC00433042 /* LSBaseViewController.m in Sources */,
@@ -1790,6 +1809,7 @@
 				53867D2D18421D6C001C6C6B /* UITableViewAdditions.m in Sources */,
 				531581D3182004710032A738 /* LSNavBar.m in Sources */,
 				53867D2518421D6C001C6C6B /* TTView.m in Sources */,
+				532FCCBC1898D5540027F141 /* MBProgressHUD.m in Sources */,
 				53867CE918421D6C001C6C6B /* TTStyledBoxFrame.m in Sources */,
 				53867CCC18421D6C001C6C6B /* TTFlowLayout.m in Sources */,
 				53867CF918421D6C001C6C6B /* TTStyledTextFrame.m in Sources */,
