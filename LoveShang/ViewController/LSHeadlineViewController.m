@@ -126,7 +126,7 @@
 #pragma mark -
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    NSString *urlPath = [NSString stringWithFormat:@"mapi/top.php?tag=%@",_navType];
+    NSString *urlPath = [NSString stringWithFormat:@"top.php?tag=%@",_navType];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             if (more && !isRefresh) {
@@ -153,7 +153,7 @@
 }
 
 -(void)loadAdvert{
-    NSString *urlPath = [NSString stringWithFormat:@"mapi/advert.php?tag=%@",_navType];
+    NSString *urlPath = [NSString stringWithFormat:@"advert.php?tag=%@",_navType];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [_advertData addObjectsFromArray:[responseObject objectForKey:@"info"]];

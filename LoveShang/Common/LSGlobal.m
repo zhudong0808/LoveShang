@@ -61,4 +61,14 @@ static MBProgressHUD  *s_progressHUD = nil;
     }
 }
 
++ (NSString *)encodeWithString:(NSString *)encodeStr {
+    CFStringRef cfUrlEncodedString = CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                             (CFStringRef)encodeStr, NULL,
+                                                                             (CFStringRef)@"!#$%&'()*+,/:;=?@[]",
+                                                                             kCFStringEncodingMacChineseSimp);
+    NSString *urlEncoded = [NSString stringWithString:(__bridge NSString *)cfUrlEncodedString];
+    CFRelease(cfUrlEncodedString);
+    return urlEncoded;
+}
+
 @end

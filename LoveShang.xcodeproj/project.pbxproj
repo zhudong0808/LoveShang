@@ -22,6 +22,18 @@
 		532D905A185DEC9C00440FB8 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 532D9056185DEC9C00440FB8 /* upArrow.png */; };
 		532FCCBC1898D5540027F141 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCBB1898D5540027F141 /* MBProgressHUD.m */; };
 		532FCCBF189915040027F141 /* LSGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCBE189915040027F141 /* LSGlobal.m */; };
+		532FCCC218A4963F0027F141 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCC118A4963F0027F141 /* LSLoginViewController.m */; };
+		532FCCC518A4998E0027F141 /* LSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FCCC418A4998E0027F141 /* LSLoginView.m */; };
+		532FCCD118A49B920027F141 /* _0000_图层-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCC718A49B920027F141 /* _0000_图层-7.png */; };
+		532FCCD218A49B920027F141 /* _0000_导航栏底色.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCC818A49B920027F141 /* _0000_导航栏底色.png */; };
+		532FCCD318A49B920027F141 /* _0000_登陆密码.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCC918A49B920027F141 /* _0000_登陆密码.png */; };
+		532FCCD418A49B920027F141 /* _0001_登陆.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCA18A49B920027F141 /* _0001_登陆.png */; };
+		532FCCD518A49B920027F141 /* _0002_注册.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCB18A49B920027F141 /* _0002_注册.png */; };
+		532FCCD618A49B920027F141 /* _0003_爱上网logo(不带张家港).png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCC18A49B920027F141 /* _0003_爱上网logo(不带张家港).png */; };
+		532FCCD718A49B920027F141 /* _0004_登陆密码.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCD18A49B920027F141 /* _0004_登陆密码.png */; };
+		532FCCD818A49B920027F141 /* _0005_账号.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCE18A49B920027F141 /* _0005_账号.png */; };
+		532FCCD918A49B920027F141 /* _0006_分割线.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCCF18A49B920027F141 /* _0006_分割线.png */; };
+		532FCCDA18A49B920027F141 /* _0007_矩形-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 532FCCD018A49B920027F141 /* _0007_矩形-2.png */; };
 		532FD984183D050700755CC3 /* LSForumNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FD983183D050700755CC3 /* LSForumNavBar.m */; };
 		53360A5218268D970067D9C9 /* LSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53360A5118268D970067D9C9 /* LSAppDelegate.m */; };
 		534DCCD51870125E009A43FB /* LSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534DCCD41870125E009A43FB /* LSRegisterViewController.m */; };
@@ -280,6 +292,20 @@
 		532FCCBB1898D5540027F141 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		532FCCBD189915040027F141 /* LSGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSGlobal.h; sourceTree = "<group>"; };
 		532FCCBE189915040027F141 /* LSGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSGlobal.m; sourceTree = "<group>"; };
+		532FCCC018A4963F0027F141 /* LSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLoginViewController.h; sourceTree = "<group>"; };
+		532FCCC118A4963F0027F141 /* LSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSLoginViewController.m; sourceTree = "<group>"; };
+		532FCCC318A4998E0027F141 /* LSLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSLoginView.h; path = View/LSLoginView.h; sourceTree = "<group>"; };
+		532FCCC418A4998E0027F141 /* LSLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSLoginView.m; path = View/LSLoginView.m; sourceTree = "<group>"; };
+		532FCCC718A49B920027F141 /* _0000_图层-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0000_图层-7.png"; sourceTree = "<group>"; };
+		532FCCC818A49B920027F141 /* _0000_导航栏底色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0000_导航栏底色.png"; sourceTree = "<group>"; };
+		532FCCC918A49B920027F141 /* _0000_登陆密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0000_登陆密码.png"; sourceTree = "<group>"; };
+		532FCCCA18A49B920027F141 /* _0001_登陆.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0001_登陆.png"; sourceTree = "<group>"; };
+		532FCCCB18A49B920027F141 /* _0002_注册.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0002_注册.png"; sourceTree = "<group>"; };
+		532FCCCC18A49B920027F141 /* _0003_爱上网logo(不带张家港).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0003_爱上网logo(不带张家港).png"; sourceTree = "<group>"; };
+		532FCCCD18A49B920027F141 /* _0004_登陆密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0004_登陆密码.png"; sourceTree = "<group>"; };
+		532FCCCE18A49B920027F141 /* _0005_账号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0005_账号.png"; sourceTree = "<group>"; };
+		532FCCCF18A49B920027F141 /* _0006_分割线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0006_分割线.png"; sourceTree = "<group>"; };
+		532FCCD018A49B920027F141 /* _0007_矩形-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0007_矩形-2.png"; sourceTree = "<group>"; };
 		532FD982183D050700755CC3 /* LSForumNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumNavBar.h; path = View/LSForumNavBar.h; sourceTree = "<group>"; };
 		532FD983183D050700755CC3 /* LSForumNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumNavBar.m; path = View/LSForumNavBar.m; sourceTree = "<group>"; };
 		53360A5118268D970067D9C9 /* LSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAppDelegate.m; sourceTree = "<group>"; };
@@ -814,6 +840,23 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		532FCCC618A49B920027F141 /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				532FCCC718A49B920027F141 /* _0000_图层-7.png */,
+				532FCCC818A49B920027F141 /* _0000_导航栏底色.png */,
+				532FCCC918A49B920027F141 /* _0000_登陆密码.png */,
+				532FCCCA18A49B920027F141 /* _0001_登陆.png */,
+				532FCCCB18A49B920027F141 /* _0002_注册.png */,
+				532FCCCC18A49B920027F141 /* _0003_爱上网logo(不带张家港).png */,
+				532FCCCD18A49B920027F141 /* _0004_登陆密码.png */,
+				532FCCCE18A49B920027F141 /* _0005_账号.png */,
+				532FCCCF18A49B920027F141 /* _0006_分割线.png */,
+				532FCCD018A49B920027F141 /* _0007_矩形-2.png */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
 		535E770B180FC2A400433042 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +896,8 @@
 				539EDF8F18671E64004268AC /* LSReadCell.m */,
 				530A8D9018843CFD00AFFC08 /* LSRegisterView.h */,
 				530A8D9118843CFD00AFFC08 /* LSRegisterView.m */,
+				532FCCC318A4998E0027F141 /* LSLoginView.h */,
+				532FCCC418A4998E0027F141 /* LSLoginView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -878,6 +923,8 @@
 				53911C6A1866E544004E5FB4 /* LSReadViewController.m */,
 				534DCCD31870125E009A43FB /* LSRegisterViewController.h */,
 				534DCCD41870125E009A43FB /* LSRegisterViewController.m */,
+				532FCCC018A4963F0027F141 /* LSLoginViewController.h */,
+				532FCCC118A4963F0027F141 /* LSLoginViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -937,6 +984,7 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				532FCCC618A49B920027F141 /* 登录 */,
 				530A8D931884417700AFFC08 /* 注册 */,
 				539EDF7F186705DB004268AC /* font */,
 				539EDF82186705DB004268AC /* back.png */,
@@ -1581,6 +1629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				536C480518327E5100213ABB /* loading.png in Resources */,
+				532FCCD318A49B920027F141 /* _0000_登陆密码.png in Resources */,
 				532D9058185DEC9C00440FB8 /* STHeiti-Medium.ttc in Resources */,
 				536C47FC18327E5100213ABB /* common_toolbar_background.png in Resources */,
 				532D9059185DEC9C00440FB8 /* downArrow.png in Resources */,
@@ -1588,6 +1637,8 @@
 				530A8D991884417700AFFC08 /* _0000_注册-.png in Resources */,
 				532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */,
 				536C480318327E5100213ABB /* headline_icon.png in Resources */,
+				532FCCD818A49B920027F141 /* _0005_账号.png in Resources */,
+				532FCCDA18A49B920027F141 /* _0007_矩形-2.png in Resources */,
 				539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */,
 				536C47FD18327E5100213ABB /* common_toolbar_background@2x.png in Resources */,
 				539EDF86186705DB004268AC /* back.png in Resources */,
@@ -1598,6 +1649,7 @@
 				536C480118327E5100213ABB /* ErrorEmpty@2x.png in Resources */,
 				53911C681866D26B004E5FB4 /* close_btn.png in Resources */,
 				536C480018327E5100213ABB /* ErrorEmpty.png in Resources */,
+				532FCCD518A49B920027F141 /* _0002_注册.png in Resources */,
 				536C480618327E5100213ABB /* logo.png in Resources */,
 				536C480818327E5100213ABB /* nearby_icon.png in Resources */,
 				53C20ECD180F92C2006CE576 /* Default@2x.png in Resources */,
@@ -1605,24 +1657,30 @@
 				53867C9F18421D6C001C6C6B /* JWThree20.bundle in Resources */,
 				536C480718327E5100213ABB /* my_icon.png in Resources */,
 				536C47F818327E5100213ABB /* _0012_右侧箭头.png in Resources */,
+				532FCCD418A49B920027F141 /* _0001_登陆.png in Resources */,
 				530A8D9C1884417700AFFC08 /* _0003_圆角矩形-5.png in Resources */,
+				532FCCD218A49B920027F141 /* _0000_导航栏底色.png in Resources */,
 				536C47FF18327E5100213ABB /* ErrorDataEmpty@2x.png in Resources */,
 				530A8D9A1884417700AFFC08 /* _0001_分割线-副本-2.png in Resources */,
 				539EDF87186705DB004268AC /* share.png in Resources */,
 				53867CAC18421D6C001C6C6B /* JWThree20.bundle in Resources */,
 				530A8D9B1884417700AFFC08 /* _0002_获取验证.png in Resources */,
+				532FCCD118A49B920027F141 /* _0000_图层-7.png in Resources */,
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53867B461841CACC001C6C6B /* STHeiti-Light.ttc in Resources */,
 				532D905A185DEC9C00440FB8 /* upArrow.png in Resources */,
+				532FCCD618A49B920027F141 /* _0003_爱上网logo(不带张家港).png in Resources */,
 				536C47FA18327E5100213ABB /* _0020_分割线1.png in Resources */,
 				536C47F618327E5100213ABB /* _0005_天气.png in Resources */,
 				536C480A18327E5100213ABB /* 头条iphone5_MarkMan.png in Resources */,
 				536C480418327E5100213ABB /* list_default_image.png in Resources */,
 				536C480918327E5100213ABB /* 头条iphone5-原图.jpg in Resources */,
+				532FCCD718A49B920027F141 /* _0004_登陆密码.png in Resources */,
 				530A8D9D1884417700AFFC08 /* _0004_圆角矩形-4.png in Resources */,
 				53867B481841D288001C6C6B /* STHeiti-Medium.ttc in Resources */,
 				539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */,
 				536C47F718327E5100213ABB /* _0011_左侧箭头.png in Resources */,
+				532FCCD918A49B920027F141 /* _0006_分割线.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,6 +1698,7 @@
 				53867CAA18421D6C001C6C6B /* TTGlobalCoreRects.m in Sources */,
 				53867D1C18421D6C001C6C6B /* TTTableViewDataSource.m in Sources */,
 				53867D2018421D6C001C6C6B /* TTTableViewItem.m in Sources */,
+				532FCCC218A4963F0027F141 /* LSLoginViewController.m in Sources */,
 				53867CFC18421D6C001C6C6B /* TTStyleInternal.m in Sources */,
 				53867CD818421D6C001C6C6B /* TTPartStyle.m in Sources */,
 				53867CF718421D6C001C6C6B /* TTStyledNodeInternal.m in Sources */,
@@ -1688,6 +1747,7 @@
 				53867CB418421D6C001C6C6B /* TTURLLiteral.m in Sources */,
 				53867CEC18421D6C001C6C6B /* TTStyledFrame.m in Sources */,
 				53867CD018421D6C001C6C6B /* TTHighlightBorderStyle.m in Sources */,
+				532FCCC518A4998E0027F141 /* LSLoginView.m in Sources */,
 				53867D2318421D6C001C6C6B /* TTTableViewVarHeightDelegate.m in Sources */,
 				53867D0518421D6C001C6C6B /* TTButtonContent.m in Sources */,
 				53E7F1C3183134D00048EE04 /* LSErrorViewCell.m in Sources */,

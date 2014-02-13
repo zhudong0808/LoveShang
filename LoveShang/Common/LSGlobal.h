@@ -14,5 +14,6 @@
 
 + (void)showProgressHUD:(NSString *)aString duration:(CGFloat)duration;
 + (void)showFailedView:(NSString*)strTitle;
++ (NSString *)encodeWithString:(NSString *)encodeStr;
 
 @end
