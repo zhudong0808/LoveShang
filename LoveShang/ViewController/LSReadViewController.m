@@ -79,29 +79,18 @@
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     [self showLoading:YES];
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=view&tid=%@",_tid];
+    NSLog(@"urlPath=%@",urlPath);
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            if (more && !isRefresh) {
-                [_tableData addObject:[responseObject objectForKey:@"info"]];
-                [_readView.readTableView.infiniteScrollingView stopAnimating];
-                _page = _page + 1;
-            } else {
-                [_tableData removeAllObjects];
-                [_tableData addObject:[responseObject objectForKey:@"info"]];
-                _page = 2;
-                [_readView.readTableView.pullToRefreshView stopAnimating];
-                
-                //设置标题
-                NSDictionary *threadData = [responseObject objectForKey:@"info"];
-                _readView.titleLabel.text = [threadData objectForKey:@"subject"];
-            }
-        } else {
-            [_tableData removeAllObjects];
-            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+            [_readView.readTableView.pullToRefreshView stopAnimating];
+            //设置标题
+            NSDictionary *threadData = [responseObject objectForKey:@"info"];
+            _readView.titleLabel.text = [threadData objectForKey:@"subject"];
+            [_readView.landlordIconView setImageWithURL:[NSURL URLWithString:[threadData objectForKey:@"faceurl"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
+            _readView.landlordNameLabel.text = [threadData objectForKey:@"author"];
+            _readView.landlordPostdateLabel.text = [threadData objectForKey:@"postdate"];
+            [self showLoading:NO];
         }
-        [self showLoading:NO];
-        [_readView.readTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
         NSLog(@"%@",error);
@@ -118,7 +107,7 @@
         _readView.readTableView.scrollEnabled = NO;
     } else {
         self.isLoadingData = NO;
-        _readView.readTableView.tableHeaderView = nil;
+        _readView.readTableView.tableHeaderView = _readView.headerView;
         _readView.readTableView.scrollEnabled = YES;
     }
 }

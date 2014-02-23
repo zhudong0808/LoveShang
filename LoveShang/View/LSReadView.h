@@ -14,5 +14,9 @@
 
 @property (nonatomic,strong) UITableView *readTableView;
 @property (nonatomic,strong) UILabel *titleLabel;
+@property (nonatomic,strong) UIView *headerView;
+@property (nonatomic,strong) UIImageView *landlordIconView;
+@property (nonatomic,strong) UILabel *landlordNameLabel;
+@property (nonatomic,strong) UILabel *landlordPostdateLabel;
 
 @end

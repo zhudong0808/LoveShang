@@ -13,7 +13,7 @@
 +(UILabel *)simpleLabel:(CGRect)frame f:(int)size tc:(UIColor *)color t:(NSString *)text{
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:size];
+    [label setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:size]];
     label.textColor = color;
     label.text = text;
     
@@ -22,7 +22,7 @@
 +(UILabel *)simpleLabel:(CGRect)frame bf:(int)size tc:(UIColor *)color t:(NSString *)text{
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:size];
+    [label setFont:[UIFont fontWithName:@"STHeitiTC-Medium" size:size]];
     label.textColor = color;
     label.text = text;
     
