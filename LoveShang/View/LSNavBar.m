@@ -23,9 +23,10 @@
 -(LSNavBar *)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         _sv = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 32)];
-        _sv.backgroundColor = [UIColor whiteColor];
+        _sv.showsHorizontalScrollIndicator = NO;
+        _sv.backgroundColor = RGBCOLOR(0xee, 0xee, 0xee);
         _sv.delegate = self;
-        _sv.contentSize = CGSizeMake(640, 30);
+        _sv.contentSize = CGSizeMake(535, 30);
         
 
         _navKeys = [NSArray arrayWithObjects:@"all",@"house",@"renovation",@"marry",@"auto",@"food",@"baby",@"activity",@"life",nil];
@@ -49,9 +50,9 @@
         [_sv addSubview:_border];
         [self addSubview:_sv];
         //底部分割线
-        UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 31, self.frame.size.width, 1)];
-        bottomLine.backgroundColor = [LSColorStyleSheet colorWithName:LSColorGrayLine];
-        [self addSubview:bottomLine];
+//        UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 31, self.frame.size.width, 1)];
+//        bottomLine.backgroundColor = [LSColorStyleSheet colorWithName:LSColorGrayLine];
+//        [self addSubview:bottomLine];
     }
     return self;
 }

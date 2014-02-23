@@ -130,7 +130,13 @@
     if ([object isKindOfClass:[NSError class]]) {
         return [LSErrorViewCell tableView:tableView rowHeightForObject:object];
     } else {
-        return 50.0f;
+        NSString *subject = [[_tableData objectAtIndex:indexPath.row]objectForKey:@"subject"];
+        CGSize subjectSize = [subject sizeWithFont:[UIFont fontWithName:@"STHeitiTC-Medium" size:13] constrainedToSize:CGSizeMake(284, 30)];
+        if (subjectSize.height>13) {
+            return 50+13;
+        } else {
+            return 50.0f;
+        }
     }
 }
 
@@ -162,6 +168,8 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row % 2 == 0) {
         cell.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
+    } else {
+        cell.backgroundColor = RGBCOLOR(0xf2, 0xf2, 0xf2);
     }
 }
 

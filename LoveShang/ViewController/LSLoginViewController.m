@@ -9,6 +9,8 @@
 #import "LSLoginViewController.h"
 #import "LSLoginView.h"
 #import "LSGlobal.h"
+#import "SFHFKeychainUtils.h"
+#import "LSMyViewController.h"
 
 @interface LSLoginViewController(){
 
@@ -18,6 +20,8 @@
 @end
 
 @implementation LSLoginViewController
+
+@synthesize completion = _completion;
 
 -(void)viewDidLoad{
     self.commonToolBarType = LSCommonToolbarLogin;
@@ -33,21 +37,29 @@
 }
 
 -(void)loginAction{
+    [_loginView.loginBtn setEnabled:NO];
     if ([self checkField] == false) {
         return;
     }
     NSString *urlPath = [NSString stringWithFormat:@"user.php?action=login&username=%@&password=%@",[LSGlobal encodeWithString:_loginView.userNameField.text],[LSGlobal encodeWithString:_loginView.passwordField.text]];
     [[LSApiClientService sharedInstance] getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:[responseObject objectForKey:@"encryptString"] forKey:@"encryptString"];
-            //TODO 调转至登录成功页面
+            [SFHFKeychainUtils storeUsername:keyChainEncryptString andPassword:[[responseObject objectForKey:@"info"] objectForKey:@"encryptString"] forServiceName:keyChainServiceName updateExisting:YES error:nil];
+//            LSMyViewController *vc = [[LSMyViewController alloc] init];
+//            [self.navigationController popViewControllerAnimated:NO];
+//            [self.navigationController pushViewController:vc animated:YES];
+            _completion(YES);
         } else {
+            [_loginView.loginBtn setEnabled:YES];
             NSLog(@"%@",responseObject);
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"登录失败";
             [LSGlobal showFailedView:errorMsg];
+            LSMyViewController *vc = [[LSMyViewController alloc] init];
+            [self.navigationController popViewControllerAnimated:NO];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        [_loginView.loginBtn setEnabled:YES];
         [LSGlobal showFailedView:@"登录失败"];
     }];
 }

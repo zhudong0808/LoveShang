@@ -8,6 +8,8 @@
 
 #import "LSHeadlineViewController.h"
 #import "LSErrorViewCell.h"
+#import "LSViewUtil.h"
+#import "LSHeadlineViewCell.h"
 
 @interface LSHeadlineViewController(){
 
@@ -21,6 +23,7 @@
 @property (nonatomic,strong) NSString *navType;
 @property (nonatomic,strong) UIScrollView *slideView;
 @property (nonatomic,strong) UIPageControl *pageControl;
+@property (nonatomic,strong) UILabel *slideTitleLabel;
 @end
 
 @implementation LSHeadlineViewController
@@ -41,7 +44,7 @@
     
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32+1 + 145, self.cView.frame.size.width, self.cView.frame.size.height - 40 -35 - self.tabBarController.tabBar.frame.size.height - 145) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+30.5 + 170, self.cView.frame.size.width, APP_CONTENT_HEIGHT - 44 - 30.5 - 170 - 44) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -81,24 +84,25 @@
     
     //初始化幻灯片
     if (!_slideView) {
-        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+32+1, self.cView.frame.size.width, 145)];
+        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+30.5, self.cView.frame.size.width, 170)];
         _slideView.pagingEnabled = YES;
         _slideView.delegate = self;
+        _slideView.showsHorizontalScrollIndicator = NO;
         [self.cView addSubview:_slideView];
     }
-    _slideView.contentSize = CGSizeMake(self.cView.frame.size.width * [_advertData count], 145);
+    _slideView.contentSize = CGSizeMake(self.cView.frame.size.width * [_advertData count], 170);
     
     NSInteger i = 0;
     for (UIView *subView in [_slideView subviews]) {
         [subView removeFromSuperview];
     }
     if ([_advertData count] == 0) {
-        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 145)];
+        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
         picView.image = [UIImage imageNamed:@"loading.png"];
         [_slideView addSubview:picView];
     } else {
         for (NSDictionary *item in _advertData) {
-            UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 145)];
+            UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 170)];
             picView.image = [UIImage imageNamed:@"loading.png"];
             [picView setImageWithURL:[NSURL URLWithString:[item objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
             [_slideView addSubview:picView];
@@ -106,16 +110,23 @@
         }
     }
     
-    if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(220, 44+32+1+145 - 26, 100, 26)];
-        _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-        _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-        _pageControl.currentPage = 0;
-        [self.cView addSubview:_pageControl];
+    if ([_advertData count] > 0) {
+        UIView *slideTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+30.5+144, 320, 26)];
+        slideTitleView.backgroundColor = [UIColor whiteColor];
+        slideTitleView.alpha = 0.8;
+        [self.cView addSubview:slideTitleView];
+        
+        _slideTitleLabel = [LSViewUtil simpleLabel:CGRectMake(12, 0, 245, 26) f:14 tc:RGBCOLOR(0x00, 0x00, 0x00) t:[[_advertData objectAtIndex:0] objectForKey:@"subject"]];
+        [slideTitleView addSubview:_slideTitleLabel];
+        if (!_pageControl && [_advertData count] > 1) {
+            _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(250, 0, 70, 26)];
+            _pageControl.pageIndicatorTintColor = RGBCOLOR(0xbf, 0xc2, 0xc2);
+            _pageControl.currentPageIndicatorTintColor = RGBCOLOR(0x95, 0x98, 0x9a);
+            _pageControl.currentPage = 0;
+            [slideTitleView addSubview:_pageControl];
+        }
+        _pageControl.numberOfPages = [_advertData count];
     }
-    _pageControl.numberOfPages = [_advertData count];
-    [_advertData removeAllObjects];
-    
 }
 
 -(void)doActionWithBtn:(UIButton *)btn{
@@ -170,6 +181,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSInteger currentPage = _slideView.contentOffset.x/320;
     _pageControl.currentPage = currentPage;
+    _slideTitleLabel.text = [[_advertData objectAtIndex:currentPage] objectForKey:@"subject"];
 }
 
 #pragma mark UITableViewDelegate
@@ -199,27 +211,13 @@
         [cell setObject:cellData];
         return cell;
     }
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.cView.frame.size.width, 30)];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 75/2 - 58/2, 85, 58)];
-    imageView.image = [UIImage imageNamed:@"loading.png"];
-    [imageView setImageWithURL:[NSURL URLWithString:[cellData objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11, self.cView.frame.size.width - 95, 15)];
-    titleLabel.text = [cellData objectForKey:@"subject"];
-    titleLabel.textColor = [LSColorStyleSheet colorWithName:LSColorGrayText];
-    titleLabel.font = [UIFont boldSystemFontOfSize:15];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    
-    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(95 + 12, 11 + 15 + 8, self.cView.frame.size.width - 95, 12)];
-    contentLabel.text = [cellData objectForKey:@"introduction"];
-    contentLabel.textColor = [LSColorStyleSheet colorWithName:LSColorLightGrayText];
-    contentLabel.font = [UIFont systemFontOfSize:12];
-    contentLabel.textAlignment = NSTextAlignmentLeft;
-    
-    [cell addSubview:imageView];
-    [cell addSubview:titleLabel];
-    [cell addSubview:contentLabel];
+    static NSString *CellHeadLineIndetifier = @"CellHeadLineIdentifier";
+    LSHeadlineViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellHeadLineIndetifier];
+    if (!cell) {
+        cell = [[LSHeadlineViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellHeadLineIndetifier];
+        [cell setData:cellData];
+    }
     return cell;
 }
 

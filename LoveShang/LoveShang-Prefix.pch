@@ -25,3 +25,8 @@
 #define APP_STATUS_FRAME    [UIApplication sharedApplication].statusBarFrame
 #define APP_CONTENT_WIDTH   (APP_SCREEN_BOUNDS.size.width)
 #define APP_CONTENT_HEIGHT  (APP_SCREEN_BOUNDS.size.height-20)
+
+
+// 登录相关
+#define keyChainEncryptString @"keyChainEncryptString"
+#define keyChainServiceName   @"keyChainServiceName"

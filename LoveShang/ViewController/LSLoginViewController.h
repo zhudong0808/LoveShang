@@ -8,6 +8,10 @@
 
 #import "LSBaseViewController.h"
 
+typedef void(^LSLoginCompletion)(BOOL success);
+
 @interface LSLoginViewController : LSBaseViewController
+
+@property (nonatomic,copy) LSLoginCompletion completion;
 
 @end

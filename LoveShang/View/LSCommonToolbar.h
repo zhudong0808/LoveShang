@@ -15,6 +15,7 @@ typedef enum{
     LSCommonToolbarRegister,
     LSCommonToolbarLogin,
     LSCommonToolbarMy,
+    LSCommonToolbarWebView,
     LSCommonToolbarOther
 } LSCommonToolbarType;
 

@@ -24,12 +24,11 @@
 -(id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         _sv = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 32)];
-        _sv.backgroundColor = [UIColor whiteColor];
+        _sv.backgroundColor = RGBCOLOR(0xf2, 0xf2, 0xf2);
         _sv.delegate = self;
-        _sv.contentSize = CGSizeMake(640, 30);
+        _sv.contentSize = CGSizeMake(400, 30);
+        _sv.showsHorizontalScrollIndicator = NO;
         _btnWidthArray = [[NSMutableArray alloc] init];
-        
-        
         
         _navKeys = [NSArray arrayWithObjects:@"516",@"595",@"516",@"465",@"92",@"486",@"131",@"293",@"294",nil];
         _navTitles = [NSArray arrayWithObjects:@"街巷",@"美食",@"婚嫁",@"妈宝",@"房产",@"汽车",@"装修讨论",@"装修日记",@"新家", nil];
