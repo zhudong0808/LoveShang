@@ -16,6 +16,7 @@
 		530A8D9D1884417700AFFC08 /* _0004_圆角矩形-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 530A8D981884417700AFFC08 /* _0004_圆角矩形-4.png */; };
 		531581D3182004710032A738 /* LSNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581D2182004710032A738 /* LSNavBar.m */; };
 		531581DB182008450032A738 /* LSColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 531581DA182008450032A738 /* LSColorStyleSheet.m */; };
+		531D0BF918C6291000449780 /* _0005_分割线.png in Resources */ = {isa = PBXBuildFile; fileRef = 531D0BF818C6291000449780 /* _0005_分割线.png */; };
 		532D9051185DE64D00440FB8 /* LSViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D9050185DE64D00440FB8 /* LSViewUtil.m */; };
 		532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 532D9053185DEC9C00440FB8 /* STHeiti-Light.ttc */; };
 		532D9058185DEC9C00440FB8 /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 532D9054185DEC9C00440FB8 /* STHeiti-Medium.ttc */; };
@@ -51,6 +52,9 @@
 		53464D9918AD1E3F0013856D /* LSMyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53464D9818AD1E3F0013856D /* LSMyView.m */; };
 		534AF7D618B9877100364B38 /* LSHeadlineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 534AF7D518B9877100364B38 /* LSHeadlineViewCell.m */; };
 		534DCCD51870125E009A43FB /* LSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534DCCD41870125E009A43FB /* LSRegisterViewController.m */; };
+		53538C1E18BEC59000FF7829 /* _0000_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53538C1C18BEC59000FF7829 /* _0000_logo.png */; };
+		53538C1F18BEC59000FF7829 /* _0004_输入对话框.png in Resources */ = {isa = PBXBuildFile; fileRef = 53538C1D18BEC59000FF7829 /* _0004_输入对话框.png */; };
+		53538C2118BECA2500FF7829 /* _0003_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53538C2018BECA2500FF7829 /* _0003_photo.png */; };
 		5357B72D18B08F100035BFD8 /* LSAuthenticateCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5357B72C18B08F100035BFD8 /* LSAuthenticateCenter.m */; };
 		535E7704180FC1C900433042 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7703180FC1C900433042 /* libbz2.1.0.dylib */; };
 		535E7706180FC1DA00433042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535E7705180FC1DA00433042 /* Security.framework */; };
@@ -299,6 +303,7 @@
 		531581D2182004710032A738 /* LSNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSNavBar.m; path = View/LSNavBar.m; sourceTree = "<group>"; };
 		531581D9182008450032A738 /* LSColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSColorStyleSheet.h; sourceTree = "<group>"; };
 		531581DA182008450032A738 /* LSColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSColorStyleSheet.m; sourceTree = "<group>"; };
+		531D0BF818C6291000449780 /* _0005_分割线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0005_分割线.png"; sourceTree = "<group>"; };
 		532D904F185DE64D00440FB8 /* LSViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSViewUtil.h; sourceTree = "<group>"; };
 		532D9050185DE64D00440FB8 /* LSViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSViewUtil.m; sourceTree = "<group>"; };
 		532D9053185DEC9C00440FB8 /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
@@ -344,6 +349,9 @@
 		534AF7D518B9877100364B38 /* LSHeadlineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSHeadlineViewCell.m; path = View/LSHeadlineViewCell.m; sourceTree = "<group>"; };
 		534DCCD31870125E009A43FB /* LSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRegisterViewController.h; sourceTree = "<group>"; };
 		534DCCD41870125E009A43FB /* LSRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRegisterViewController.m; sourceTree = "<group>"; };
+		53538C1C18BEC59000FF7829 /* _0000_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _0000_logo.png; sourceTree = "<group>"; };
+		53538C1D18BEC59000FF7829 /* _0004_输入对话框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_0004_输入对话框.png"; sourceTree = "<group>"; };
+		53538C2018BECA2500FF7829 /* _0003_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _0003_photo.png; sourceTree = "<group>"; };
 		5357B72B18B08F100035BFD8 /* LSAuthenticateCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAuthenticateCenter.h; sourceTree = "<group>"; };
 		5357B72C18B08F100035BFD8 /* LSAuthenticateCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAuthenticateCenter.m; sourceTree = "<group>"; };
 		535E7703180FC1C900433042 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
@@ -920,6 +928,17 @@
 			path = "我的";
 			sourceTree = "<group>";
 		};
+		53538C1B18BEC59000FF7829 /* 帖子详情 */ = {
+			isa = PBXGroup;
+			children = (
+				531D0BF818C6291000449780 /* _0005_分割线.png */,
+				53538C2018BECA2500FF7829 /* _0003_photo.png */,
+				53538C1C18BEC59000FF7829 /* _0000_logo.png */,
+				53538C1D18BEC59000FF7829 /* _0004_输入对话框.png */,
+			);
+			path = "帖子详情";
+			sourceTree = "<group>";
+		};
 		535E770B180FC2A400433042 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,6 +1073,7 @@
 		536C47E018327E5100213ABB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53538C1B18BEC59000FF7829 /* 帖子详情 */,
 				53464D8218AD1DF40013856D /* 我的 */,
 				532FCCC618A49B920027F141 /* 登录 */,
 				530A8D931884417700AFFC08 /* 注册 */,
@@ -1708,6 +1728,7 @@
 				530A8D991884417700AFFC08 /* _0000_注册-.png in Resources */,
 				532D9057185DEC9C00440FB8 /* STHeiti-Light.ttc in Resources */,
 				53464D8E18AD1DF40013856D /* _0001_Bell.png in Resources */,
+				53538C2118BECA2500FF7829 /* _0003_photo.png in Resources */,
 				536C480318327E5100213ABB /* headline_icon.png in Resources */,
 				532FCCD818A49B920027F141 /* _0005_账号.png in Resources */,
 				532FCCDA18A49B920027F141 /* _0007_矩形-2.png in Resources */,
@@ -1747,6 +1768,8 @@
 				53464D9018AD1DF40013856D /* _0002_退出.png in Resources */,
 				53C20ECF180F92C2006CE576 /* Default-568h@2x.png in Resources */,
 				53867B461841CACC001C6C6B /* STHeiti-Light.ttc in Resources */,
+				531D0BF918C6291000449780 /* _0005_分割线.png in Resources */,
+				53538C1E18BEC59000FF7829 /* _0000_logo.png in Resources */,
 				532D905A185DEC9C00440FB8 /* upArrow.png in Resources */,
 				532FCCD618A49B920027F141 /* _0003_爱上网logo(不带张家港).png in Resources */,
 				536C47FA18327E5100213ABB /* _0020_分割线1.png in Resources */,
@@ -1757,6 +1780,7 @@
 				53464D9318AD1DF40013856D /* _0006_013.png in Resources */,
 				532FCCD718A49B920027F141 /* _0004_登陆密码.png in Resources */,
 				530A8D9D1884417700AFFC08 /* _0004_圆角矩形-4.png in Resources */,
+				53538C1F18BEC59000FF7829 /* _0004_输入对话框.png in Resources */,
 				53867B481841D288001C6C6B /* STHeiti-Medium.ttc in Resources */,
 				539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */,
 				536C47F718327E5100213ABB /* _0011_左侧箭头.png in Resources */,

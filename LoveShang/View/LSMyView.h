@@ -16,6 +16,7 @@
 @property (nonatomic,strong) UIButton *btn1;
 @property (nonatomic,strong) UIButton *btn2;
 @property (nonatomic,strong) UIButton *btn3;
+@property (nonatomic,strong) UIButton *loginoutBtn;
 
 -(LSMyView *)initWithSuperView:(UIView *)superView;
 

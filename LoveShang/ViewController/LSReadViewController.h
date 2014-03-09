@@ -8,7 +8,7 @@
 
 #import "LSBaseViewController.h"
 
-@interface LSReadViewController : LSBaseViewController<LSCommonToolbarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface LSReadViewController : LSBaseViewController<LSCommonToolbarDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,UIWebViewDelegate>
 
 -(id)initWithTid:(NSString *)tid;
 

@@ -45,9 +45,7 @@
     [[LSApiClientService sharedInstance] getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [SFHFKeychainUtils storeUsername:keyChainEncryptString andPassword:[[responseObject objectForKey:@"info"] objectForKey:@"encryptString"] forServiceName:keyChainServiceName updateExisting:YES error:nil];
-//            LSMyViewController *vc = [[LSMyViewController alloc] init];
-//            [self.navigationController popViewControllerAnimated:NO];
-//            [self.navigationController pushViewController:vc animated:YES];
+            _loginView.loginBtn.enabled = YES;
             _completion(YES);
         } else {
             [_loginView.loginBtn setEnabled:YES];

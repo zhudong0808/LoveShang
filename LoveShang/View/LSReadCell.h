@@ -10,6 +10,9 @@
 
 @interface LSReadCell : UITableViewCell
 
+@property (nonatomic,strong) UIWebView *webView;
+@property (nonatomic,strong) NSString *identifer;
+
 -(void)setData:(NSDictionary *)data;
 
 @end

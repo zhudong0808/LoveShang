@@ -59,6 +59,10 @@
     return NO;
 }
 
+-(void)loginout{
+    [SFHFKeychainUtils deleteItemForUsername:keyChainEncryptString andServiceName:keyChainServiceName error:nil];
+}
+
 +(NSString *)getEncryptString{
     if ([[SFHFKeychainUtils getPasswordForUsername:keyChainEncryptString andServiceName:keyChainServiceName error:nil] length] > 0) {
         return [SFHFKeychainUtils getPasswordForUsername:keyChainEncryptString andServiceName:keyChainServiceName error:nil];

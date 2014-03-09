@@ -17,6 +17,7 @@
 @synthesize btn1 = _btn1;
 @synthesize btn2 = _btn2;
 @synthesize btn3 = _btn3;
+@synthesize loginoutBtn = _loginoutBtn;
 
 
 -(LSMyView *)initWithSuperView:(UIView *)superView{
@@ -106,6 +107,12 @@
         UIImageView *arrow3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"_0004_图层-7-副本-4.png"]];
         arrow3.frame = CGRectMake(302 - 8 - 10, 43/2 - 13/2, 8, 13);
         [_btn3 addSubview:arrow3];
+        
+        
+        _loginoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_loginoutBtn setBackgroundImage:[UIImage imageNamed:@"_0002_退出.png"] forState:UIControlStateNormal];
+        _loginoutBtn.frame = CGRectMake(8, linkInfoBGView.bottom+15, 304, 95/2);
+        [superView addSubview:_loginoutBtn];
     }
     return self;
 }

@@ -18,5 +18,8 @@
 @property (nonatomic,strong) UIImageView *landlordIconView;
 @property (nonatomic,strong) UILabel *landlordNameLabel;
 @property (nonatomic,strong) UILabel *landlordPostdateLabel;
+@property (nonatomic,strong) UITextField *replyTextField;
+@property (nonatomic,strong) UIButton *uploadBtn;
+@property (nonatomic,strong) UIView *replyView;
 
 @end

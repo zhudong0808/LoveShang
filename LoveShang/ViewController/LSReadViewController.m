@@ -11,6 +11,9 @@
 #import "LSActivityLabel.h"
 #import "LSErrorViewCell.h"
 #import "LSReadCell.h"
+#import "LSGlobal.h"
+#import "LSAuthenticateCenter.h"
+
 
 @interface LSReadViewController(){
     
@@ -21,6 +24,7 @@
 @property (nonatomic,assign) NSInteger page;
 @property (nonatomic,assign) NSInteger totalCount;
 @property (nonatomic,strong) NSMutableArray *tableData;
+@property (nonatomic,strong) NSMutableDictionary *webViewHeightDict;
 
 @end
 
@@ -37,11 +41,21 @@
     self.commonToolBarType = LSCommonToolbarRead;
     self.showCommonBar = YES;
     self.commonBar.delegate = self;
+    _page = 1;
     
     _readView = [[LSReadView alloc] initWithSuperView:self.cView];
     _readView.readTableView.dataSource = self;
     _readView.readTableView.delegate = self;
+    _readView.replyTextField.delegate = self;
     _tableData = [NSMutableArray array];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+    tapGesture.delegate = self;
+    [self.cView addGestureRecognizer:tapGesture];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardShowAction:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardHideAction:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardShowAction:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     __block __unsafe_unretained id blockSelf = self;
     [_readView.readTableView addPullToRefreshWithActionHandler:^{
@@ -77,24 +91,106 @@
 #pragma mark -
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
+    if (isRefresh == YES) {
+        [self loadThreadData];
+    } else {
+        [self loadReplyDataWithMore:YES isRefresh:NO];
+    }
+}
+
+-(void)loadThreadData{
     [self showLoading:YES];
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=view&tid=%@",_tid];
     NSLog(@"urlPath=%@",urlPath);
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [_readView.readTableView.pullToRefreshView stopAnimating];
-            //设置标题
-            NSDictionary *threadData = [responseObject objectForKey:@"info"];
-            _readView.titleLabel.text = [threadData objectForKey:@"subject"];
-            [_readView.landlordIconView setImageWithURL:[NSURL URLWithString:[threadData objectForKey:@"faceurl"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
-            _readView.landlordNameLabel.text = [threadData objectForKey:@"author"];
-            _readView.landlordPostdateLabel.text = [threadData objectForKey:@"postdate"];
-            [self showLoading:NO];
+            _readView.titleLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
+            [_tableData addObjectsFromArray:[NSArray arrayWithObject:[responseObject objectForKey:@"info"]]];
+            [self loadReplyDataWithMore:NO isRefresh:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
         NSLog(@"%@",error);
     }];
+}
+
+-(void)loadReplyDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
+    _page = isRefresh == YES ? 1 : _page;
+    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=replaylist&tid=%@&page=%d",_tid,_page];
+    [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            if (more && !isRefresh) {
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [_readView.readTableView.infiniteScrollingView stopAnimating];
+                _page = _page + 1;
+            } else {
+                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                _page = 2;
+                [_readView.readTableView.pullToRefreshView stopAnimating];
+            }
+        } else {
+            [_tableData removeAllObjects];
+            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
+            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+        }
+        [self showLoading:NO];
+        [_readView.readTableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        _isLoadingData = NO;
+        NSLog(@"%@",error);
+    }];
+}
+-(void)keyBoardShowAction:(NSNotification *)notice{
+    NSDictionary *info = [notice userInfo];
+    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [value CGRectValue].size;
+    [UIView animateWithDuration:0.3 animations:^{
+        _readView.replyView.frame = CGRectMake(0, APP_CONTENT_HEIGHT - 40 -keyboardSize.height, 320, 40);
+    }];
+}
+
+-(void)keyBoardHideAction:(NSNotification *)notice{
+    [UIView animateWithDuration:0.3 animations:^{
+        _readView.replyView.frame = CGRectMake(0, APP_CONTENT_HEIGHT - 40, 320, 40);
+    }];
+}
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    UIView *touchView = [touch view];
+    if ([touchView isKindOfClass:[UIButton class]] || [touchView isKindOfClass:[UITextField class]]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)tapGesture:(UIGestureRecognizer *)guesture {
+    [_readView.replyTextField resignFirstResponder];
+}
+
+#pragma UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    LSAuthenticateCompletion completion = ^(BOOL success){
+        NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=replay&tid=%@&content=%@&encryptString=%@",_tid,[LSGlobal encodeWithString:_readView.replyTextField.text],[LSAuthenticateCenter getEncryptString]];
+        [[LSApiClientService sharedInstance]postPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+            if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+                [LSGlobal showProgressHUD:@"发表回复成功" duration:0.5];
+                _readView.replyTextField.text = @"";
+                [_readView.replyTextField resignFirstResponder];
+                [self loadDataWithMore:NO isRefresh:YES];
+            } else {
+                NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
+                [LSGlobal showFailedView:errorMsg];
+            }
+                [_readView.readTableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            _isLoadingData = NO;
+            [LSGlobal showFailedView:error.localizedDescription];
+        }];
+    };
+    [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
+    return YES;
 }
 
 -(void)showLoading:(BOOL)show{
@@ -140,13 +236,43 @@
     if (cell == nil) {
         cell = [[LSReadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSReadCellInd];
     }
+    cell.identifer = [NSString stringWithFormat:@"%d",indexPath.row];
+    if ([_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]]) {
+        CGRect webViewFrame = cell.webView.frame;
+        webViewFrame.size.height = [[_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]] floatValue];
+        cell.webView.frame = webViewFrame;
+        cell.webView.alpha = 1;
+    }
     [cell setData:cellData];
+    cell.webView.delegate = self;
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    if ([_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]]) {
+        return [[_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]] floatValue]+58;
+    } else {
+        return 58;
+    }
 }
 
-
+#pragma mark -
+#pragma UIWebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    UIView *view = webView.superview;
+    while ([view isKindOfClass:[LSReadCell class]] == NO) {
+        view = [view superview];
+    }
+    LSReadCell *viewCell = (LSReadCell *)view;
+    NSIndexPath *indexPath = [_readView.readTableView indexPathForCell:viewCell];
+    
+    if ([_webViewHeightDict objectForKey:viewCell.identifer] == nil && indexPath != nil) {
+        if (_webViewHeightDict == nil) {
+            _webViewHeightDict = [NSMutableDictionary dictionary];
+        }
+        [_webViewHeightDict setObject:[NSNumber numberWithFloat:webView.scrollView.contentSize.height] forKey:viewCell.identifer];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [_readView.readTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:NO];
+    }
+}
 @end

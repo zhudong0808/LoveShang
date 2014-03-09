@@ -54,6 +54,7 @@
     [_myView.btn1 addTarget:self action:@selector(linkActionOne) forControlEvents:UIControlEventTouchUpInside];
     [_myView.btn2 addTarget:self action:@selector(linkActionTwo) forControlEvents:UIControlEventTouchUpInside];
     [_myView.btn3 addTarget:self action:@selector(linkActionSecond) forControlEvents:UIControlEventTouchUpInside];
+    [_myView.loginoutBtn addTarget:self action:@selector(loginoutAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)linkActionOne{
@@ -69,6 +70,12 @@
 -(void)linkActionSecond{
     LSWebViewController *webView = [[LSWebViewController alloc] initWithUrl:@"http://www.loveshang.com/"];
     [self.navigationController pushViewController:webView animated:YES];
+}
+
+-(void)loginoutAction{
+    [[LSAuthenticateCenter shareInstance] loginout];
+    [LSGlobal showProgressHUD:@"退出成功" duration:1.0];
+    [self performSelector:@selector(loadData) withObject:nil afterDelay:1.0];
 }
 
 @end

@@ -17,6 +17,7 @@ typedef void(^LSAuthenticateCompletion)(BOOL success);
 
 -(void)authenticateWithBlock:(LSAuthenticateCompletion)completion;
 -(BOOL)isLogined;
+-(void)loginout;
 +(NSString *)getEncryptString;
 
 @end
