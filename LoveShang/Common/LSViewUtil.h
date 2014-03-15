@@ -12,5 +12,6 @@
 
 +(UILabel *)simpleLabel:(CGRect)frame f:(int)size tc:(UIColor *)color t:(NSString *)text;
 +(UILabel *)simpleLabel:(CGRect)frame bf:(int)size tc:(UIColor *)color t:(NSString *)text;
++(void)drawLine:(CGRect)frame onView:(UIView *)pView color:(UIColor *)color;
 
 @end

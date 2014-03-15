@@ -10,6 +10,7 @@
 #import "LSErrorViewCell.h"
 #import "LSViewUtil.h"
 #import "LSHeadlineViewCell.h"
+#import "LSReadViewController.h"
 
 @interface LSHeadlineViewController(){
 
@@ -45,6 +46,7 @@
     
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+30.5 + 170, self.cView.frame.size.width, APP_CONTENT_HEIGHT - 44 - 30.5 - 170 - 44) style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -109,16 +111,21 @@
             i++;
         }
     }
-    
+    for (UIView *subView in [self.cView subviews]) {
+        if (subView.tag == 10000) {
+            [subView removeFromSuperview];
+        }
+    }
     if ([_advertData count] > 0) {
         UIView *slideTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+30.5+144, 320, 26)];
         slideTitleView.backgroundColor = [UIColor whiteColor];
         slideTitleView.alpha = 0.8;
+        slideTitleView.tag = 10000;
         [self.cView addSubview:slideTitleView];
         
         _slideTitleLabel = [LSViewUtil simpleLabel:CGRectMake(12, 0, 245, 26) f:14 tc:RGBCOLOR(0x00, 0x00, 0x00) t:[[_advertData objectAtIndex:0] objectForKey:@"subject"]];
         [slideTitleView addSubview:_slideTitleLabel];
-        if (!_pageControl && [_advertData count] > 1) {
+        if ([_advertData count] > 1) {
             _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(250, 0, 70, 26)];
             _pageControl.pageIndicatorTintColor = RGBCOLOR(0xbf, 0xc2, 0xc2);
             _pageControl.currentPageIndicatorTintColor = RGBCOLOR(0x95, 0x98, 0x9a);
@@ -151,12 +158,14 @@
                 [_tableView.pullToRefreshView stopAnimating];
             }
         } else {
+            [_tableView.pullToRefreshView stopAnimating];
             [_tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
             [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        [_tableView.pullToRefreshView stopAnimating];
         _isLoadingData = NO;
         NSLog(@"%@",error);
     }];
@@ -221,5 +230,11 @@
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
+    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:[cellData objectForKey:@"tid"]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

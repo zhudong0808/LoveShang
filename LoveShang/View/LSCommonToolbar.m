@@ -45,7 +45,7 @@
 }
 
 -(void)setupBackView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin) {
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(15, 44/2 - 21/2, 24, 21);
         [backBtn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -56,7 +56,7 @@
 }
 
 -(void)setupTitleView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply) {
         NSString *title;
         switch (_type) {
             case LSCommonToolbarRead:
@@ -73,6 +73,13 @@
                 break;
             case LSCommonToolbarWebView:
                 title = @"浏览器";
+                break;
+            case LSCommonToolbarReply:
+                title = @"回帖";
+                break;
+            case LSCommonToolbarPost:
+                title = @"发帖";
+                break;
             default:
                 title = @"";
                 break;
@@ -90,6 +97,13 @@
         [shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateHighlighted];
         [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:shareBtn];
+    } else if (_type == LSCommonToolbarList) {
+        UIButton *postBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        postBtn.frame = CGRectMake(320-15-21, 44/2-21/2, 21, 21);
+        [postBtn setImage:[UIImage imageNamed:@"_0000_pencil-点击前.png"] forState:UIControlStateNormal];
+        [postBtn setImage:[UIImage imageNamed:@"_0000_pencil-点击后.png"] forState:UIControlStateHighlighted];
+        [postBtn addTarget:self action:@selector(postAction) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:postBtn];
     }
 }
 
@@ -126,6 +140,10 @@
 
 -(void)shareAction{
     //TODO
+}
+
+-(void)postAction{
+    [self.delegate postAction];
 }
 
 @end

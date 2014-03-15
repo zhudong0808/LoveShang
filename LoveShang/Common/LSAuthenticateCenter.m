@@ -54,6 +54,7 @@
 
 -(BOOL)isLogined{
     if ([[SFHFKeychainUtils getPasswordForUsername:keyChainEncryptString andServiceName:keyChainServiceName error:nil] length] > 0) {
+//        NSLog([NSString stringWithFormat:@"%@",[SFHFKeychainUtils getPasswordForUsername:keyChainEncryptString andServiceName:keyChainServiceName error:nil]]);
         return YES;
     }
     return NO;

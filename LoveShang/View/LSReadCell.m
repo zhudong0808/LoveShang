@@ -49,11 +49,12 @@
         _userPostdateLabel = [LSViewUtil simpleLabel:CGRectMake(42, 26, 200, 10) f:10 tc:RGBCOLOR(0x6d, 0x6e, 0x71) t:@""];
         [userInfoView addSubview:_userPostdateLabel];
         
-        _userFloorLabel = [LSViewUtil simpleLabel:CGRectMake(320-30-20, 36/2-10/2, 20, 10) f:10 tc:RGBCOLOR(0x9c, 0xbd, 0x4b) t:@""];
+        _userFloorLabel = [LSViewUtil simpleLabel:CGRectMake(320-30-20, 36/2-10/2, 30, 10) f:10 tc:RGBCOLOR(0x9c, 0xbd, 0x4b) t:@"111"];
         [userInfoView addSubview:_userFloorLabel];
         
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(15, 58, 320-30, 10)];
-        _webView.backgroundColor = [UIColor redColor];
+        _webView.backgroundColor = [UIColor clearColor];
+        _webView.scrollView.scrollEnabled = NO;
         _webView.alpha = 0;
         [self.contentView addSubview:_webView];
     }
@@ -64,6 +65,7 @@
     [_userIconView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[data objectForKey:@"faceurl"]]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
     _userNameLabel.text = [data objectForKey:@"author"];
     _userPostdateLabel.text = [data objectForKey:@"postdate"];
+    _userFloorLabel.text = [data objectForKey:@"lou"];
     [_webView loadHTMLString:[data objectForKey:@"content"] baseURL:nil];
 }
 

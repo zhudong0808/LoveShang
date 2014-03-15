@@ -11,6 +11,7 @@
 #import "LSForumCell.h"
 #import "LSActivityLabel.h"
 #import "LSReadViewController.h"
+#import "LSPostViewController.h"
 
 @interface LSForumViewController(){
 
@@ -20,6 +21,7 @@
 @property (nonatomic,assign) BOOL isLoadingData;
 @property (nonatomic,assign) NSInteger totalCount;
 @property (nonatomic,strong) NSString *navType;
+@property (nonatomic,strong) NSString *forumTitle;
 @property (nonatomic,strong) LSForumView *fourmView;
 @property (nonatomic,strong) NSString *viewOrder;
 
@@ -36,6 +38,7 @@
     self.forumNavBar.delegate = self;
     self.commonBar.delegate = self;
     _navType = @"516";
+    _forumTitle = @"街巷";
     _viewOrder = @"lastpost";
     
     _page = 1;
@@ -72,6 +75,7 @@
             }
         });
     }];
+    [self showLoading:YES];
     [self loadDataWithMore:NO isRefresh:YES];
     
     
@@ -90,7 +94,6 @@
 #pragma mark -
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    [self showLoading:YES];
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@",_navType,_viewOrder];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
@@ -105,6 +108,7 @@
                 [_fourmView.forumTableView.pullToRefreshView stopAnimating];
             }
         } else {
+            [_fourmView.forumTableView.pullToRefreshView stopAnimating];
             [_tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
             [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
@@ -120,7 +124,13 @@
 
 -(void)doActionWithBtn:(UIButton *)btn{
     _navType = [self.forumNavBar.navKeys objectAtIndex:btn.tag];
+    _forumTitle = [self.forumNavBar.navTitles objectAtIndex:btn.tag];
+    [self showPullToRefresh];
     [self loadDataWithMore:NO isRefresh:YES];
+}
+
+-(void)showPullToRefresh{
+    [_fourmView.forumTableView.pullToRefreshView startAnimating];
 }
 
 #pragma mark UITableViewDelegate
@@ -206,6 +216,7 @@
     [self closeAction];
     [self.commonBar.centerBtn setTitle:@"最新发表" forState:UIControlStateNormal];
     _viewOrder = @"postdate";
+    [self showPullToRefresh];
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
@@ -213,11 +224,17 @@
     [self closeAction];
     [self.commonBar.centerBtn setTitle:@"最后回复" forState:UIControlStateNormal];
     _viewOrder = @"lastpost";
+    [self showPullToRefresh];
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
 -(void)closeAction{
     [self.commonBar showActionBox];
+}
+
+-(void)postAction{
+    LSPostViewController *vc = [[LSPostViewController alloc] initWithFid:_navType forumTitle:_forumTitle];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

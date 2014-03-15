@@ -8,6 +8,7 @@
 
 #import "LSHeadlineViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "LSViewUtil.h"
 
 @interface LSHeadlineViewCell(){
 }
@@ -43,6 +44,9 @@
         [self addSubview:_titleImageView];
         [self addSubview:_titleLabel];
         [self addSubview:_contentLabel];
+        
+        [LSViewUtil drawLine:CGRectMake(12, 74, 320-12*2, 1) onView:self color:RGBCOLOR(0xcf, 0xcf, 0xcf)];
+        
     }
     return self;
 }

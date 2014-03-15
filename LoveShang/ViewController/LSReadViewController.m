@@ -13,6 +13,7 @@
 #import "LSReadCell.h"
 #import "LSGlobal.h"
 #import "LSAuthenticateCenter.h"
+#import "LSPostViewController.h"
 
 
 @interface LSReadViewController(){
@@ -25,6 +26,7 @@
 @property (nonatomic,assign) NSInteger totalCount;
 @property (nonatomic,strong) NSMutableArray *tableData;
 @property (nonatomic,strong) NSMutableDictionary *webViewHeightDict;
+@property (nonatomic,strong) NSString *subjetTitle;
 
 @end
 
@@ -85,6 +87,7 @@
             
         });
     }];
+    [self showLoading:YES];
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
@@ -99,14 +102,15 @@
 }
 
 -(void)loadThreadData{
-    [self showLoading:YES];
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=view&tid=%@",_tid];
     NSLog(@"urlPath=%@",urlPath);
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [_readView.readTableView.pullToRefreshView stopAnimating];
             _readView.titleLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
+            _subjetTitle = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
             [_tableData addObjectsFromArray:[NSArray arrayWithObject:[responseObject objectForKey:@"info"]]];
+            [self initButtonAction];
             [self loadReplyDataWithMore:NO isRefresh:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
@@ -120,6 +124,7 @@
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=replaylist&tid=%@&page=%d",_tid,_page];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            _totalCount = [[responseObject objectForKey:@"count"] intValue];
             if (more && !isRefresh) {
                 [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
                 [_readView.readTableView.infiniteScrollingView stopAnimating];
@@ -208,6 +213,16 @@
     }
 }
 
+#pragma initButtonAction
+-(void)initButtonAction{
+    [_readView.uploadBtn addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)uploadAction{
+    LSPostViewController *vc = [[LSPostViewController alloc] initWithTid:_tid title:_subjetTitle];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma LSCommonToolbarDelegate
 -(void)backAction{
@@ -236,10 +251,11 @@
     if (cell == nil) {
         cell = [[LSReadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSReadCellInd];
     }
-    cell.identifer = [NSString stringWithFormat:@"%d",indexPath.row];
-    if ([_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]]) {
+    cell.webView.frame = CGRectMake(15, 58, 320-30, 10);
+    cell.identifer = [cellData objectForKey:@"lou"];
+    if ([_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]) {
         CGRect webViewFrame = cell.webView.frame;
-        webViewFrame.size.height = [[_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]] floatValue];
+        webViewFrame.size.height = [[_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]intValue];
         cell.webView.frame = webViewFrame;
         cell.webView.alpha = 1;
     }
@@ -249,8 +265,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]]) {
-        return [[_webViewHeightDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]] floatValue]+58;
+    NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
+    if ([_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]) {
+        return [[_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]] floatValue]+58;
     } else {
         return 58;
     }

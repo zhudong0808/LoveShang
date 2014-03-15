@@ -16,6 +16,8 @@ typedef enum{
     LSCommonToolbarLogin,
     LSCommonToolbarMy,
     LSCommonToolbarWebView,
+    LSCommonToolbarReply,
+    LSCommonToolbarPost,
     LSCommonToolbarOther
 } LSCommonToolbarType;
 
@@ -24,6 +26,7 @@ typedef enum{
 @optional
 -(void)showActionBox:(BOOL)isShow;
 -(void)backAction;
+-(void)postAction;
 
 @end
 

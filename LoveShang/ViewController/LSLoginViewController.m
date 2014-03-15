@@ -26,6 +26,7 @@
 -(void)viewDidLoad{
     self.commonToolBarType = LSCommonToolbarLogin;
     self.showCommonBar = YES;
+    self.commonBar.delegate = self;
     _loginView = [[LSLoginView alloc] initWithSuperView:self.cView];
     [_loginView.loginBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     [_loginView.registerBtn addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
@@ -60,6 +61,11 @@
         [_loginView.loginBtn setEnabled:YES];
         [LSGlobal showFailedView:@"登录失败"];
     }];
+}
+
+#pragma LSCommonToolbarDelegate
+-(void)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)registerAction{
