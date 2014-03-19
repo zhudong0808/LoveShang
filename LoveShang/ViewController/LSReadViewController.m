@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NSMutableArray *tableData;
 @property (nonatomic,strong) NSMutableDictionary *webViewHeightDict;
 @property (nonatomic,strong) NSString *subjetTitle;
+@property (nonatomic,strong) NSArray *threadArray;
 
 @end
 
@@ -44,12 +45,13 @@
     self.showCommonBar = YES;
     self.commonBar.delegate = self;
     _page = 1;
-    
+    self.cView.backgroundColor = [UIColor whiteColor];
     _readView = [[LSReadView alloc] initWithSuperView:self.cView];
     _readView.readTableView.dataSource = self;
     _readView.readTableView.delegate = self;
     _readView.replyTextField.delegate = self;
     _tableData = [NSMutableArray array];
+    _webViewHeightDict = [NSMutableDictionary dictionary];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.delegate = self;
@@ -103,15 +105,19 @@
 
 -(void)loadThreadData{
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=view&tid=%@",_tid];
-    NSLog(@"urlPath=%@",urlPath);
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [_readView.readTableView.pullToRefreshView stopAnimating];
             _readView.titleLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
             _subjetTitle = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
-            [_tableData addObjectsFromArray:[NSArray arrayWithObject:[responseObject objectForKey:@"info"]]];
+            _threadArray = [NSArray arrayWithObject:[responseObject objectForKey:@"info"]];
             [self initButtonAction];
             [self loadReplyDataWithMore:NO isRefresh:YES];
+        } else {
+            [_readView.readTableView.pullToRefreshView stopAnimating];
+            [_tableData removeAllObjects];
+            NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
+            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         _isLoadingData = NO;
@@ -130,11 +136,16 @@
                 [_readView.readTableView.infiniteScrollingView stopAnimating];
                 _page = _page + 1;
             } else {
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                _page = 2;
+                [_tableData removeAllObjects];
+                [_tableData addObjectsFromArray:_threadArray];
+                if ([[responseObject objectForKey:@"count"] intValue] > 0) {
+                    [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                    _page = 2;
+                }
                 [_readView.readTableView.pullToRefreshView stopAnimating];
             }
         } else {
+            [_readView.readTableView.pullToRefreshView stopAnimating];
             [_tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
             [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
@@ -251,7 +262,7 @@
     if (cell == nil) {
         cell = [[LSReadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LSReadCellInd];
     }
-    cell.webView.frame = CGRectMake(15, 58, 320-30, 10);
+    cell.webView.frame = CGRectMake(5, 58, 320-10, 10);
     cell.identifer = [cellData objectForKey:@"lou"];
     if ([_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]) {
         CGRect webViewFrame = cell.webView.frame;
@@ -265,11 +276,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
-    if ([_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]) {
-        return [[_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]] floatValue]+58;
+    id cellData = [_tableData objectAtIndex:indexPath.row];
+    if ([cellData isKindOfClass:[NSError class]]) {
+        return [LSErrorViewCell tableView:tableView rowHeightForObject:cellData];
     } else {
-        return 58;
+        return [[_webViewHeightDict objectForKey:[[_tableData objectAtIndex:indexPath.row] objectForKey:@"lou"]] floatValue]+58;
     }
 }
 
@@ -284,9 +295,6 @@
     NSIndexPath *indexPath = [_readView.readTableView indexPathForCell:viewCell];
     
     if ([_webViewHeightDict objectForKey:viewCell.identifer] == nil && indexPath != nil) {
-        if (_webViewHeightDict == nil) {
-            _webViewHeightDict = [NSMutableDictionary dictionary];
-        }
         [_webViewHeightDict setObject:[NSNumber numberWithFloat:webView.scrollView.contentSize.height] forKey:viewCell.identifer];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [_readView.readTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:NO];

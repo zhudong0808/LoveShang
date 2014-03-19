@@ -18,6 +18,7 @@
     if (self = [super init]) {
         _forumTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+32, 320, superView.height - 44 - 32) style:UITableViewStylePlain];
         _forumTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _forumTableView.showsVerticalScrollIndicator = NO;
         [superView addSubview:_forumTableView];
         _actionBox = [[UIView alloc] initWithFrame:CGRectMake(15,44, 293, 80)];
         _actionBox.backgroundColor = [UIColor clearColor];

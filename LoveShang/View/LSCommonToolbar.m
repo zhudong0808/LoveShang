@@ -91,12 +91,12 @@
 
 -(void)setupShareView{
     if (_type == LSCommonToolbarRead) {
-        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        shareBtn.frame = CGRectMake(320-15-25, 44/2-43/4, 25, 43/2);
-        [shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
-        [shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateHighlighted];
-        [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:shareBtn];
+//        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        shareBtn.frame = CGRectMake(320-15-25, 44/2-43/4, 25, 43/2);
+//        [shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+//        [shareBtn setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateHighlighted];
+//        [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:shareBtn];
     } else if (_type == LSCommonToolbarList) {
         UIButton *postBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         postBtn.frame = CGRectMake(320-15-21, 44/2-21/2, 21, 21);

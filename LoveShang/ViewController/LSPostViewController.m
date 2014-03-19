@@ -67,6 +67,7 @@
     _postView.titleTextView.hidden = YES;
     _postView.contentTextField.frame = CGRectMake(0, _postView.titleTextView.frame.origin.y, _postView.contentTextField.frame.size.width, _postView.contentTextField.frame.size.height + 40);
     _postView.forumTitleLabel.text = _subjectTitle;
+    [self performSelector:@selector(uploadAction) withObject:nil afterDelay:0.5];
 }
 
 -(void)setupPostView{
@@ -129,8 +130,15 @@
     }
     if ([_tid length] > 0) {
         LSAuthenticateCompletion completion = ^(BOOL success){
-            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=replay&tid=%@&content=%@",_tid,[LSGlobal encodeWithString:_postView.contentTextField.text]];
-            [[LSApiClientService sharedInstance] postPath:urlPath parameters:[self getAttachDict] success:^(AFHTTPRequestOperation *operation,id responseObject){
+            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=replay&tid=%@&content=%@&encryptString=%@",_tid,[LSGlobal encodeWithString:_postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
+            NSMutableURLRequest *request = [[LSApiClientService sharedInstance] multipartFormRequestWithMethod:@"POST" path:urlPath parameters:nil constructingBodyWithBlock:^(id <AFMultipartFormData>formData){
+                if ([_selectedImageDict count] > 0) {
+                    for (NSString *key in _selectedImageDict.allKeys) {
+                        [formData appendPartWithFileData:[_selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
+                    }
+                }
+            }];
+            AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
                     LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:_tid];
                     [self.navigationController pushViewController:vc animated:YES];
@@ -139,27 +147,37 @@
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"回帖失败";
                     [LSGlobal showFailedView:errorMsg];
                 }
-            } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
                 [_postView.postBtn setEnabled:YES];
                 [LSGlobal showFailedView:@"回帖失败"];
             }];
+            [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];
         };
         [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
     } else {
         LSAuthenticateCompletion completion = ^(BOOL success){
-            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=postnew&fid=%@&subject=%@&content=%@",_fid,[LSGlobal encodeWithString:_postView.titleTextField.text],[LSGlobal encodeWithString:_postView.contentTextField.text]];
-            [[LSApiClientService sharedInstance] postPath:urlPath parameters:[self getAttachDict] success:^(AFHTTPRequestOperation *operation,id responseObject){
+            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=postnew&fid=%@&subject=%@&content=%@&encryptString=%@",_fid,[LSGlobal encodeWithString:_postView.titleTextField.text],[LSGlobal encodeWithString:_postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
+            NSMutableURLRequest *request = [[LSApiClientService sharedInstance] multipartFormRequestWithMethod:@"POST" path:urlPath parameters:nil constructingBodyWithBlock:^(id <AFMultipartFormData>formData){
+                if ([_selectedImageDict count] > 0) {
+                    for (NSString *key in _selectedImageDict.allKeys) {
+                        [formData appendPartWithFileData:[_selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
+                    }
+                }
+            }];
+            AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                    
+                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:_tid];
+                    [self.navigationController pushViewController:vc animated:YES];
                 } else {
                     [_postView.postBtn setEnabled:YES];;
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"发帖失败";
                     [LSGlobal showFailedView:errorMsg];
                 }
-            } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
                 [_postView.postBtn setEnabled:YES];
                 [LSGlobal showFailedView:@"发帖失败"];
             }];
+            [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];
         };
         [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
     }
@@ -222,15 +240,15 @@
     NSInteger selectImageCount = [_selectedImageDict count];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image.size.width < image.size.height) {
-        if (image.size.width>800) {
-            image = [self scaleFromImage:image toSize:CGSizeMake(800,800/image.size.width*image.size.height)];
+        if (image.size.width>600) {
+            image = [self scaleFromImage:image toSize:CGSizeMake(600,600/image.size.width*image.size.height)];
         }
     } else {
-        if (image.size.height>800) {
-            image = [self scaleFromImage:image toSize:CGSizeMake(800/image.size.height*image.size.width,800)];
+        if (image.size.height>600) {
+            image = [self scaleFromImage:image toSize:CGSizeMake(600/image.size.height*image.size.width,600)];
         }
     }
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.25);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.15);
     
     UIImageView *uploadImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"post_0001_图片.png"]];
     uploadImageView.frame = CGRectMake(13+77*[_selectedImageDict count], 80/2-64/2, 64, 64);

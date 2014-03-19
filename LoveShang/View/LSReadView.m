@@ -25,6 +25,7 @@
     if (self = [super init]) {
         _readTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, superView.height - 44 - 40) style:UITableViewStylePlain];
         _readTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _readTableView.showsVerticalScrollIndicator = NO;
         _readTableView.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
         [superView addSubview:_readTableView];
         

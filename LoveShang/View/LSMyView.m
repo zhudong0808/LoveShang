@@ -111,7 +111,7 @@
         
         _loginoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginoutBtn setBackgroundImage:[UIImage imageNamed:@"_0002_退出.png"] forState:UIControlStateNormal];
-        _loginoutBtn.frame = CGRectMake(8, linkInfoBGView.bottom+15, 304, 95/2);
+        _loginoutBtn.frame = CGRectMake(8, linkInfoBGView.bottom+10, 304, 95/2);
         [superView addSubview:_loginoutBtn];
     }
     return self;

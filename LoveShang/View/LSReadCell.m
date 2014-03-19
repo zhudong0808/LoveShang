@@ -52,7 +52,7 @@
         _userFloorLabel = [LSViewUtil simpleLabel:CGRectMake(320-30-20, 36/2-10/2, 30, 10) f:10 tc:RGBCOLOR(0x9c, 0xbd, 0x4b) t:@"111"];
         [userInfoView addSubview:_userFloorLabel];
         
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(15, 58, 320-30, 10)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 58, 320-10, 10)];
         _webView.backgroundColor = [UIColor clearColor];
         _webView.scrollView.scrollEnabled = NO;
         _webView.alpha = 0;

@@ -94,9 +94,11 @@
 #pragma mark -
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
-    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@",_navType,_viewOrder];
+    _page = isRefresh == YES ? 1 : _page;
+    NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@&page=%d",_navType,_viewOrder,_page];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            _totalCount = [[responseObject objectForKey:@"count"] intValue];
             if (more && !isRefresh) {
                 [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
                 [_fourmView.forumTableView.infiniteScrollingView stopAnimating];
