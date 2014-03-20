@@ -14,6 +14,7 @@
 #import "LSGlobal.h"
 #import "LSAuthenticateCenter.h"
 #import "LSPostViewController.h"
+#import "LSViewUtil.h"
 
 
 @interface LSReadViewController(){
@@ -269,10 +270,20 @@
         webViewFrame.size.height = [[_webViewHeightDict objectForKey:[cellData objectForKey:@"lou"]]intValue];
         cell.webView.frame = webViewFrame;
         cell.webView.alpha = 1;
+        cell.line.frame = CGRectMake(0, cell.webView.bottom-1, 320, 1);
+        cell.line.hidden = NO;
     }
     [cell setData:cellData];
     cell.webView.delegate = self;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
+    } else {
+        cell.backgroundColor = RGBCOLOR(0xf2, 0xf2, 0xf2);
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

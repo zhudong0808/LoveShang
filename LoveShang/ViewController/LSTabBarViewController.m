@@ -47,16 +47,16 @@
         [myViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"_0005_我-点击后.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"_0004_我-原始.png"]];
     } else {
         headlineViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0000_头条-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0001_头条-点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        headlineViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, -7, 0);
+        headlineViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
         
         fourmViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0006_论坛-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0007_论坛点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        fourmViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, -7, 0);
+        fourmViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
         
         nearbyViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0002_身边优惠-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0003_身边优惠-点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        nearbyViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, -7, 0);
+        nearbyViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
 
         myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0004_我-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0005_我-点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        myViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, 0, -7, 0);
+        myViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
 
     }
     

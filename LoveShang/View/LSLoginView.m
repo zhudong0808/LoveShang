@@ -23,6 +23,7 @@
 
 -(LSLoginView *)initWithSuperView:(UIView *)superView{
     if (self = [super init]) {
+        superView.backgroundColor = [UIColor whiteColor];
         UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"_0003_爱上网logo(不带张家港).png"]];
         logoView.frame = CGRectMake(320/2 - 215/4, 44+23, 215/2, 83/2);
         [superView addSubview:logoView];
@@ -32,10 +33,11 @@
         userNameView.userInteractionEnabled = YES;
         [superView addSubview:userNameView];
         
-        UILabel *userNameLabel = [LSViewUtil simpleLabel:CGRectMake(10, 44/2-17/2, 40, 17) f:17 tc:RGBCOLOR(0x9d, 0x9d, 0x9d) t:@"账号"];
+        UILabel *userNameLabel = [LSViewUtil simpleLabel:CGRectMake(10, 44/2-22/2, 40, 22) f:17 tc:RGBCOLOR(0x9d, 0x9d, 0x9d) t:@"账号"];
         [userNameView addSubview:userNameLabel];
         
-        _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userNameLabel.right + 10, userNameLabel.top, 320 - userNameLabel.right-30, 17)];
+        _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userNameLabel.right + 10, userNameLabel.top, 320 - userNameLabel.right-30, 22)];
+        _userNameField.font = [UIFont systemFontOfSize:17];
         _userNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [userNameView addSubview:_userNameField];
         
@@ -44,10 +46,11 @@
         passwordView.userInteractionEnabled = YES;
         [superView addSubview:passwordView];
         
-        UILabel *passwordLabel = [LSViewUtil simpleLabel:CGRectMake(10, 44/2-17/2, 40, 17) f:17 tc:RGBCOLOR(0x9d, 0x9d, 0x9d) t:@"密码"];
+        UILabel *passwordLabel = [LSViewUtil simpleLabel:CGRectMake(10, 44/2-22/2, 40, 22) f:17 tc:RGBCOLOR(0x9d, 0x9d, 0x9d) t:@"密码"];
         [passwordView addSubview:passwordLabel];
         
-        _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(passwordLabel.right + 10 , passwordLabel.top, 320 - passwordLabel.right - 30, 17)];
+        _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(passwordLabel.right + 10 , passwordLabel.top, 320 - passwordLabel.right - 30, 22)];
+        _passwordField.font = [UIFont systemFontOfSize:17];
         _passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordField.secureTextEntry = YES;
         [passwordView addSubview:_passwordField];

@@ -54,9 +54,15 @@
         
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 58, 320-10, 10)];
         _webView.backgroundColor = [UIColor clearColor];
+        [_webView setOpaque:NO];
         _webView.scrollView.scrollEnabled = NO;
         _webView.alpha = 0;
         [self.contentView addSubview:_webView];
+        
+        _line = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.height-1, 320, 1)];
+        _line.backgroundColor = RGBCOLOR(0xcf, 0xcf, 0xcf);
+        _line.hidden = YES;
+        [self.contentView addSubview:_line];
     }
     return self;
 }

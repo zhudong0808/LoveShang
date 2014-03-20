@@ -173,6 +173,7 @@
 }
 
 -(void)loadAdvert{
+    [_advertData removeAllObjects];
     NSString *urlPath = [NSString stringWithFormat:@"advert.php?tag=%@",_navType];
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
@@ -188,6 +189,9 @@
 #pragma mark -
 #pragma mark scrollView delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([_advertData count] == 0) {
+        return;
+    }
     NSInteger currentPage = _slideView.contentOffset.x/320;
     _pageControl.currentPage = currentPage;
     _slideTitleLabel.text = [[_advertData objectAtIndex:currentPage] objectForKey:@"subject"];

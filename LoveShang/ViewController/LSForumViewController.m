@@ -128,6 +128,10 @@
     _navType = [self.forumNavBar.navKeys objectAtIndex:btn.tag];
     _forumTitle = [self.forumNavBar.navTitles objectAtIndex:btn.tag];
     [self showPullToRefresh];
+    [self performSelector:@selector(reload) withObject:nil afterDelay:0.3];
+}
+
+-(void)reload{
     [self loadDataWithMore:NO isRefresh:YES];
 }
 
@@ -219,7 +223,7 @@
     [self.commonBar.centerBtn setTitle:@"最新发表" forState:UIControlStateNormal];
     _viewOrder = @"postdate";
     [self showPullToRefresh];
-    [self loadDataWithMore:NO isRefresh:YES];
+    [self performSelector:@selector(reload) withObject:nil afterDelay:0.3];
 }
 
 -(void)replydateAction{
@@ -227,7 +231,7 @@
     [self.commonBar.centerBtn setTitle:@"最后回复" forState:UIControlStateNormal];
     _viewOrder = @"lastpost";
     [self showPullToRefresh];
-    [self loadDataWithMore:NO isRefresh:YES];
+    [self performSelector:@selector(reload) withObject:nil afterDelay:0.3];
 }
 
 -(void)closeAction{

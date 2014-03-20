@@ -65,7 +65,7 @@
 
 #pragma LSCommonToolbarDelegate
 -(void)backAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)registerAction{

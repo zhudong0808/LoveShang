@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) UIWebView *webView;
 @property (nonatomic,strong) NSString *identifer;
+@property (nonatomic,strong) UIView *line;
 
 -(void)setData:(NSDictionary *)data;
 
