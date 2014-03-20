@@ -1710,7 +1710,6 @@
 		53C20EBE180F92C2006CE576 /* LoveShang */ = {
 			isa = PBXGroup;
 			children = (
-				53E3169318D98A6E00722617 /* Icon-120.png */,
 				536C47E018327E5100213ABB /* Resources */,
 				531581D81820082D0032A738 /* Common */,
 				535E7725180FCCFC00433042 /* ViewController */,
@@ -1728,6 +1727,7 @@
 			isa = PBXGroup;
 			children = (
 				535C5B4718D59FB10063522F /* Icon@2x.png */,
+				53E3169318D98A6E00722617 /* Icon-120.png */,
 				535C5B4818D59FB10063522F /* Icon.png */,
 				53C20EC0180F92C2006CE576 /* LoveShang-Info.plist */,
 				53C20EC1180F92C2006CE576 /* InfoPlist.strings */,

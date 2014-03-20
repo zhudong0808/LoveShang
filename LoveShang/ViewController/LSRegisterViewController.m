@@ -62,7 +62,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         [LSGlobal showFailedView:@"验证码发送失败"];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 

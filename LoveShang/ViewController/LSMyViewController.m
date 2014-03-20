@@ -34,11 +34,12 @@
 -(void)loadData{
     LSAuthenticateCompletion completion = ^(BOOL success){
         NSString *urlPath = [NSString stringWithFormat:@"user.php?action=my&encryptString=%@",[LSAuthenticateCenter getEncryptString]];
+        __unsafe_unretained __block LSMyViewController *blockSelf = self;
         [[LSApiClientService sharedInstance] getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
             if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                [_myView.userIconView setImageWithURL:[NSURL URLWithString:[[responseObject objectForKey:@"info"] objectForKey:@"face"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
-                _myView.userNameLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"username"];
-                _myView.userMobileLabel.text = [NSString stringWithFormat:@"认证手机号码：%@",[[responseObject objectForKey:@"info"] objectForKey:@"mobile"]];
+                [blockSelf.myView.userIconView setImageWithURL:[NSURL URLWithString:[[responseObject objectForKey:@"info"] objectForKey:@"face"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
+                blockSelf.myView.userNameLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"username"];
+                blockSelf.myView.userMobileLabel.text = [NSString stringWithFormat:@"认证手机号码：%@",[[responseObject objectForKey:@"info"] objectForKey:@"mobile"]];
             } else {
                 NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"获取用户信息失败";
                 [LSGlobal showFailedView:errorMsg];

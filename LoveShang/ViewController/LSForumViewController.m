@@ -96,30 +96,31 @@
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     _page = isRefresh == YES ? 1 : _page;
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=list&type=%@&vieworder=%@&page=%d",_navType,_viewOrder,_page];
+    __unsafe_unretained __block LSForumViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             _totalCount = [[responseObject objectForKey:@"count"] intValue];
             if (more && !isRefresh) {
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                [_fourmView.forumTableView.infiniteScrollingView stopAnimating];
-                _page = _page + 1;
+                [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [blockSelf.fourmView.forumTableView.infiniteScrollingView stopAnimating];
+                blockSelf.page = blockSelf.page + 1;
             } else {
-                [_tableData removeAllObjects];
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                _page = 2;
-                [_fourmView.forumTableView.pullToRefreshView stopAnimating];
+                [blockSelf.tableData removeAllObjects];
+                [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                blockSelf.page = 2;
+                [blockSelf.fourmView.forumTableView.pullToRefreshView stopAnimating];
             }
         } else {
-            [_fourmView.forumTableView.pullToRefreshView stopAnimating];
-            [_tableData removeAllObjects];
+            [blockSelf.fourmView.forumTableView.pullToRefreshView stopAnimating];
+            [blockSelf.tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+            [blockSelf.tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
-        [self showLoading:NO];
-        [_fourmView.forumTableView reloadData];
+        [blockSelf showLoading:NO];
+        [blockSelf.fourmView.forumTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
+        blockSelf.isLoadingData = NO;
+//        NSLog(@"%@",error);
     }];
     
 }

@@ -34,7 +34,7 @@
         _navTitles = [NSArray arrayWithObjects:@"街巷",@"美食",@"婚嫁",@"妈宝",@"房产",@"汽车",@"装修讨论",@"装修日记",@"新家", nil];
         float x = 0;
         for (NSInteger i = 0; i < _navKeys.count; i++) {
-            NSInteger btnWidth = 13 * [[_navTitles objectAtIndex:i] length] + 10;
+            NSInteger btnWidth = 13 * [[_navTitles objectAtIndex:i] length] + 7.9;
             [_btnWidthArray addObject:[NSString stringWithFormat:@"%d",btnWidth]];
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, btnWidth, 30)];
             x = x + btnWidth;

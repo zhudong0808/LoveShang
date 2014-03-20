@@ -128,27 +128,28 @@
         [_postView.postBtn setEnabled:YES];
         return;
     }
+    __unsafe_unretained __block LSPostViewController *blockSelf = self;
     if ([_tid length] > 0) {
         LSAuthenticateCompletion completion = ^(BOOL success){
-            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=replay&tid=%@&content=%@&encryptString=%@",_tid,[LSGlobal encodeWithString:_postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
+            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=replay&tid=%@&content=%@&encryptString=%@",blockSelf.tid,[LSGlobal encodeWithString:blockSelf.postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
             NSMutableURLRequest *request = [[LSApiClientService sharedInstance] multipartFormRequestWithMethod:@"POST" path:urlPath parameters:nil constructingBodyWithBlock:^(id <AFMultipartFormData>formData){
-                if ([_selectedImageDict count] > 0) {
-                    for (NSString *key in _selectedImageDict.allKeys) {
-                        [formData appendPartWithFileData:[_selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
+                if ([blockSelf.selectedImageDict count] > 0) {
+                    for (NSString *key in blockSelf.selectedImageDict.allKeys) {
+                        [formData appendPartWithFileData:[blockSelf.selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
                     }
                 }
             }];
             AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:_tid];
-                    [self.navigationController pushViewController:vc animated:YES];
+                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:blockSelf.tid];
+                    [blockSelf.navigationController pushViewController:vc animated:YES];
                 } else {
-                    [_postView.postBtn setEnabled:YES];;
+                    [blockSelf.postView.postBtn setEnabled:YES];;
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"回帖失败";
                     [LSGlobal showFailedView:errorMsg];
                 }
             }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
-                [_postView.postBtn setEnabled:YES];
+                [blockSelf.postView.postBtn setEnabled:YES];
                 [LSGlobal showFailedView:@"回帖失败"];
             }];
             [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];
@@ -156,25 +157,25 @@
         [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
     } else {
         LSAuthenticateCompletion completion = ^(BOOL success){
-            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=postnew&fid=%@&subject=%@&content=%@&encryptString=%@",_fid,[LSGlobal encodeWithString:_postView.titleTextField.text],[LSGlobal encodeWithString:_postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
+            NSString *urlPath = [NSString stringWithFormat:@"http://www.loveshang.com/mapi/bbs.php?action=postnew&fid=%@&subject=%@&content=%@&encryptString=%@",blockSelf.fid,[LSGlobal encodeWithString:blockSelf.postView.titleTextField.text],[LSGlobal encodeWithString:blockSelf.postView.contentTextField.text],[LSAuthenticateCenter getEncryptString]];
             NSMutableURLRequest *request = [[LSApiClientService sharedInstance] multipartFormRequestWithMethod:@"POST" path:urlPath parameters:nil constructingBodyWithBlock:^(id <AFMultipartFormData>formData){
-                if ([_selectedImageDict count] > 0) {
-                    for (NSString *key in _selectedImageDict.allKeys) {
-                        [formData appendPartWithFileData:[_selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
+                if ([blockSelf.selectedImageDict count] > 0) {
+                    for (NSString *key in blockSelf.selectedImageDict.allKeys) {
+                        [formData appendPartWithFileData:[blockSelf.selectedImageDict objectForKey:key] name:[NSString stringWithFormat:@"attachments_%@",key] fileName:@"temp.jpeg" mimeType:@"image/jpeg"];
                     }
                 }
             }];
             AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:_tid];
-                    [self.navigationController pushViewController:vc animated:YES];
+                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:blockSelf.tid];
+                    [blockSelf.navigationController pushViewController:vc animated:YES];
                 } else {
-                    [_postView.postBtn setEnabled:YES];;
+                    [blockSelf.postView.postBtn setEnabled:YES];;
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"发帖失败";
                     [LSGlobal showFailedView:errorMsg];
                 }
             }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
-                [_postView.postBtn setEnabled:YES];
+                [blockSelf.postView.postBtn setEnabled:YES];
                 [LSGlobal showFailedView:@"发帖失败"];
             }];
             [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];

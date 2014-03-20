@@ -43,19 +43,20 @@
         return;
     }
     NSString *urlPath = [NSString stringWithFormat:@"user.php?action=login&username=%@&password=%@",[LSGlobal encodeWithString:_loginView.userNameField.text],[LSGlobal encodeWithString:_loginView.passwordField.text]];
+    __unsafe_unretained __block LSLoginViewController *blockSelf = self;
     [[LSApiClientService sharedInstance] getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [SFHFKeychainUtils storeUsername:keyChainEncryptString andPassword:[[responseObject objectForKey:@"info"] objectForKey:@"encryptString"] forServiceName:keyChainServiceName updateExisting:YES error:nil];
-            _loginView.loginBtn.enabled = YES;
-            _completion(YES);
+            blockSelf.loginView.loginBtn.enabled = YES;
+            blockSelf.completion(YES);
         } else {
-            [_loginView.loginBtn setEnabled:YES];
-            NSLog(@"%@",responseObject);
+            [blockSelf.loginView.loginBtn setEnabled:YES];
+//            NSLog(@"%@",responseObject);
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"登录失败";
             [LSGlobal showFailedView:errorMsg];
             LSMyViewController *vc = [[LSMyViewController alloc] init];
-            [self.navigationController popViewControllerAnimated:NO];
-            [self.navigationController pushViewController:vc animated:YES];
+            [blockSelf.navigationController popViewControllerAnimated:NO];
+            [blockSelf.navigationController pushViewController:vc animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
         [_loginView.loginBtn setEnabled:YES];

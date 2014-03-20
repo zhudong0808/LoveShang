@@ -145,29 +145,30 @@
 #pragma mark 接口获取数据
 -(void)loadDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     NSString *urlPath = [NSString stringWithFormat:@"top.php?tag=%@",_navType];
+    __unsafe_unretained __block LSHeadlineViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             if (more && !isRefresh) {
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                [_tableView.infiniteScrollingView stopAnimating];
-                _page = _page + 1;
+                [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [blockSelf.tableView.infiniteScrollingView stopAnimating];
+                blockSelf.page = blockSelf.page + 1;
             } else {
-                [_tableData removeAllObjects];
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                _page = 2;
-                [_tableView.pullToRefreshView stopAnimating];
+                [blockSelf.tableData removeAllObjects];
+                [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                blockSelf.page = 2;
+                [blockSelf.tableView.pullToRefreshView stopAnimating];
             }
         } else {
-            [_tableView.pullToRefreshView stopAnimating];
-            [_tableData removeAllObjects];
+            [blockSelf.tableView.pullToRefreshView stopAnimating];
+            [blockSelf.tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+            [blockSelf.tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
-        [_tableView reloadData];
+        [blockSelf.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        [_tableView.pullToRefreshView stopAnimating];
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
+        [blockSelf.tableView.pullToRefreshView stopAnimating];
+        blockSelf.isLoadingData = NO;
+//        NSLog(@"%@",error);
     }];
     
 }
@@ -175,14 +176,15 @@
 -(void)loadAdvert{
     [_advertData removeAllObjects];
     NSString *urlPath = [NSString stringWithFormat:@"advert.php?tag=%@",_navType];
+    __unsafe_unretained __block LSHeadlineViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            [_advertData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+            [blockSelf.advertData addObjectsFromArray:[responseObject objectForKey:@"info"]];
         }
-        [self loadAndRenderSlideView];
+        [blockSelf loadAndRenderSlideView];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
+        blockSelf.isLoadingData = NO;
+//        NSLog(@"%@",error);
     }];
     
 }

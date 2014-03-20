@@ -8,11 +8,14 @@
 
 #import "LSNavBar.h"
 
+#define BtnWidth 54
+
 @interface LSNavBar(){
 
 }
 @property (nonatomic,strong) UIView *border;
 @property (nonatomic,strong) UIScrollView *sv;
+
 @end
 
 @implementation LSNavBar
@@ -33,8 +36,8 @@
         _navTitles = [NSArray arrayWithObjects:@"全部",@"房产",@"装修",@"婚嫁",@"汽车",@"美食",@"亲子",@"活动",@"民生", nil];
         float x = 0;
         for (NSInteger i = 0; i < _navKeys.count; i++) {
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, 60, 30)];
-            x = x + 60;
+            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, BtnWidth, 30)];
+            x = x + BtnWidth;
             btn.backgroundColor = [UIColor clearColor];
             btn.tag = i;
             [btn setTitle:[_navTitles objectAtIndex:i] forState:UIControlStateNormal];
@@ -45,7 +48,7 @@
             [btn addTarget:self action:@selector(doAction:) forControlEvents:UIControlEventTouchUpInside];
             [_sv addSubview:btn];
         }
-        _border = [[UIView alloc] initWithFrame:CGRectMake(0, _sv.contentSize.height-3 , 60, 3)];
+        _border = [[UIView alloc] initWithFrame:CGRectMake(0, _sv.contentSize.height-3 , BtnWidth, 3)];
         _border.backgroundColor = [UIColor redColor];
         [_sv addSubview:_border];
         [self addSubview:_sv];
@@ -65,7 +68,7 @@
     }
     btn.selected = YES;
     [UIView animateWithDuration:0.3 animations:^{
-        CGRect newFrame = CGRectMake(btn.frame.origin.x, btn.frame.origin.y+30-3, 60, 3);
+        CGRect newFrame = CGRectMake(btn.frame.origin.x, btn.frame.origin.y+30-3, BtnWidth, 3);
         _border.frame = newFrame;
     }];
     

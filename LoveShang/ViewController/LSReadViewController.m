@@ -106,56 +106,58 @@
 
 -(void)loadThreadData{
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=view&tid=%@",_tid];
+    __unsafe_unretained __block LSReadViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            [_readView.readTableView.pullToRefreshView stopAnimating];
-            _readView.titleLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
-            _subjetTitle = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
-            _threadArray = [NSArray arrayWithObject:[responseObject objectForKey:@"info"]];
-            [self initButtonAction];
-            [self loadReplyDataWithMore:NO isRefresh:YES];
+            [blockSelf.readView.readTableView.pullToRefreshView stopAnimating];
+            blockSelf.readView.titleLabel.text = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
+            blockSelf.subjetTitle = [[responseObject objectForKey:@"info"] objectForKey:@"subject"];
+            blockSelf.threadArray = [NSArray arrayWithObject:[responseObject objectForKey:@"info"]];
+            [blockSelf initButtonAction];
+            [blockSelf loadReplyDataWithMore:NO isRefresh:YES];
         } else {
-            [_readView.readTableView.pullToRefreshView stopAnimating];
-            [_tableData removeAllObjects];
+            [blockSelf.readView.readTableView.pullToRefreshView stopAnimating];
+            [blockSelf.tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+            [blockSelf.tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
+        blockSelf.isLoadingData = NO;
+//        NSLog(@"%@",error);
     }];
 }
 
 -(void)loadReplyDataWithMore:(BOOL)more isRefresh:(BOOL)isRefresh{
     _page = isRefresh == YES ? 1 : _page;
     NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=replaylist&tid=%@&page=%d",_tid,_page];
+    __unsafe_unretained __block LSReadViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-            _totalCount = [[responseObject objectForKey:@"count"] intValue];
+            blockSelf.totalCount = [[responseObject objectForKey:@"count"] intValue];
             if (more && !isRefresh) {
-                [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                [_readView.readTableView.infiniteScrollingView stopAnimating];
-                _page = _page + 1;
+                [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                [blockSelf.readView.readTableView.infiniteScrollingView stopAnimating];
+                blockSelf.page = blockSelf.page + 1;
             } else {
-                [_tableData removeAllObjects];
-                [_tableData addObjectsFromArray:_threadArray];
+                [blockSelf.tableData removeAllObjects];
+                [blockSelf.tableData addObjectsFromArray:_threadArray];
                 if ([[responseObject objectForKey:@"count"] intValue] > 0) {
-                    [_tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
-                    _page = 2;
+                    [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];
+                    blockSelf.page = 2;
                 }
-                [_readView.readTableView.pullToRefreshView stopAnimating];
+                [blockSelf.readView.readTableView.pullToRefreshView stopAnimating];
             }
         } else {
-            [_readView.readTableView.pullToRefreshView stopAnimating];
-            [_tableData removeAllObjects];
+            [blockSelf.readView.readTableView.pullToRefreshView stopAnimating];
+            [blockSelf.tableData removeAllObjects];
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"出错啦";
-            [_tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
+            [blockSelf.tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
-        [self showLoading:NO];
-        [_readView.readTableView reloadData];
+        [blockSelf showLoading:NO];
+        [blockSelf.readView.readTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        _isLoadingData = NO;
-        NSLog(@"%@",error);
+        blockSelf.isLoadingData = NO;
+//        NSLog(@"%@",error);
     }];
 }
 -(void)keyBoardShowAction:(NSNotification *)notice{
