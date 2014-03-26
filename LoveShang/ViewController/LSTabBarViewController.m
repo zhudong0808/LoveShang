@@ -50,13 +50,13 @@
         headlineViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
         
         fourmViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0006_论坛-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0007_论坛点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        fourmViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
+        fourmViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -2, -7, -2);
         
         nearbyViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0002_身边优惠-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0003_身边优惠-点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        nearbyViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
+        nearbyViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -2, -7, -2);
 
         myViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[[UIImage imageNamed:@"_0004_我-原始"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"_0005_我-点击后"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        myViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -5, -7, -5);
+        myViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3, -2, -7, -2);
 
     }
     
