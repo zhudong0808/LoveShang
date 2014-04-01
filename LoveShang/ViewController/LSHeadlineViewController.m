@@ -49,6 +49,13 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        
+        UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+        rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+        [_tableView addGestureRecognizer:leftSwipeGestureRecognizer];
+        [_tableView addGestureRecognizer:rightSwipeGestureRecognizer];
     }
     [self.cView addSubview:_tableView];
     __block __unsafe_unretained id blockSelf = self;
@@ -138,6 +145,38 @@
 
 -(void)doActionWithBtn:(UIButton *)btn{
     _navType = [self.navBar.navKeys objectAtIndex:btn.tag];
+    [self loadDataWithMore:NO isRefresh:YES];
+    [self loadAdvert];
+}
+
+-(void)swipeAction:(UISwipeGestureRecognizer *)sender{
+    NSUInteger typeIndex = [self.navBar.navKeys indexOfObject:_navType];
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight && typeIndex > 0) {
+            typeIndex -= 1;
+    } else if(sender.direction == UISwipeGestureRecognizerDirectionLeft && typeIndex < [self.navBar.navKeys count] - 1) {
+            typeIndex += 1;
+    } else {
+        return;
+    }
+    _navType = [self.navBar.navKeys objectAtIndex:typeIndex];
+    
+    UIButton *selectBtn;
+    for (UIButton *sub in [self.navBar.sv subviews]) {
+        if ([sub isKindOfClass:[UIButton class]]) {
+            if (sub.tag == typeIndex) {
+                sub.selected = YES;
+                selectBtn = sub;
+            } else {
+                sub.selected = NO;
+            }
+        }
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect newFrame = CGRectMake(selectBtn.frame.origin.x, selectBtn.frame.origin.y+30-3, 54, 3);
+        self.navBar.border.frame = newFrame;
+    }];
+    
+    
     [self loadDataWithMore:NO isRefresh:YES];
     [self loadAdvert];
 }

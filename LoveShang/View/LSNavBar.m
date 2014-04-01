@@ -13,15 +13,14 @@
 @interface LSNavBar(){
 
 }
-@property (nonatomic,strong) UIView *border;
-@property (nonatomic,strong) UIScrollView *sv;
-
 @end
 
 @implementation LSNavBar
 @synthesize delegate = _delegate;
 @synthesize navTitles = _navTitles;
 @synthesize navKeys = _navKeys;
+@synthesize border = _border;
+@synthesize sv = _sv;
 
 -(LSNavBar *)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){

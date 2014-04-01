@@ -19,6 +19,8 @@
 @property (nonatomic,assign) id<LSNavBarDelegate> delegate;
 @property (nonatomic,strong) NSArray *navTitles;
 @property (nonatomic,strong) NSArray *navKeys;
+@property (nonatomic,strong) UIView *border;
+@property (nonatomic,strong) UIScrollView *sv;
 
 
 @end

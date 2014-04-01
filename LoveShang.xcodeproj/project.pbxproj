@@ -254,6 +254,7 @@
 		53911C681866D26B004E5FB4 /* close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 53911C671866D26B004E5FB4 /* close_btn.png */; };
 		53911C6B1866E544004E5FB4 /* LSReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53911C6A1866E544004E5FB4 /* LSReadViewController.m */; };
 		5392A975181BCB720061230C /* LSApiClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5392A974181BCB720061230C /* LSApiClientService.m */; };
+		53959E0D18E262A1000F8C20 /* LSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 53959E0C18E262A1000F8C20 /* LSDataSource.m */; };
 		539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF80186705DB004268AC /* STHeiti-Light.ttc */; };
 		539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF81186705DB004268AC /* STHeiti-Medium.ttc */; };
 		539EDF86186705DB004268AC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF82186705DB004268AC /* back.png */; };
@@ -778,6 +779,8 @@
 		53911C6A1866E544004E5FB4 /* LSReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSReadViewController.m; sourceTree = "<group>"; };
 		5392A973181BCB720061230C /* LSApiClientService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSApiClientService.h; sourceTree = "<group>"; };
 		5392A974181BCB720061230C /* LSApiClientService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSApiClientService.m; sourceTree = "<group>"; };
+		53959E0B18E262A1000F8C20 /* LSDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDataSource.h; sourceTree = "<group>"; };
+		53959E0C18E262A1000F8C20 /* LSDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDataSource.m; sourceTree = "<group>"; };
 		539EDF80186705DB004268AC /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
 		539EDF81186705DB004268AC /* STHeiti-Medium.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Medium.ttc"; sourceTree = "<group>"; };
 		539EDF82186705DB004268AC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -906,6 +909,8 @@
 				532FCCBE189915040027F141 /* LSGlobal.m */,
 				5357B72B18B08F100035BFD8 /* LSAuthenticateCenter.h */,
 				5357B72C18B08F100035BFD8 /* LSAuthenticateCenter.m */,
+				53959E0B18E262A1000F8C20 /* LSDataSource.h */,
+				53959E0C18E262A1000F8C20 /* LSDataSource.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2045,6 +2050,7 @@
 				53867D0118421D6C001C6C6B /* UIImageAdditions.m in Sources */,
 				53D369DB18CC43D300C4B6B0 /* LSPostView.m in Sources */,
 				53867D0D18421D6C001C6C6B /* TTNavigationController.m in Sources */,
+				53959E0D18E262A1000F8C20 /* LSDataSource.m in Sources */,
 				53867CFF18421D6C001C6C6B /* UIColorAdditions.m in Sources */,
 				536A70D91819638700C9FD00 /* AFURLConnectionOperation.m in Sources */,
 				53867CD518421D6C001C6C6B /* TTLinearGradientBorderStyle.m in Sources */,
@@ -2159,6 +2165,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = LoveShang;
 				PROVISIONING_PROFILE = "E1004E38-7BC6-485D-8CB5-B2EF6BD06664";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
@@ -2185,6 +2192,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = LoveShang;
 				PROVISIONING_PROFILE = "E1004E38-7BC6-485D-8CB5-B2EF6BD06664";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -2205,7 +2213,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LoveShang/LoveShang-Prefix.pch";
 				INFOPLIST_FILE = "LoveShang/LoveShang-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LoveShang;
 				PROVISIONING_PROFILE = "7D5F391C-7887-4CC0-BB67-8B5A297D645F";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2224,7 +2232,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LoveShang/LoveShang-Prefix.pch";
 				INFOPLIST_FILE = "LoveShang/LoveShang-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LoveShang;
 				PROVISIONING_PROFILE = "7D5F391C-7887-4CC0-BB67-8B5A297D645F";
 				WRAPPER_EXTENSION = app;
 			};
