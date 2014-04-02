@@ -12,6 +12,9 @@
 #import "LSAuthenticateCenter.h"
 #import "LSGlobal.h"
 #import "LSWebViewController.h"
+#import "LSContactUsViewController.h"
+#import "LSAboutUsViewController.h"
+#import "LSRegisterViewController.h"
 
 @interface LSMyViewController(){
 }
@@ -27,6 +30,7 @@
     self.commonToolBarType = LSCommonToolbarMy;
     self.showCommonBar = YES;
     _myView = [[LSMyView alloc] initWithSuperView:self.cView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentRegisterVC) name:@"registerNotification" object:nil];
     [self setBtnAction];
     [self loadData];
 }
@@ -59,13 +63,13 @@
 }
 
 -(void)linkActionOne{
-    LSWebViewController *webView = [[LSWebViewController alloc] initWithUrl:@"http://www.loveshang.com/read.php?tid=314212"];
-    [self.navigationController pushViewController:webView animated:YES];
+    LSAboutUsViewController *vc = [[LSAboutUsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)linkActionTwo{
-    LSWebViewController *webView = [[LSWebViewController alloc] initWithUrl:@"http://www.loveshang.com/read.php?tid=101831"];
-    [self.navigationController pushViewController:webView animated:YES];
+    LSContactUsViewController *vc = [[LSContactUsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)linkActionSecond{
@@ -77,6 +81,11 @@
     [[LSAuthenticateCenter shareInstance] loginout];
     [LSGlobal showProgressHUD:@"退出成功" duration:1.0];
     [self performSelector:@selector(loadData) withObject:nil afterDelay:1.0];
+}
+
+-(void)presentRegisterVC{
+    LSRegisterViewController *vc = [[LSRegisterViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end

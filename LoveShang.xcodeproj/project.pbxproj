@@ -255,6 +255,8 @@
 		53911C6B1866E544004E5FB4 /* LSReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53911C6A1866E544004E5FB4 /* LSReadViewController.m */; };
 		5392A975181BCB720061230C /* LSApiClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5392A974181BCB720061230C /* LSApiClientService.m */; };
 		53959E0D18E262A1000F8C20 /* LSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 53959E0C18E262A1000F8C20 /* LSDataSource.m */; };
+		53959F3D18EC6995000F8C20 /* LSContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53959F3C18EC6995000F8C20 /* LSContactUsViewController.m */; };
+		53959F4018EC69AB000F8C20 /* LSAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53959F3F18EC69AB000F8C20 /* LSAboutUsViewController.m */; };
 		539EDF84186705DB004268AC /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF80186705DB004268AC /* STHeiti-Light.ttc */; };
 		539EDF85186705DB004268AC /* STHeiti-Medium.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF81186705DB004268AC /* STHeiti-Medium.ttc */; };
 		539EDF86186705DB004268AC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 539EDF82186705DB004268AC /* back.png */; };
@@ -781,6 +783,10 @@
 		5392A974181BCB720061230C /* LSApiClientService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSApiClientService.m; sourceTree = "<group>"; };
 		53959E0B18E262A1000F8C20 /* LSDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDataSource.h; sourceTree = "<group>"; };
 		53959E0C18E262A1000F8C20 /* LSDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDataSource.m; sourceTree = "<group>"; };
+		53959F3B18EC6995000F8C20 /* LSContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSContactUsViewController.h; sourceTree = "<group>"; };
+		53959F3C18EC6995000F8C20 /* LSContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSContactUsViewController.m; sourceTree = "<group>"; };
+		53959F3E18EC69AB000F8C20 /* LSAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAboutUsViewController.h; sourceTree = "<group>"; };
+		53959F3F18EC69AB000F8C20 /* LSAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAboutUsViewController.m; sourceTree = "<group>"; };
 		539EDF80186705DB004268AC /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
 		539EDF81186705DB004268AC /* STHeiti-Medium.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Medium.ttc"; sourceTree = "<group>"; };
 		539EDF82186705DB004268AC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -1082,6 +1088,10 @@
 				530046F318B3B78F00446ABE /* LSWebViewController.m */,
 				53D369D618CC41AD00C4B6B0 /* LSPostViewController.h */,
 				53D369D718CC41AD00C4B6B0 /* LSPostViewController.m */,
+				53959F3B18EC6995000F8C20 /* LSContactUsViewController.h */,
+				53959F3C18EC6995000F8C20 /* LSContactUsViewController.m */,
+				53959F3E18EC69AB000F8C20 /* LSAboutUsViewController.h */,
+				53959F3F18EC69AB000F8C20 /* LSAboutUsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1974,6 +1984,7 @@
 				53867CEC18421D6C001C6C6B /* TTStyledFrame.m in Sources */,
 				53867CD018421D6C001C6C6B /* TTHighlightBorderStyle.m in Sources */,
 				532FCCC518A4998E0027F141 /* LSLoginView.m in Sources */,
+				53959F4018EC69AB000F8C20 /* LSAboutUsViewController.m in Sources */,
 				53867D2318421D6C001C6C6B /* TTTableViewVarHeightDelegate.m in Sources */,
 				53867D0518421D6C001C6C6B /* TTButtonContent.m in Sources */,
 				53E7F1C3183134D00048EE04 /* LSErrorViewCell.m in Sources */,
@@ -2017,6 +2028,7 @@
 				53867CD718421D6C001C6C6B /* TTMaskStyle.m in Sources */,
 				53E47893181577F600BEFD10 /* LSCommonToolbar.m in Sources */,
 				536A70D31819638700C9FD00 /* AFHTTPClient.m in Sources */,
+				53959F3D18EC6995000F8C20 /* LSContactUsViewController.m in Sources */,
 				53867CA918421D6C001C6C6B /* TTGlobalCorePaths.m in Sources */,
 				53867D2118421D6C001C6C6B /* TTTableViewPlainDelegate.m in Sources */,
 				53867CF218421D6C001C6C6B /* TTStyledItalicNode.m in Sources */,

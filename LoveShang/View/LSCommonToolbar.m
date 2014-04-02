@@ -45,7 +45,7 @@
 }
 
 -(void)setupBackView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin || _type == LSCommonToolbarContactUs || _type == LSCommonToolbarAboutUs) {
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(15, 44/2 - 21/2, 24, 21);
         [backBtn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -56,7 +56,7 @@
 }
 
 -(void)setupTitleView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarContactUs) {
         NSString *title;
         switch (_type) {
             case LSCommonToolbarRead:
@@ -80,11 +80,18 @@
             case LSCommonToolbarPost:
                 title = @"发帖";
                 break;
+            case LSCommonToolbarContactUs:
+                title = @"联系我们";
+                break;
+            case LSCommonToolbarAboutUs:
+                title = @"关于我们";
+                break;
             default:
                 title = @"";
                 break;
         }
-        UILabel *titleLabel = [LSViewUtil simpleLabel:CGRectMake(320/2 - 20, 44/2 - 17/2, 40, 17) f:17 tc:RGBCOLOR(0x99, 0x8c, 0x51) t:title];
+        UILabel *titleLabel = [LSViewUtil simpleLabel:CGRectMake(320/2 - 80/2, 44/2 - 17/2, 80, 17) f:17 tc:RGBCOLOR(0x99, 0x8c, 0x51) t:title];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:titleLabel];
     }
 }

@@ -11,6 +11,7 @@
 #import "LSGlobal.h"
 #import "SFHFKeychainUtils.h"
 #import "LSMyViewController.h"
+#import "LSRegisterViewController.h"
 
 @interface LSLoginViewController(){
 
@@ -70,7 +71,9 @@
 }
 
 -(void)registerAction{
-
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"registerNotification" object:nil];
+    }];
 }
 
 -(void)forgetPasswordAction{

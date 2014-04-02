@@ -18,6 +18,8 @@ typedef enum{
     LSCommonToolbarWebView,
     LSCommonToolbarReply,
     LSCommonToolbarPost,
+    LSCommonToolbarContactUs,
+    LSCommonToolbarAboutUs,
     LSCommonToolbarOther
 } LSCommonToolbarType;
 
