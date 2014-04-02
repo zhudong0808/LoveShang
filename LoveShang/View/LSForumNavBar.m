@@ -30,8 +30,9 @@
         _sv.showsHorizontalScrollIndicator = NO;
         _btnWidthArray = [[NSMutableArray alloc] init];
         
-        _navKeys = [NSArray arrayWithObjects:@"516",@"595",@"516",@"465",@"92",@"486",@"131",@"293",@"294",nil];
-        _navTitles = [NSArray arrayWithObjects:@"街巷",@"美食",@"婚嫁",@"妈宝",@"房产",@"汽车",@"装修讨论",@"装修日记",@"新家", nil];
+        _navKeys = [NSArray arrayWithObjects:@"516",@"92",@"535",@"131",@"293",@"294",@"486",@"595",@"465",nil];
+        _navTitles = [NSArray arrayWithObjects:@"街巷",@"房产",@"婚嫁",@"装修",@"装修日记",@"新家",@"汽车",@"美食",@"妈宝", nil];
+        
         float x = 0;
         for (NSInteger i = 0; i < _navKeys.count; i++) {
             NSInteger btnWidth = 13 * [[_navTitles objectAtIndex:i] length] + 7.9;

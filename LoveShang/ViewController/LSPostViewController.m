@@ -141,8 +141,8 @@
             }];
             AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:blockSelf.tid];
-                    [blockSelf.navigationController pushViewController:vc animated:YES];
+                    [LSGlobal showProgressHUD:@"回帖成功" duration:0.5];
+                    [blockSelf performSelector:@selector(pushToReadView) withObject:nil afterDelay:0.5];
                 } else {
                     [blockSelf.postView.postBtn setEnabled:YES];;
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"回帖失败";
@@ -167,8 +167,9 @@
             }];
             AFHTTPRequestOperation *operation = [[LSApiClientService sharedInstance] HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation,id responseObject){
                 if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
-                    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:blockSelf.tid];
-                    [blockSelf.navigationController pushViewController:vc animated:YES];
+                    [LSGlobal showProgressHUD:@"发帖成功" duration:0.5];
+                    blockSelf.tid = [[responseObject objectForKey:@"info"] objectForKey:@"tid"];
+                    [blockSelf performSelector:@selector(pushToReadView) withObject:nil afterDelay:0.5];
                 } else {
                     [blockSelf.postView.postBtn setEnabled:YES];;
                     NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"发帖失败";
@@ -182,6 +183,11 @@
         };
         [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
     }
+}
+
+-(void)pushToReadView{
+    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:_tid];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSMutableDictionary *)getAttachDict{

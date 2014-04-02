@@ -99,9 +99,11 @@
 //        [self addSubview:shareBtn];
     } else if (_type == LSCommonToolbarList) {
         UIButton *postBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        postBtn.frame = CGRectMake(320-15-21, 44/2-21/2, 21, 21);
+        postBtn.frame = CGRectMake(320-15-30, 0, 44, 44);
+        postBtn.contentMode = UIViewContentModeCenter;
         [postBtn setImage:[UIImage imageNamed:@"_0000_pencil-点击前.png"] forState:UIControlStateNormal];
         [postBtn setImage:[UIImage imageNamed:@"_0000_pencil-点击后.png"] forState:UIControlStateHighlighted];
+        postBtn.imageEdgeInsets = UIEdgeInsetsMake(23/2, 23/2, 23/2, 23/2);
         [postBtn addTarget:self action:@selector(postAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:postBtn];
     }
