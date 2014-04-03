@@ -22,6 +22,7 @@
 -(void)viewDidLoad{
     self.commonToolBarType = LSCommonToolbarRegister;
     self.showCommonBar = YES;
+    self.commonBar.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
     
     _registerView = [[LSRegisterView alloc] initWithSuperView:self.cView];
@@ -114,6 +115,11 @@
         return false;
     }
     return true;
+}
+
+#pragma LSCommonToolbarDelegate
+-(void)backAction{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

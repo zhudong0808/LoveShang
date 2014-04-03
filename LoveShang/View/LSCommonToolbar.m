@@ -45,7 +45,7 @@
 }
 
 -(void)setupBackView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin || _type == LSCommonToolbarContactUs || _type == LSCommonToolbarAboutUs) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin || _type == LSCommonToolbarContactUs || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarRegister) {
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(15, 44/2 - 21/2, 24, 21);
         [backBtn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];

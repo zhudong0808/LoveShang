@@ -56,6 +56,7 @@
         _webView.backgroundColor = [UIColor clearColor];
         [_webView setOpaque:NO];
         _webView.scrollView.scrollEnabled = NO;
+        _webView.allowsInlineMediaPlayback = YES;
         _webView.alpha = 0;
         [self.contentView addSubview:_webView];
         
@@ -72,7 +73,12 @@
     _userNameLabel.text = [data objectForKey:@"author"];
     _userPostdateLabel.text = [data objectForKey:@"postdate"];
     _userFloorLabel.text = [data objectForKey:@"lou"];
-    [_webView loadHTMLString:[data objectForKey:@"content"] baseURL:nil];
+    NSString *imagePath = [[NSBundle mainBundle] resourcePath];
+    imagePath = [imagePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+    imagePath = [imagePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSURL *baseUrl = [NSURL URLWithString:
+                      [NSString stringWithFormat:@"file:/%@//",imagePath]];
+    [_webView loadHTMLString:[data objectForKey:@"content"] baseURL:baseUrl];
 }
 
 

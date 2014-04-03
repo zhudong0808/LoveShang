@@ -8,6 +8,6 @@
 
 #import "LSBaseViewController.h"
 
-@interface LSRegisterViewController : LSBaseViewController<UITextFieldDelegate>
+@interface LSRegisterViewController : LSBaseViewController<UITextFieldDelegate,LSCommonToolbarDelegate>
 
 @end
