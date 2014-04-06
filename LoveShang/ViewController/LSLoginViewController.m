@@ -52,7 +52,6 @@
             blockSelf.completion(YES);
         } else {
             [blockSelf.loginView.loginBtn setEnabled:YES];
-//            NSLog(@"%@",responseObject);
             NSString *errorMsg = [[responseObject objectForKey:@"message"] length] > 0 ? [responseObject objectForKey:@"message"] : @"登录失败";
             [LSGlobal showFailedView:errorMsg];
             LSMyViewController *vc = [[LSMyViewController alloc] init];
@@ -60,13 +59,14 @@
             [blockSelf.navigationController pushViewController:vc animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        [_loginView.loginBtn setEnabled:YES];
-        [LSGlobal showFailedView:@"登录失败"];
+//        [_loginView.loginBtn setEnabled:YES];
+//        [LSGlobal showFailedView:@"登录失败"];
     }];
 }
 
 #pragma LSCommonToolbarDelegate
 -(void)backAction{
+    [_loginView.loginBtn setEnabled:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -90,5 +90,14 @@
         return false;
     }
     return true;
+}
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 @end

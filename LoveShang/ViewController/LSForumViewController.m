@@ -119,7 +119,7 @@
         [blockSelf showLoading:NO];
         [blockSelf.fourmView.forumTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        blockSelf.isLoadingData = NO;
+//        blockSelf.isLoadingData = NO;
 //        NSLog(@"%@",error);
     }];
     
@@ -244,4 +244,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
 @end

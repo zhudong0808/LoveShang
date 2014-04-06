@@ -149,8 +149,8 @@
                     [LSGlobal showFailedView:errorMsg];
                 }
             }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
-                [blockSelf.postView.postBtn setEnabled:YES];
-                [LSGlobal showFailedView:@"回帖失败"];
+//                [blockSelf.postView.postBtn setEnabled:YES];
+//                [LSGlobal showFailedView:@"回帖失败"];
             }];
             [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];
         };
@@ -176,8 +176,8 @@
                     [LSGlobal showFailedView:errorMsg];
                 }
             }  failure:^(AFHTTPRequestOperation *operation,NSError *error){
-                [blockSelf.postView.postBtn setEnabled:YES];
-                [LSGlobal showFailedView:@"发帖失败"];
+//                [blockSelf.postView.postBtn setEnabled:YES];
+//                [LSGlobal showFailedView:@"发帖失败"];
             }];
             [[LSApiClientService sharedInstance] enqueueHTTPRequestOperation:operation];
         };
@@ -338,9 +338,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
+-(void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 
 @end

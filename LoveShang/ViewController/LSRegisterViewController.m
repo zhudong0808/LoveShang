@@ -69,7 +69,7 @@
             [LSGlobal showFailedView:errorMsg];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        [LSGlobal showFailedView:@"验证码发送失败"];
+//        [LSGlobal showFailedView:@"验证码发送失败"];
 //        NSLog(@"%@",error);
     }];
 }
@@ -89,7 +89,7 @@
             [LSGlobal showFailedView:errorMsg];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        [LSGlobal showFailedView:@"注册失败"];
+//        [LSGlobal showFailedView:@"注册失败"];
     }];
 }
 
@@ -120,6 +120,15 @@
 #pragma LSCommonToolbarDelegate
 -(void)backAction{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 
 @end

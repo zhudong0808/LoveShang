@@ -49,7 +49,7 @@
                 [LSGlobal showFailedView:errorMsg];
             }
         } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-            [LSGlobal showFailedView:@"获取用户信息失败"];
+//            [LSGlobal showFailedView:@"获取用户信息失败"];
         }];
     };
     [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
@@ -86,6 +86,15 @@
 -(void)presentRegisterVC{
     LSRegisterViewController *vc = [[LSRegisterViewController alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 
 @end

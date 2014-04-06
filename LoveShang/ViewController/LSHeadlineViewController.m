@@ -205,8 +205,8 @@
         }
         [blockSelf.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        [blockSelf.tableView.pullToRefreshView stopAnimating];
-        blockSelf.isLoadingData = NO;
+//        [blockSelf.tableView.pullToRefreshView stopAnimating];
+//        blockSelf.isLoadingData = NO;
 //        NSLog(@"%@",error);
     }];
     
@@ -222,7 +222,7 @@
         }
         [blockSelf loadAndRenderSlideView];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        blockSelf.isLoadingData = NO;
+//        blockSelf.isLoadingData = NO;
 //        NSLog(@"%@",error);
     }];
     
@@ -280,6 +280,15 @@
     NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
     LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:[cellData objectForKey:@"tid"]];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 
 @end

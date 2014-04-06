@@ -122,8 +122,9 @@
             [blockSelf.tableData addObject:[NSError errorWithDomain:@"" code:-1 userInfo:@{@"NSLocalizedDescription":errorMsg}]];
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        blockSelf.isLoadingData = NO;
+//        blockSelf.isLoadingData = NO;
 //        NSLog(@"%@",error);
+//        [LSGlobal showFailedView:@"出错啦"];
     }];
 }
 
@@ -156,7 +157,7 @@
         [blockSelf showLoading:NO];
         [blockSelf.readView.readTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        blockSelf.isLoadingData = NO;
+//        blockSelf.isLoadingData = NO;
 //        NSLog(@"%@",error);
     }];
 }
@@ -204,8 +205,8 @@
             }
                 [_readView.readTableView reloadData];
         } failure:^(AFHTTPRequestOperation *operation,NSError *error){
-            _isLoadingData = NO;
-            [LSGlobal showFailedView:error.localizedDescription];
+//            _isLoadingData = NO;
+//            [LSGlobal showFailedView:error.localizedDescription];
         }];
     };
     [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
@@ -312,5 +313,14 @@
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [_readView.readTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:NO];
     }
+}
+
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+-(void)dealloc{
+    [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
 }
 @end
