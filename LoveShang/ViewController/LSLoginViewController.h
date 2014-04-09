@@ -10,7 +10,7 @@
 
 typedef void(^LSLoginCompletion)(BOOL success);
 
-@interface LSLoginViewController : LSBaseViewController<LSCommonToolbarDelegate>
+@interface LSLoginViewController : LSBaseViewController<LSCommonToolbarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,copy) LSLoginCompletion completion;
 

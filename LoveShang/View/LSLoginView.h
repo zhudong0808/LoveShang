@@ -15,6 +15,10 @@
 @property (nonatomic,strong) UIButton *forgetPasswordBtn;
 @property (nonatomic,strong) UIButton *registerBtn;
 @property (nonatomic,strong) UIButton *loginBtn;
+@property (nonatomic,strong) UIView *userNameView;
+@property (nonatomic,strong) UIView *passwordView;
+@property (nonatomic,strong) UIButton *showAccountBtn;
+@property (nonatomic,strong) UITableView *accountInfoView;
 
 -(LSLoginView *)initWithSuperView:(UIView *)superView;
 
