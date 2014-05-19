@@ -19,6 +19,7 @@
 @synthesize mobileBtn = _mobileBtn;
 @synthesize veriCodeField = _veriCodeField;
 @synthesize registerBtn = _registerBtn;
+@synthesize protocolBtn = _protocolBtn;
 
 -(LSRegisterView *)initWithSuperView:(UIView *)superView{
     if (self = [super init]) {
@@ -106,6 +107,15 @@
         _registerBtn.frame = CGRectMake(9, veriCodeView.bottom + 30, 320 - 2*9, 95/2);
         [_registerBtn setImage:[UIImage imageNamed:@"_0000_注册-.png"] forState:UIControlStateNormal];
         [_wapperView addSubview:_registerBtn];
+        
+        
+        _protocolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _protocolBtn.frame = CGRectMake(9, _registerBtn.bottom + 10, 180, 20);
+        _protocolBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _protocolBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+        [_protocolBtn setTitle:@"注册即同意爱上网用户协议" forState:UIControlStateNormal];
+        [_protocolBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_wapperView addSubview:_protocolBtn];
         
     }
     return self;

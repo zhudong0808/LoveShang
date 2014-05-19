@@ -15,6 +15,7 @@
 #import "LSContactUsViewController.h"
 #import "LSAboutUsViewController.h"
 #import "LSRegisterViewController.h"
+#import "LSProtocolViewController.h"
 
 @interface LSMyViewController(){
 }
@@ -31,6 +32,8 @@
     self.showCommonBar = YES;
     _myView = [[LSMyView alloc] initWithSuperView:self.cView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentRegisterVC) name:@"registerNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentProtocolVC) name:@"protocolNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentRegisterVC) name:@"dismissProtocolNotification" object:nil];
     [self setBtnAction];
     [self loadData];
 }
@@ -85,6 +88,11 @@
 
 -(void)presentRegisterVC{
     LSRegisterViewController *vc = [[LSRegisterViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)presentProtocolVC{
+    LSProtocolViewController *vc = [[LSProtocolViewController alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
 }
 

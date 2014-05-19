@@ -22,4 +22,5 @@
 @property (nonatomic,strong) UITextField *veriCodeField;
 @property (nonatomic,strong) UIImageView *mainInfoBox;
 @property (nonatomic,strong) UIButton *registerBtn;
+@property (nonatomic,strong) UIButton *protocolBtn;
 @end

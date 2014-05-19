@@ -9,6 +9,7 @@
 #import "LSRegisterViewController.h"
 #import "LSRegisterView.h"
 #import "LSGlobal.h"
+#import "LSProtocolViewController.h"
 
 @interface LSRegisterViewController(){
 
@@ -31,6 +32,7 @@
     
     [_registerView.mobileBtn addTarget:self action:@selector(getVeriCode) forControlEvents:UIControlEventTouchUpInside];
     [_registerView.registerBtn addTarget:self action:@selector(submitRegister) forControlEvents:UIControlEventTouchUpInside];
+    [_registerView.protocolBtn addTarget:self action:@selector(goProtocolVC) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -90,6 +92,13 @@
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error){
 //        [LSGlobal showFailedView:@"注册失败"];
+    }];
+}
+
+
+-(void)goProtocolVC{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"protocolNotification" object:nil];
     }];
 }
 

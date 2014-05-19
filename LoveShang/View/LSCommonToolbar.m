@@ -45,7 +45,7 @@
 }
 
 -(void)setupBackView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin || _type == LSCommonToolbarContactUs || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarRegister) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarWebView || _type == LSCommonToolbarWebView || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarLogin || _type == LSCommonToolbarContactUs || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarRegister || _type == LSCommonToolBarProtocol) {
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(15, 44/2 - 21/2, 24, 21);
         [backBtn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -56,7 +56,7 @@
 }
 
 -(void)setupTitleView{
-    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarContactUs) {
+    if (_type == LSCommonToolbarRead || _type == LSCommonToolbarRegister || _type == LSCommonToolbarLogin || _type == LSCommonToolbarMy || _type == LSCommonToolbarPost || _type == LSCommonToolbarReply || _type == LSCommonToolbarAboutUs || _type == LSCommonToolbarContactUs || _type == LSCommonToolBarProtocol) {
         NSString *title;
         switch (_type) {
             case LSCommonToolbarRead:
@@ -85,6 +85,9 @@
                 break;
             case LSCommonToolbarAboutUs:
                 title = @"关于我们";
+                break;
+            case LSCommonToolBarProtocol:
+                title = @"注册协议";
                 break;
             default:
                 title = @"";

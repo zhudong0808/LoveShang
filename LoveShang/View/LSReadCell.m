@@ -18,6 +18,8 @@
 @property (nonatomic,strong) UILabel *userNameLabel;
 @property (nonatomic,strong) UILabel *userPostdateLabel;
 @property (nonatomic,strong) UILabel *userFloorLabel;
+@property (nonatomic,strong) NSDictionary *contentData;
+@property (nonatomic,strong) UIButton *reportBtn;
 
 @end
 
@@ -49,6 +51,15 @@
         _userPostdateLabel = [LSViewUtil simpleLabel:CGRectMake(42, 26, 200, 10) f:10 tc:RGBCOLOR(0x6d, 0x6e, 0x71) t:@""];
         [userInfoView addSubview:_userPostdateLabel];
         
+        _reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _reportBtn.frame = CGRectMake(320-30-20, 0, 30, 10);
+        _reportBtn.titleLabel.font = [UIFont systemFontOfSize:8];
+        [_reportBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_reportBtn setTitle:@"举报" forState:UIControlStateNormal];
+        [_reportBtn addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
+        [userInfoView addSubview:_reportBtn];
+        
+        
         _userFloorLabel = [LSViewUtil simpleLabel:CGRectMake(320-30-20, 36/2-10/2, 30, 10) f:10 tc:RGBCOLOR(0x9c, 0xbd, 0x4b) t:@"111"];
         [userInfoView addSubview:_userFloorLabel];
         
@@ -69,6 +80,7 @@
 }
 
 -(void)setData:(NSDictionary *)data{
+    _contentData = data;
     [_userIconView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[data objectForKey:@"faceurl"]]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
     _userNameLabel.text = [data objectForKey:@"author"];
     _userPostdateLabel.text = [data objectForKey:@"postdate"];
@@ -79,6 +91,11 @@
     NSURL *baseUrl = [NSURL URLWithString:
                       [NSString stringWithFormat:@"file:/%@//",imagePath]];
     [_webView loadHTMLString:[data objectForKey:@"content"] baseURL:baseUrl];
+}
+
+-(void)report{
+    NSString *pid = [_contentData objectForKey:@"pid"] ? : @"0";
+    [self.delegate report:pid];
 }
 
 

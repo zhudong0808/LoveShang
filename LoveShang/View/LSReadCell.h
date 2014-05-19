@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LSReadCellDelegate <NSObject>
+
+-(void)report:(NSString *)pid;
+@end
+
 @interface LSReadCell : UITableViewCell
 
 @property (nonatomic,strong) UIWebView *webView;
 @property (nonatomic,strong) NSString *identifer;
 @property (nonatomic,strong) UIView *line;
+@property (assign) id<LSReadCellDelegate> delegate;
 
 -(void)setData:(NSDictionary *)data;
 

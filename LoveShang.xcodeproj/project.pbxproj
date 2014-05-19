@@ -244,6 +244,7 @@
 		536C480118327E5100213ABB /* ErrorEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 536C47EC18327E5100213ABB /* ErrorEmpty@2x.png */; };
 		536C480518327E5100213ABB /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 536C47F018327E5100213ABB /* loading.png */; };
 		536C480618327E5100213ABB /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 536C47F118327E5100213ABB /* logo.png */; };
+		5384AC76192A442500125C83 /* LSProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5384AC75192A442500125C83 /* LSProtocolViewController.m */; };
 		53867B4B1841DA4B001C6C6B /* LSForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867B4A1841DA4B001C6C6B /* LSForumCell.m */; };
 		53867D3518421E46001C6C6B /* LSActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867D3418421E46001C6C6B /* LSActivityLabel.m */; };
 		53867D3918422102001C6C6B /* JWNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53867D3818422102001C6C6B /* JWNavigationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -777,6 +778,8 @@
 		536C47EC18327E5100213ABB /* ErrorEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ErrorEmpty@2x.png"; sourceTree = "<group>"; };
 		536C47F018327E5100213ABB /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		536C47F118327E5100213ABB /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		5384AC74192A442500125C83 /* LSProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSProtocolViewController.h; sourceTree = "<group>"; };
+		5384AC75192A442500125C83 /* LSProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSProtocolViewController.m; sourceTree = "<group>"; };
 		53867B491841DA4B001C6C6B /* LSForumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSForumCell.h; path = View/LSForumCell.h; sourceTree = "<group>"; };
 		53867B4A1841DA4B001C6C6B /* LSForumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSForumCell.m; path = View/LSForumCell.m; sourceTree = "<group>"; };
 		53867D3318421E46001C6C6B /* LSActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSActivityLabel.h; sourceTree = "<group>"; };
@@ -1508,6 +1511,8 @@
 				53959F3C18EC6995000F8C20 /* LSContactUsViewController.m */,
 				53959F3E18EC69AB000F8C20 /* LSAboutUsViewController.h */,
 				53959F3F18EC69AB000F8C20 /* LSAboutUsViewController.m */,
+				5384AC74192A442500125C83 /* LSProtocolViewController.h */,
+				5384AC75192A442500125C83 /* LSProtocolViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2072,6 +2077,7 @@
 				530FED8518F1296900D72628 /* TTSectionedDataSource.m in Sources */,
 				530FED3518F1296900D72628 /* TTURLDataResponse.m in Sources */,
 				530FED4B18F1296900D72628 /* TTMaskStyle.m in Sources */,
+				5384AC76192A442500125C83 /* LSProtocolViewController.m in Sources */,
 				530FED7218F1296900D72628 /* TTTextStyle.m in Sources */,
 				530FED5F18F1296900D72628 /* TTStyledElement.m in Sources */,
 				530FED3218F1296900D72628 /* TTModel.m in Sources */,

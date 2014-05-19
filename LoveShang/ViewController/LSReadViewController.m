@@ -10,7 +10,6 @@
 #import "LSReadView.h"
 #import "LSActivityLabel.h"
 #import "LSErrorViewCell.h"
-#import "LSReadCell.h"
 #import "LSGlobal.h"
 #import "LSAuthenticateCenter.h"
 #import "LSPostViewController.h"
@@ -277,6 +276,7 @@
         cell.line.hidden = NO;
     }
     [cell setData:cellData];
+    cell.delegate = self;
     cell.webView.delegate = self;
     return cell;
 }
@@ -322,5 +322,19 @@
 
 -(void)dealloc{
     [[[LSApiClientService sharedInstance] operationQueue] cancelAllOperations];
+}
+
+
+#pragma mark - 
+#pragma LSReadCellDelegate
+-(void)report:(NSString *)pid{
+    LSAuthenticateCompletion completion = ^(BOOL success){
+        NSString *urlPath = [NSString stringWithFormat:@"bbs.php?action=report&encryptString=%@&tid=%@&pid=%@",[LSAuthenticateCenter getEncryptString],_tid,pid];
+        [[LSApiClientService sharedInstance] getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+            [LSGlobal showProgressHUD:@"举报成功" duration:1.0];
+        } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        }];
+    };
+    [[LSAuthenticateCenter shareInstance] authenticateWithBlock:completion];
 }
 @end
