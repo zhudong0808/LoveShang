@@ -270,8 +270,8 @@
     LSHeadlineViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellHeadLineIndetifier];
     if (!cell) {
         cell = [[LSHeadlineViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellHeadLineIndetifier];
-        [cell setData:cellData];
     }
+    [cell setData:cellData];
     return cell;
 }
 
