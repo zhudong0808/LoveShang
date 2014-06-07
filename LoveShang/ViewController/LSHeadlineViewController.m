@@ -25,6 +25,7 @@
 @property (nonatomic,strong) UIScrollView *slideView;
 @property (nonatomic,strong) UIPageControl *pageControl;
 @property (nonatomic,strong) UILabel *slideTitleLabel;
+@property (nonatomic,strong) UIView *slideTitleView;
 @end
 
 @implementation LSHeadlineViewController
@@ -41,11 +42,8 @@
     _tableData = [[NSMutableArray alloc] init];
     _advertData = [[NSMutableArray alloc] init];
     
-    [self loadAdvert];
-    
-    
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+30.5 + 170, self.cView.frame.size.width, APP_CONTENT_HEIGHT - 44 - 30.5 - 170 - 44) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+30.5, self.cView.frame.size.width, APP_CONTENT_HEIGHT - 44 - 30.5 - 44) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -56,8 +54,30 @@
         rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
         [_tableView addGestureRecognizer:leftSwipeGestureRecognizer];
         [_tableView addGestureRecognizer:rightSwipeGestureRecognizer];
+        
+        UIView *slideViewContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.cView.frame.size.width, 170)];
+        _tableView.tableHeaderView = slideViewContainer;
+        
+        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.cView.frame.size.width, 170)];
+        _slideView.pagingEnabled = YES;
+        _slideView.delegate = self;
+        _slideView.showsHorizontalScrollIndicator = NO;
+        [slideViewContainer addSubview:_slideView];
+        
+        _slideTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 144, 320, 26)];
+        _slideTitleView.backgroundColor = [UIColor whiteColor];
+        _slideTitleView.alpha = 0.8;
+        _slideTitleView.tag = 10000;
+        _slideTitleView.hidden = YES;
+        [slideViewContainer addSubview:_slideTitleView];
+        
+        _slideTitleLabel = [LSViewUtil simpleLabel:CGRectMake(12, 0, 245, 26) f:14 tc:RGBCOLOR(0x00, 0x00, 0x00) t:@""];
+        [_slideTitleView addSubview:_slideTitleLabel];
     }
     [self.cView addSubview:_tableView];
+    
+    [self loadAdvert];
+    
     __block __unsafe_unretained id blockSelf = self;
     [_tableView addPullToRefreshWithActionHandler:^{
         int64_t delayInSeconds = 0.3;
@@ -92,13 +112,13 @@
 -(void)loadAndRenderSlideView{
     
     //初始化幻灯片
-    if (!_slideView) {
-        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+30.5, self.cView.frame.size.width, 170)];
-        _slideView.pagingEnabled = YES;
-        _slideView.delegate = self;
-        _slideView.showsHorizontalScrollIndicator = NO;
-        [self.cView addSubview:_slideView];
-    }
+//    if (!_slideView) {
+//        _slideView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+30.5, self.cView.frame.size.width, 170)];
+//        _slideView.pagingEnabled = YES;
+//        _slideView.delegate = self;
+//        _slideView.showsHorizontalScrollIndicator = NO;
+//        [self.cView addSubview:_slideView];
+//    }
     _slideView.contentSize = CGSizeMake(self.cView.frame.size.width * [_advertData count], 170);
     
     NSInteger i = 0;
@@ -124,22 +144,26 @@
         }
     }
     if ([_advertData count] > 0) {
-        UIView *slideTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 44+30.5+144, 320, 26)];
-        slideTitleView.backgroundColor = [UIColor whiteColor];
-        slideTitleView.alpha = 0.8;
-        slideTitleView.tag = 10000;
-        [self.cView addSubview:slideTitleView];
+//        UIView *slideTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 144, 320, 26)];
+//        slideTitleView.backgroundColor = [UIColor whiteColor];
+//        slideTitleView.alpha = 0.8;
+//        slideTitleView.tag = 10000;
+//        [_slideView addSubview:slideTitleView];
         
-        _slideTitleLabel = [LSViewUtil simpleLabel:CGRectMake(12, 0, 245, 26) f:14 tc:RGBCOLOR(0x00, 0x00, 0x00) t:[[_advertData objectAtIndex:0] objectForKey:@"subject"]];
-        [slideTitleView addSubview:_slideTitleLabel];
+//        _slideTitleLabel = [LSViewUtil simpleLabel:CGRectMake(12, 0, 245, 26) f:14 tc:RGBCOLOR(0x00, 0x00, 0x00) t:[[_advertData objectAtIndex:0] objectForKey:@"subject"]];
+//        [slideTitleView addSubview:_slideTitleLabel];
+        _slideTitleView.hidden = NO;
+        _slideTitleLabel.text = [[_advertData objectAtIndex:0] objectForKey:@"subject"];
         if ([_advertData count] > 1) {
             _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(250, 0, 70, 26)];
             _pageControl.pageIndicatorTintColor = RGBCOLOR(0xbf, 0xc2, 0xc2);
             _pageControl.currentPageIndicatorTintColor = RGBCOLOR(0x95, 0x98, 0x9a);
             _pageControl.currentPage = 0;
-            [slideTitleView addSubview:_pageControl];
+            [_slideTitleView addSubview:_pageControl];
         }
         _pageControl.numberOfPages = [_advertData count];
+    } else {
+        _slideTitleView.hidden = YES;
     }
 }
 
