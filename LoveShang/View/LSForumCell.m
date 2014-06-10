@@ -15,6 +15,7 @@
 @property (nonatomic,strong) UILabel *repliesLabel;
 @property (nonatomic,strong) UILabel *lastpostLabel;
 @property (nonatomic,strong) UIView *bottomInfoView;
+@property (nonatomic,strong) UIImageView *imageIconView;
 
 @end
 
@@ -34,14 +35,20 @@
         _titleLabel.numberOfLines = 2;
         
         
+        
+        
         _bottomInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 11+13+9, 320, 10)];
         [self addSubview:_bottomInfoView];
         
-        _authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, 100, 10)];
+        _authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, 80, 10)];
         _authorLabel.textColor = RGBCOLOR(0x6d, 0x6e, 0x71);
         _authorLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:10];
         _authorLabel.textAlignment = NSTextAlignmentLeft;
         _authorLabel.backgroundColor = [UIColor clearColor];
+        
+        _imageIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"_0003_photo.png"]];
+        _imageIconView.frame = CGRectMake(_authorLabel.right+5, 0, 13, 10);
+        _imageIconView.hidden = YES;
         
         
         _hitLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 0, 50, 10)];
@@ -68,6 +75,8 @@
         [_bottomInfoView addSubview:_repliesLabel];
         [_bottomInfoView addSubview:_authorLabel];
         [_bottomInfoView addSubview:_lastpostLabel];
+        [_bottomInfoView addSubview:_imageIconView];
+
         
         self.selectedBackgroundView = [[UIView alloc] init];
         self.selectedBackgroundView.backgroundColor = RGBCOLOR(0xe8, 0xe8, 0xe8);
@@ -78,7 +87,11 @@
 
 -(void)setData:(NSDictionary *)data{
     _titleLabel.text = [data objectForKey:@"subject"];
+    
+    
+    
     CGSize subjectSize = [[data objectForKey:@"subject"] sizeWithFont:[UIFont fontWithName:@"STHeitiTC-Medium" size:13] constrainedToSize:CGSizeMake(284, 30)];
+    
     if (subjectSize.height > 13) {
         _titleLabel.size = CGSizeMake(284, 26);
         _bottomInfoView.frame = CGRectMake(0, 11+13+9+13, 320, 10);
@@ -86,6 +99,13 @@
         _titleLabel.size = CGSizeMake(284, 13);
         _bottomInfoView.frame = CGRectMake(0, 11+13+9, 320, 10);
     }
+    
+    if ([[data objectForKey:@"ifupload"] isEqualToString:@"1"]) {
+        _imageIconView.hidden = NO;
+    } else {
+        _imageIconView.hidden = YES;
+    }
+    
     _authorLabel.text = [NSString stringWithFormat:@"作者：%@",[data objectForKey:@"author"]];
     _hitLabel.text = [NSString stringWithFormat:@"%@ 浏览",[data objectForKey:@"hits"]];
     _repliesLabel.text = [NSString stringWithFormat:@"%@ 回复",[data objectForKey:@"replies"]];

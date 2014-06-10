@@ -99,6 +99,7 @@
     __unsafe_unretained __block LSForumViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
+            NSLog(@"%@",responseObject);
             _totalCount = [[responseObject objectForKey:@"count"] intValue];
             if (more && !isRefresh) {
                 [blockSelf.tableData addObjectsFromArray:[responseObject objectForKey:@"info"]];

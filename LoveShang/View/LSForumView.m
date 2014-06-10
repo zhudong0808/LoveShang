@@ -20,7 +20,7 @@
         _forumTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _forumTableView.showsVerticalScrollIndicator = NO;
         [superView addSubview:_forumTableView];
-        _actionBox = [[UIView alloc] initWithFrame:CGRectMake(15,44, 293, 80)];
+        _actionBox = [[UIView alloc] initWithFrame:CGRectMake(15,44, 293, 124)];
         _actionBox.backgroundColor = [UIColor clearColor];
         _actionBox.layer.borderWidth = 1;
         _actionBox.layer.borderColor = [RGBCOLOR(0x99, 0x8c, 0x51) CGColor];
@@ -36,7 +36,7 @@
 
 -(void)setupPostdateView{
     UIButton *postdateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    postdateBtn.frame = CGRectMake(0, 0, 293, 32);
+    postdateBtn.frame = CGRectMake(0, 0, 293, 50);
     postdateBtn.titleLabel.font =  [UIFont systemFontOfSize:13];
     postdateBtn.backgroundColor = RGBCOLOR(0xe6, 0xe6, 0xe6);
     [postdateBtn setTitle:@"按最新发表显示" forState:UIControlStateNormal];
@@ -48,7 +48,7 @@
 
 -(void)setupReplydateView{
     UIButton *replydateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    replydateBtn.frame = CGRectMake(0, 32, 293, 24);
+    replydateBtn.frame = CGRectMake(0, 50, 293, 50);
     replydateBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     replydateBtn.backgroundColor = RGBCOLOR(0xa0, 0xa0, 0xa0);
     replydateBtn.alpha = 0.9;
@@ -61,7 +61,7 @@
 
 -(void)setupCloseBtnView{
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeBtn.frame = CGRectMake(0, 56, 293, 24);
+    closeBtn.frame = CGRectMake(0, 100, 293, 24);
     closeBtn.backgroundColor = RGBCOLOR(0xa0, 0xa0, 0xa0);
     closeBtn.alpha = 0.9;
     [closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];

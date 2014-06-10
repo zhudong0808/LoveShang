@@ -84,6 +84,7 @@
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [blockSelf loadDataWithMore:NO isRefresh:YES];
+            [blockSelf loadAdvert];
         });
      }];
     // setup infinite scrolling
@@ -131,10 +132,15 @@
         [_slideView addSubview:picView];
     } else {
         for (NSDictionary *item in _advertData) {
-            UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 320, 0, 320, 170)];
+            UIButton *picBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            picBtn.frame = CGRectMake(i * 320, 0, 320, 170);
+            picBtn.tag = [[item objectForKey:@"tid"] intValue];
+            UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
             picView.image = [UIImage imageNamed:@"loading.png"];
             [picView setImageWithURL:[NSURL URLWithString:[item objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"loading.png"]];
-            [_slideView addSubview:picView];
+            [picBtn addSubview:picView];
+            [_slideView addSubview:picBtn];
+            [picBtn addTarget:self action:@selector(gotoReadVC:) forControlEvents:UIControlEventTouchUpInside];
             i++;
         }
     }
@@ -241,6 +247,7 @@
     NSString *urlPath = [NSString stringWithFormat:@"advert.php?tag=%@",_navType];
     __unsafe_unretained __block LSHeadlineViewController *blockSelf = self;
     [[LSApiClientService sharedInstance]getPath:urlPath parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject){
+        [blockSelf.advertData removeAllObjects];
         if ([[responseObject objectForKey:@"state"] isEqualToString:@"success"]) {
             [blockSelf.advertData addObjectsFromArray:[responseObject objectForKey:@"info"]];
         }
@@ -303,6 +310,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *cellData = [_tableData objectAtIndex:indexPath.row];
     LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:[cellData objectForKey:@"tid"]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)gotoReadVC:(UIButton *)sender{
+    LSReadViewController *vc = [[LSReadViewController alloc] initWithTid:[NSString stringWithFormat:@"%d",sender.tag]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
