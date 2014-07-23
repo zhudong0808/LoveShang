@@ -1841,6 +1841,11 @@
 				CLASSPREFIX = LS;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = zhudong;
+				TargetAttributes = {
+					53C20EB4180F92C2006CE576 = {
+						DevelopmentTeam = PRGNZ6D28M;
+					};
+				};
 			};
 			buildConfigurationList = 53C20EB0180F92C2006CE576 /* Build configuration list for PBXProject "LoveShang" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2259,7 +2264,7 @@
 		53C20ED3180F92C2006CE576 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: 冬 朱 (R2ND8RPJ7X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yan Zhang (86SKU5NX87)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhudong/iosWork/LoveShang/Vendors,
@@ -2271,7 +2276,7 @@
 				GCC_PREFIX_HEADER = "LoveShang/LoveShang-Prefix.pch";
 				INFOPLIST_FILE = "LoveShang/LoveShang-Info.plist";
 				PRODUCT_NAME = LoveShang;
-				PROVISIONING_PROFILE = "7D5F391C-7887-4CC0-BB67-8B5A297D645F";
+				PROVISIONING_PROFILE = "6A9E19AE-4BDE-47E6-99D1-D69A15763D85";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2280,7 +2285,7 @@
 		53C20ED4180F92C2006CE576 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: 冬 朱 (R2ND8RPJ7X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yan Zhang (86SKU5NX87)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhudong/iosWork/LoveShang/Vendors,
@@ -2292,7 +2297,7 @@
 				GCC_PREFIX_HEADER = "LoveShang/LoveShang-Prefix.pch";
 				INFOPLIST_FILE = "LoveShang/LoveShang-Info.plist";
 				PRODUCT_NAME = LoveShang;
-				PROVISIONING_PROFILE = "7D5F391C-7887-4CC0-BB67-8B5A297D645F";
+				PROVISIONING_PROFILE = "6A9E19AE-4BDE-47E6-99D1-D69A15763D85";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

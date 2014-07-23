@@ -161,13 +161,16 @@
         _slideTitleView.hidden = NO;
         _slideTitleLabel.text = [[_advertData objectAtIndex:0] objectForKey:@"subject"];
         if ([_advertData count] > 1) {
+            [_pageControl removeFromSuperview];
             _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(250, 0, 70, 26)];
             _pageControl.pageIndicatorTintColor = RGBCOLOR(0xbf, 0xc2, 0xc2);
             _pageControl.currentPageIndicatorTintColor = RGBCOLOR(0x95, 0x98, 0x9a);
             _pageControl.currentPage = 0;
             [_slideTitleView addSubview:_pageControl];
+            _pageControl.numberOfPages = [_advertData count];
+        } else {
+            _pageControl.numberOfPages = 0;
         }
-        _pageControl.numberOfPages = [_advertData count];
     } else {
         _slideTitleView.hidden = YES;
     }
